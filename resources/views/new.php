@@ -19,9 +19,6 @@
     width:100% !important;
     height: 200px !important;
 }
-.caption{
-  height: 150px;
-}
     </style>
   </head>
   <body>
@@ -54,7 +51,7 @@
                        <a href="#">Follow</a>
                    </li>
                    <li>
-                       <a href="#">News</a>
+                       <a href="news">News</a>
                    </li>
                </ul>
            </div>
@@ -80,7 +77,7 @@
                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                             @foreach($animals as $pic)
+                             @foreach($animalsMoneys as $pic)
 
                                     @if($loop->first)
                                       <div class="item active">
@@ -93,7 +90,7 @@
                                       </div>
                              @endif
                            @endforeach
-                        จะแสดงข่าวตรงนี้
+                        จะแสดงข่าวตรงนี้ ข่าว ข่าว ข่าว ข่าว{{$newsAnis}}
                            </div>
                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                <span class="glyphicon glyphicon-chevron-left"></span>
@@ -110,7 +107,7 @@
 
                <div class="row">
 
-                  @foreach($animals as $animal)
+                  @foreach($animalsMoneys as $animal)
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">
@@ -119,17 +116,11 @@
                              {{$animal->join_donationType->do_typeName}}
                                <h4><a href="#">{{$animal->animal_name}}</a>
                                </h4>
-                               {{$animal->animal_type}}<br>
-                              {{$animal->symptomCase}}
-
-
-                              <!-- Button trigger modal -->
-                            <div class="row text-right">
-                          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                            view detail
-                          </button>
-                          <button type="button" class="btn btn-primary btn-sm">Help</button>
-                        </div>
+                               <p>{{$animal->animal_type}}</p>
+                               <p>{{$animal->symptomCase}}</p>
+                               <div class="col-sm-4 col-lg-4 col-md-4">
+                                      <a class="btn btn-primary" target="_blank" href="">View All</a>
+                                  </div>
                            </div>
                        </div>
                      </div>
@@ -137,32 +128,6 @@
 
 
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Nong mao</h4>
-                      </div>
-                      <div class="modal-body">
-                        รุปใหย่ตัวนี้<br>
-                        ชื่อ<br>
-                        เพศ<br>
-                        อายุ<br>
-                        อาการ<br>
-                        ต้องใช้เงินเยอะมากๆ ขอความเห็นใจ<br>
-                        โปรดบริจาคให้<br>
-                        <br>
-                        แสดงช่องทางการบริจาค  ปุ่มบริจาคนี้เชื่อมกับOmise
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">บริจาค</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
 
 

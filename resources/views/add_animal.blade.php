@@ -15,23 +15,28 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 style="text-align:center">Add Animal</h1>
-                <form action="/add" class="form" method="post">
+                <form action="/add" class="form" method="post" enctype="multipart/form-data">
                     {{ Form::token() }}
 
                     <div class="form-group">
                         <label for="ani_name" class="form-label">Animal Name</label>
                         <input type="text" class="form-control" name="ani_name"/>
                     </div>
-                    <select class="selectpicker">
-                        <option>kk</option>
-                        <option>Ketchup</option> ตรงนี้ จะเอา ขัอมูลในตาราง donationType มาลูปให้เลือก มันเป็นประเภทให้เลือกอ่ะ
-                        <option>Relish</option>
-                    </select>
 
                     <div class="form-group">
                         <label for="ani_type" class="form-label">Animal Type</label>
                         <input type="text" class="form-control" name="ani_type"/>
                     </div>
+                    <div class="form-group">
+                        <label for="doType_id" class="form-label">Donation Type</label>
+                        <br>
+                        <select class="custom-select" name="doType_id">
+                          @foreach($donationType as $dt)
+                          <option value="{{$dt->do_typeId}}">{{$dt->do_typeName}}</option>
+                          @endforeach
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="ani_picture" class="form-label">Animal Picture</label>
                         <input type="file" class="form-control" name="ani_picture"/>
@@ -56,10 +61,7 @@
                         <label for="statusDonation" class="form-label">Status Donation</label>
                         <input type="text" class="form-control" name="statusDonation"/>
                     </div>
-                    <div class="form-group">
-                        <label for="doType_id" class="form-label">Donation Type</label>
-                        <input type="text" class="form-control" name="doType_id"/>
-                    </div>
+
                     <div class="text-center">
                         <button class="btn btn-success">Add Animal</button>
                     </div>

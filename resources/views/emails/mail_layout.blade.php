@@ -9,46 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   </head>
   <body>
-
     <div class="container">
-        <table class="table table-hover">
-          <thead class="table-inverse">
-              <tr>
-                <th>Id</th>
-                <th>NAME</th>
-                <th>TYPE</th>
-                <th>PIC</th>
-                <th>AGE</th>
-              </tr>
-          </thead>
-          <tbody>
-            @foreach($animals as $animal)
-            <tr>
-              <td>{{$animal->animal_id}}</td>
-              <td>{{$animal->animal_name}}</td>
-              <td>{{$animal->join_donationType->do_typeName}}</td>
-              <td>{{$animal->animal_picture}}</td>
-              <td>{{$animal->animal_age}}</td>
-              <td>
-                <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Edit</a>
-                <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete">Delete</a>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-        <div class="row text-center">
-            <div class="col-md-6 offset-md-3">
-              <a href="/add" class="btn btn-warning">Add Animal</a>
-            </div>
-        </div>
+      <h1>Hello , {{$name}}</h1>
+      <small>by koo jam</small>
     </div>
-
-
-
-
-
-
 
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->

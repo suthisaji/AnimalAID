@@ -35,18 +35,20 @@
                     </button>
 
                     <!-- Branding Image-->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/all') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     @if(!empty($admin))
                       @if($admin == true)
                       <a href="../add"> Add Donation  </a>
-                      <a href="../animal"> ::Show all Add</a>
-                    
+                      <a href="../animal"> :: List Add</a>
+
+
+
                       @endif
                     @endif
 
-
+                    <a href="../all"> ::Show all Donation </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

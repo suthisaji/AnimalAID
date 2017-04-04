@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class DonationType extends Model
 {
   protected $table = 'donationTypes';
-  protected $fillable = ['doType_id','do_typeName'];
+  protected $fillable = ['do_typeId','do_typeName'];
 }

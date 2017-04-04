@@ -32,7 +32,7 @@
                         <br>
                         <select class="custom-select" name="ani_type">
                           @foreach($donationType as $dt)
-                          <option value="{{$dt->doType_id}}">{{$dt->do_typeName}}</option>
+                          <option value="{{$dt->do_typeId}}">{{$dt->do_typeName}}</option>
                           @endforeach
                         </select>
                     </div>

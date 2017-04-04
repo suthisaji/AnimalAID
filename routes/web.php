@@ -1,4 +1,5 @@
 <?php
+use App\Mail\KryptoniteFound;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,22 @@ Route::get('/deleteAnimal/{id}', 'AnimalController@deleteAnimal');
 ///โดยที่ส่ง ไอดีมาทาง url
 //ทีนี้ มันจะเปนงี้ localhost: 8000/edit/5
 //มันจะไปทำ get method
-Route::get('/all', function () {
-    return view('all');
+Route::get('/all', 'AnimalController@animalAll');
+
+Route::get('/', function () {
+    // send an email to "batman@batcave.io"
+    Mail::to('asihtus10@gmail.com')->send(new KryptoniteFound);
+
+    return view('welcome');
 });
+
+Route::get('/dm', 'AnimalController@animalMoney');
+Route::get('/db', 'AnimalController@animalBlood');
+Route::get('/da', 'AnimalController@animalAdoption');
+Route::get('/testmail','EmailController@sendEmail');
+
+
+
+Route::get('/news','AnimalController@addNews');
+Route::post('/news','AnimalController@addNews');
+Route::get('/new','AnimalController@NewsAniAll');

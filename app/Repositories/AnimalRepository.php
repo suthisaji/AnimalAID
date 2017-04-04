@@ -24,11 +24,9 @@ use App\Animal;
             return false;
         }
     }
-
-
     function getAllAnimal(){
-        return Animal::orderBy('created_at')->get();
-    }
+      return Animal::orderBy('created_at')->get();
+  }
 
     function animal(){
        $animals = $this->AnimalRepository->getAllAnimal();
@@ -69,5 +67,20 @@ use App\Animal;
          return false;
        }
    }
+  function getAllMoney(){
+     $result = Animal::where('doType_id','1')->get();
+     return $result;
+  }
+
+  function getAllBlood(){
+     $result = Animal::where('doType_id','2')->get();
+     return $result;
+  }
+  function getAllAdoption(){
+    $result = Animal::where('doType_id','3')->get();
+    return $result;
+  }
+
+
 
   }
