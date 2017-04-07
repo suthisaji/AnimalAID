@@ -89,13 +89,14 @@ use App\Adoption;
 
 
 
-function addAdoption($user_id,$address,$status,$date_time){//$animal_id
+function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_id
       $data = array(
 
           'address'=>$address,
           'status'=>$status,
           'date_time'=>$date_time,
-          'user_id'=>$user_id
+          'user_id'=>$user_id,
+          'animal_id'  =>  $animal_id
 
 
       );

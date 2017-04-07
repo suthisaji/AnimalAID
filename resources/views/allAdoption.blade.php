@@ -10,10 +10,11 @@
 
     <!-- Custom CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
     <style type="text/css">
-    #modal-content{
-      display: none;
-    }
         .carousel-inner > .item > img {
   width:700;
   height:300px;
@@ -199,8 +200,17 @@
                                  <div class="modal-footer">
                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                                   <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
-                                   <div id="modal-content">
+                                   <button id="take{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
+                                   <script>
+                                         $('#take{{$animal->animal_id}}').popover({
+                                           html: true,
+                                           title: 'Please add Your address ',
+                                           content: function(){
+                                               return $('#modal-content{{$animal->animal_id}}').html()
+                                           }
+                                         })
+                                   </script>
+                                   <div id="modal-content{{$animal->animal_id}}" style="display:none;">
                                      @if (Auth::guest())
                                        <a href="{{ route('login') }}" class="btn btn-sm btn-success">Login</a>
                                        <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register</a>
@@ -312,18 +322,7 @@
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
 
     <!--<script src="tether-1.3.3\dist\js\tether.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
-    <script>
-          $('[data-toggle="popover"]').popover({
-            html: true,
-            title: 'Please add Your address ',
-            content: function(){
-                return $('#modal-content').html()
-            }
-          })
-    </script>
+
+
     </body>
 </html>
