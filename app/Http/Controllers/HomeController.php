@@ -12,6 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+     protected  $UserRepository;
      public function __construct(UserRepositoryInterface $UserRepository)
        {
            $this->middleware('auth');
@@ -38,6 +39,28 @@ class HomeController extends Controller
         //   );
 
       return view('home',$data);
-        //return view('home',$data2);
+
     }
+
+
+
+     function  userDetail()
+    {
+      $users = $this->UserRepository->getAllUser();
+      $data = array(
+           'your_name'=>Auth::user()->name,
+           'your_email'=>Auth::user()->email,
+           'your_position'=>Auth::user()->position,
+           'your_tel'=>Auth::user()->tel
+           );
+
+      return view('userProfile',$data);
+
+    }
+
+
+
+
+
+
 }

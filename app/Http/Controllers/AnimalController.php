@@ -22,9 +22,13 @@ class AnimalController extends Controller
 //เรียกใช้  repo ที่สร้าง
     function animal(){
         $animals = $this->AnimalRepository->getAllAnimal();
+        $donationType = $this->DonationTypeRepository->getAllDonationType();
+          $newsAnis = $this->NewsAniRepository->getAllNewsAni();
         //$donationType_name = $this->DonationTypeRepository->findTypeById($type_id); //ไมไ่ด้ 55555 คิดแปป ****************************
         $data = array(
-            'animals'=>$animals   //'animalsคีย์ที่จะส่งไปให้ view ใ้ช้'=>$animals
+            'animals'=>$animals  , //'animalsคีย์ที่จะส่งไปให้ view ใ้ช้'=>$animals
+            'donationType'=>$donationType,
+              'newsAnis'=>$newsAnis
         );
         //return view('animal',$data); มึงจะให้มันไปหน้าไหน
         return view('animal',$data);
@@ -32,10 +36,12 @@ class AnimalController extends Controller
     function animalAll(){
         $animals = $this->AnimalRepository->getAllAnimal();
           $donationType = $this->DonationTypeRepository->getAllDonationType();
+            $newsAnis = $this->NewsAniRepository->getAllNewsAni();
 
         $data = array(
             'animals'=>$animals,   //'animalsคีย์ที่จะส่งไปให้ view ใ้ช้'=>$animals
-            'donationType'=>$donationType
+            'donationType'=>$donationType,
+              'newsAnis'=>$newsAnis
         );
 
         return view('all',$data);
@@ -58,11 +64,13 @@ class AnimalController extends Controller
         $animals = $this->AnimalRepository->getAllAnimal();
         $animalsMoneys = $this->AnimalRepository->getAllMoney();
         $animalsBloods= $this->AnimalRepository->getAllBlood();
+        $newsAnis = $this->NewsAniRepository->getAllNewsAni();
 
         $data = array(
             'animals'=>$animals ,
             'animalsMoneys'=>$animalsMoneys,
-            'animalsBloods'=>$animalsBloods
+            'animalsBloods'=>$animalsBloods,
+              'newsAnis'=>$newsAnis
         );
 
        return view('allBlood',$data);
@@ -74,11 +82,13 @@ class AnimalController extends Controller
         $animalsMoneys = $this->AnimalRepository->getAllMoney();
         $animalsBloods= $this->AnimalRepository->getAllBlood();
         $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
+        $newsAnis = $this->NewsAniRepository->getAllNewsAni();
         $data = array(
             'animals'=>$animals ,
             'animalsMoneys'=>$animalsMoneys,
             'animalsBloods'=>$animalsBloods,
-            'animalsAdoptions'=>$animalsAdoptions
+            'animalsAdoptions'=>$animalsAdoptions,
+              'newsAnis'=>$newsAnis
         );
 
        return view('allAdoption',$data);
@@ -184,17 +194,21 @@ class AnimalController extends Controller
               $result = $this->NewsAniRepository->addNewsAni($headNews,$adminId,$content,$newstype);
 
               if($result){
-                  return redirect('/new');
+                  return redirect('/addNews');
               }else{
                   echo "Failed to add news";
               }
 
         }else{
-          return view('add_news');
+          $news = $this->NewsAniRepository->getAllNewsAni();
+          $data = array(
+            'news'=>$news
+          );
+          return view('add_news', $data);
         }
       }
 
-      function NewsAniAll(){
+    /*  function NewsAniAll(){
           $animals = $this->AnimalRepository->getAllAnimal();
             $donationType = $this->DonationTypeRepository->getAllDonationType();
               $newsAnis = $this->NewsAniRepository->getAllNewsAni();
@@ -203,9 +217,80 @@ class AnimalController extends Controller
               'animals'=>$animals,   //'animalsคีย์ที่จะส่งไปให้ view ใ้ช้'=>$animals
               'donationType'=>$donationType,
               'newsAnis'=>$newsAnis
-              
+
           );
 
           return view('new',$data);
-      }
+      }*/
+
+          function animalhasnews(){
+              $animals = $this->AnimalRepository->getAllAnimal();
+              $animalsMoneys = $this->AnimalRepository->getAllMoney();
+              $animalsBloods= $this->AnimalRepository->getAllBlood();
+              $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
+              $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+              $data = array(
+                  'animals'=>$animals ,
+                  'animalsMoneys'=>$animalsMoneys,
+                  'animalsBloods'=>$animalsBloods,
+                  'animalsAdoptions'=>$animalsAdoptions,
+                  'newsAnis'=>$newsAnis
+              );
+
+             return view('addNews',$data);
+          }
+
+          function newsPage(){
+              $animals = $this->AnimalRepository->getAllAnimal();
+              $animalsMoneys = $this->AnimalRepository->getAllMoney();
+              $animalsBloods= $this->AnimalRepository->getAllBlood();
+              $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
+              $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+              $data = array(
+                  'animals'=>$animals ,
+                  'animalsMoneys'=>$animalsMoneys,
+                  'animalsBloods'=>$animalsBloods,
+                  'animalsAdoptions'=>$animalsAdoptions,
+                  'news'=>$newsAnis
+              );
+
+             return view('new',$data);
+          }
+
+
+          function deleteNews($news_id){
+            $result = $this->NewsAniRepository->deleteNews($news_id);
+            if($result){
+                return redirect('/addNews');
+            }else{
+                echo "Can not delete news";
+            }
+          }
+
+          function addAdoption(){
+              
+            if(Request::isMethod('post')){
+                        $address = Input::get('address');
+                        $status= Input::get('status');
+                        $date_time= Input::get('date_time');
+                        $user_id = Auth::user()->id;//จะได้ค่า id ของคนที่ login อยู่
+                        $result = $this->AnimalRepository->addAdoption($user_id,$address,$status,$date_time);//$animal_id
+
+                        if($result){
+                            return redirect('/addAdoption');
+                        }else{
+                            echo "Failed to add adopt";
+                        }
+
+                  }else{
+                    $adoption = $this->AnimalRepository->getAllAdoptionTable();
+                    $data = array(
+                      'adoption'=>$adoption,
+
+                    );
+                    return view('allAdoption', $data);
+                  }
+
+
     }
+}

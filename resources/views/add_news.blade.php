@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 style="text-align:center">Add News</h1>
-                <form action="/news" class="form" method="post" enctype="multipart/form-data">
+                <form action="/addNews" class="form" method="post" enctype="multipart/form-data">
                     {{ Form::token() }}
 
                     <div class="form-group">
@@ -42,6 +42,41 @@
                     </div>
 
                 </form>
+
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12 offset-0">
+              <table class="table">
+                <thead class="table-inverse">
+                  <tr>
+                    <th>new ID</th>
+                    <th>Admin ID</th>
+                    <th>head_News</th>
+                    <th>content</th>
+                    <th>news_type</th>
+                    <th>created_at</th>
+                    <th>updated_at</th>
+                      <th>delete news</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($news as $new)
+                  <tr>
+                    <td>{{$new->news_id}}</td>
+                    <td>{{$new->admin_id}}</td>
+                    <td>{{$new->head_News}}</td>
+                    <td>{{$new->content}}</td>
+                    <td>{{$new->news_type}}</td>
+                    <td>{{$new->created_at}}</td>
+                    <td>{{$new->updated_at}}</td>
+                    <td> <a href="/deleteNews/{{$new->news_id}}" class="btn btn-danger btn-sm" onclick="return confirm('Please confirm again !!!') ">Delete </a></td>
+
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
         </div>
     </div>

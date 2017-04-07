@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 use App\Animal;
+use App\Adoption;
   class AnimalRepository implements AnimalRepositoryInterface{
 
     function addAnimal($animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){ // รับเป็น array
@@ -81,6 +82,30 @@ use App\Animal;
     return $result;
   }
 
+  function getAllAdoptionTable(){
 
+      return Adoption::orderBy('created_at')->get();
+  }
+
+
+
+function addAdoption($user_id,$address,$status,$date_time){//$animal_id
+      $data = array(
+
+          'address'=>$address,
+          'status'=>$status,
+          'date_time'=>$date_time,
+          'user_id'=>$user_id
+
+
+      );
+      try{
+          $result = Adoption::create($data);
+          return true;
+      }catch(Exception $e){
+          return false;
+      }
+
+      }
 
   }

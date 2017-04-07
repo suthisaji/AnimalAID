@@ -21,4 +21,13 @@ use App\NewsAni;
                 return false;
             }
         }
-      }
+        function deleteNews($news_id){
+          $result = NewsAni::where('news_id',$news_id)->delete();
+            if($result>0){
+              return true;
+            }else{
+              return false;
+            }
+        }
+
+        }

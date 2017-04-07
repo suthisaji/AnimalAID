@@ -19,6 +19,22 @@
     width:100% !important;
     height: 200px !important;
 }
+.caption{
+  height: 150px;
+
+}
+.thumbnailjam img {
+    width:100% !important;
+    height: 300px !important;
+}
+.modal-title {
+
+    text-align: left;
+}
+.modal-body {
+
+    text-align: left;
+}
     </style>
   </head>
   <body>
@@ -51,7 +67,7 @@
                        <a href="#">Follow</a>
                    </li>
                    <li>
-                       <a href="#">News</a>
+                       <a href="n">News</a>
                    </li>
                </ul>
            </div>
@@ -90,7 +106,13 @@
                                       </div>
                              @endif
                            @endforeach
-                        จะแสดงข่าวตรงนี้
+                           @foreach($newsAnis as $fastNews)
+                             @if($fastNews->news_type == 1)
+                               <marquee>  "{{$fastNews->head_News}} " &nbsp;{{$fastNews->content}}</marquee>
+
+                             @endif
+
+                              @endforeach
                            </div>
                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                <span class="glyphicon glyphicon-chevron-left"></span>
@@ -103,6 +125,7 @@
 
                </div>
 
+                <em>คุณสมบัติของสุนัขหรือแมวสำหรับเป็นผู้บริจาคเลือด<br>มีสุขภาพสมบูรณ์ 1-7 ปี<br>สุนัขด้องมีน้ำหนักตัวตั้งแต่17 kg ขึ้นไป <br>แมวด้องมีน้ำหนักตัวตั้งแต่ 4 kg ขึ้นไป <br>เห็บหมัดพยาธิหนอนหัวใจอย่างต่อเนื่อง<br> (กรณีฉีดวัคซีนควรเว้นระยะอย่างน้อย3 สัปดาห์ <br>3.ไม่เคยได้รับผลิตภัณฑ์เลือดมาก่อน <br>ไม่มีประวัติเข้ารับการผาตัดใหญ่ในช่วง3เดือน <br>หากเป็นเพศเมียไม่ควรอยู่ในระหว่างเป็นสัดดงครรภ์หรือให้นมลูก<br> 6. ต้องไม่รับประทานยาใดๆในช่วง2สัปดห์ก่อนหน้า <br>7.ไม่มีบาดแผลหรือเป็นโรคผิวหนัง<br> 8. ลักษณะนิสัยเป็นมิตรหรือเจ้าของสามารถควบคุมไค <br>้การบริจาคเลือดเบบระบุตัวรับกรณีตัวป่วยมีน้ำหนัก20 kg ขึ้นไป <br>ควรแนะนำเจ้าของให้หาสุนัขที่มีน้ำหน้กตัวมากกว่าตัวป่วย <br>ก่อนจะพาสุนัขหรือแมวมาบริจาคเลือดต้องอย่างน้อย 8-12 ชั่วโมง <br>ควรให้สุนัขและแมวก่อนมาบริจาคเลือดแต่สามารถให้ดืมนได้ตบมติเพื่อป้องกันภาวะขาดน้ำโรงพยาบาลสัตว์มหาวิทยาลัยเกษตรศาสตร์สอบถามได้ที่ 02-7971900 ต่อ 2329 (ห้องธนาคารเลือต) หรือ 081-8387713 เปิดทำการทุกวันค่ะวลา 8.30 น. -14.00 น.ยกเว้นวันศุกร์วต8.30น.-11.00น.</em>
 
 
                <div class="row">
@@ -116,11 +139,50 @@
                              {{$animal->join_donationType->do_typeName}}
                                <h4><a href="#">{{$animal->animal_name}}</a>
                                </h4>
-                               <p>{{$animal->animal_type}}</p>
-                               <p>{{$animal->symptomCase}}</p>
-                               <div class="col-sm-4 col-lg-4 col-md-4">
-                                      <a class="btn btn-primary" target="_blank" href="">View All</a>
-                                  </div>
+                               {{$animal->animal_type}}<br>
+                               {{$animal->symptomCase}}
+                               <!-- Button trigger modal -->
+                             <div class="row text-right">
+                           <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                             view detail</a>
+                           </button>
+                           <button type="button" class="btn btn-primary btn-sm">Help</button>
+                           <!--Modal-->
+                           <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                             <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                   <h4 class="modal-title" id="myModalLabel" >{{$animal->join_donationType->do_typeName}} to  {{$animal->animal_type}}</h4>
+                                 </div>
+                                 <div class="modal-body thumbnailjam">
+                                    <img src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="200" height="500">
+                                   Donation Type:{{$animal->join_donationType->do_typeName}}<br>
+                                   Name Animal:{{$animal->animal_name}}<br>
+                                   age        :{{$animal->animal_age}}<br>
+                                   Animal Type:{{$animal->animal_type}}<br>
+                                   Color :{{$animal->animal_color}}<br>
+                                   @if($animal->animal_gender == 1)
+                                       Gender :Male<br>
+                                   @else
+                                       Gender :Female<br>
+                                   @endif
+
+                                   SymptomCase :{{$animal->symptomCase}}<br>
+                                   StatusDonation:{{$animal->statusDonation}}<br>
+
+
+
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                   <button type="button" class="btn btn-primary">บริจาค</button>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                           <!-- Modal -->
                            </div>
                        </div>
                      </div>
@@ -138,27 +200,17 @@
 
            </div>
                <div class="col-md-3">
-                   <p class="lead">List of Donors</p>
+                   <p class="lead">How to Blood donation</p>
                        <div class="list-group">
                            <p class="list-group-item">
-                               <i class="fa fa-comment fa-fw">Jutatip</i>
-                               <span class="pull-right text-muted samll">
-                                   <em>$100</em>
-                               </spen>
+                               <i class="fa fa-comment fa-fw"></i>
+
+                                   <em>คุณสมบัติของสุนัขหรือแมวสำหรับเป็นผู้บริจาคเลือด<br>มีสุขภาพสมบูรณ์ 1-7 ปี<br>สุนัขด้องมีน้ำหนักตัวตั้งแต่17 kg ขึ้นไป <br>แมวด้องมีน้ำหนักตัวตั้งแต่ 4 kg ขึ้นไป <br>เห็บหมัดพยาธิหนอนหัวใจอย่างต่อเนื่อง<br> (กรณีฉีดวัคซีนควรเว้นระยะอย่างน้อย3 สัปดาห์ <br>3.ไม่เคยได้รับผลิตภัณฑ์เลือดมาก่อน <br>ไม่มีประวัติเข้ารับการผาตัดใหญ่ในช่วง3เดือน <br>หากเป็นเพศเมียไม่ควรอยู่ในระหว่างเป็นสัดดงครรภ์หรือให้นมลูก<br> 6. ต้องไม่รับประทานยาใดๆในช่วง2สัปดห์ก่อนหน้า <br>7.ไม่มีบาดแผลหรือเป็นโรคผิวหนัง<br> 8. ลักษณะนิสัยเป็นมิตรหรือเจ้าของสามารถควบคุมไค <br>้การบริจาคเลือดเบบระบุตัวรับกรณีตัวป่วยมีน้ำหนัก20 kg ขึ้นไป <br>ควรแนะนำเจ้าของให้หาสุนัขที่มีน้ำหน้กตัวมากกว่าตัวป่วย <br>ก่อนจะพาสุนัขหรือแมวมาบริจาคเลือดต้องอย่างน้อย 8-12 ชั่วโมง <br>ควรให้สุนัขและแมวก่อนมาบริจาคเลือดแต่สามารถให้ดืมนได้ตบมติเพื่อป้องกันภาวะขาดน้ำโรงพยาบาลสัตว์มหาวิทยาลัยเกษตรศาสตร์สอบถามได้ที่ 02-7971900 ต่อ 2329 (ห้องธนาคารเลือต) หรือ 081-8387713 เปิดทำการทุกวันค่ะวลา 8.30 น. -14.00 น.ยกเว้นวันศุกร์วต8.30น.-11.00น.</em>
+
                    </p>
 
-                   <p class="list-group-item">
-                       <i class="fa fa-comment fa-fw">Suthisa</i>
-                       <span class="pull-right text-muted samll">
-                           <em>$100</em>
-                       </spen>
-                   </p>
-                   <p class="list-group-item">
-                       <i class="fa fa-comment fa-fw">Chanon</i>
-                       <span class="pull-right text-muted samll">
-                           <em>$100</em>
-                       </spen>
-                   </p>
+
+
                </div>
            </div>
 

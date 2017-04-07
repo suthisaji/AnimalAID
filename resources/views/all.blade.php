@@ -21,7 +21,21 @@
 }
 .caption{
   height: 150px;
+
 }
+.thumbnailjam img {
+    width:100% !important;
+    height: 300px !important;
+}
+.modal-title {
+
+    text-align: left;
+}
+.modal-body {
+
+    text-align: left;
+}
+
     </style>
   </head>
   <body>
@@ -54,8 +68,35 @@
                        <a href="#">Follow</a>
                    </li>
                    <li>
-                       <a href="#">News</a>
+                       <a href="n">News</a>
                    </li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                   <!-- Authentication Links -->
+                   @if (Auth::guest())
+                       <li><a href="{{ route('login') }}">Login</a></li>
+                       <li><a href="{{ route('register') }}">Register</a></li>
+                   @else
+                       <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                               {{ Auth::user()->name }} <span class="caret"></span>
+                           </a>
+
+                           <ul class="dropdown-menu" role="menu">
+                               <li>
+                                   <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                       Logout
+                                   </a>
+
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                       {{ csrf_field() }}
+                                   </form>
+                               </li>
+                           </ul>
+                       </li>
+                   @endif
                </ul>
            </div>
            <!-- /.navbar-collapse -->
@@ -80,20 +121,57 @@
                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                             @foreach($animals as $pic)
+                             @foreach($animals as $animal)
 
                                     @if($loop->first)
-                                      <div class="item active">
-                                          <img class="slide-image" src="{{url('/images/'.$pic->animal_picture)}}" alt="">
+                                      <div class="item active"  data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                                          <img class="slide-image" src="{{url('/images/'.$animal->animal_picture)}}" alt="">
                                       </div>
                                     @else
-                                      <div class="item">
-                                          <img class="slide-image" src="{{url('/images/'.$pic->animal_picture)}}" alt="">
+                                      <div class="item"  data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                                          <img class="slide-image" src="{{url('/images/'.$animal->animal_picture)}}" alt="">
 
                                       </div>
-                             @endif
+                                    @endif
+                                    <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel" > {{$animal->join_donationType->do_typeName}} to  {{$animal->animal_type}}</h4>
+                                          </div>
+                                          <div class="modal-body thumbnailjam">
+                                             <img src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="200" height="500">
+                                            Donation Type: {{$animal->join_donationType->do_typeName}} <br>
+                                            Name Animal:{{$animal->animal_name}}<br>
+                                            age        :{{$animal->animal_age}}<br>
+                                            Animal Type:{{$animal->animal_type}}<br>
+                                            Color :{{$animal->animal_color}}<br>
+                                            @if($animal->animal_gender == 1)
+                                                Gender :Male<br>
+                                            @else
+                                                Gender :Female<br>
+                                            @endif
+                                            SymptomCase :{{$animal->symptomCase}}<br>
+                                            StatusDonation:{{$animal->statusDonation}}<br>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">บริจาค</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                            @endforeach
-                        จะแสดงข่าวตรงนี้
+
+
+                            @foreach($newsAnis as $fastNews)
+                              @if($fastNews->news_type == 1)
+                                <marquee>  "{{$fastNews->head_News}} " &nbsp;{{$fastNews->content}}</marquee>
+
+                              @endif
+
+                               @endforeach
                            </div>
                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                <span class="glyphicon glyphicon-chevron-left"></span>
@@ -116,7 +194,7 @@
                        <div class="thumbnail">
                            <img src="{{url('/images/'.$animal->animal_picture)}}" alt="">
                            <div class="caption">
-                             {{$animal->join_donationType->do_typeName}}
+                              {{$animal->join_donationType->do_typeName}}
                                <h4><a href="#">{{$animal->animal_name}}</a>
                                </h4>
                                {{$animal->animal_type}}<br>
@@ -125,10 +203,40 @@
 
                               <!-- Button trigger modal -->
                             <div class="row text-right">
-                          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                            view detail
+                          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                            view detail</a>
                           </button>
                           <button type="button" class="btn btn-primary btn-sm">Help</button>
+                          <!--Modal-->
+                          <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="myModalLabel" > {{$animal->join_donationType->do_typeName}} to  {{$animal->animal_type}}</h4>
+                                </div>
+                                <div class="modal-body thumbnailjam">
+                                   <img src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="200" height="500">
+                                  Donation Type: {{$animal->join_donationType->do_typeName}} <br>
+                                  Name Animal:{{$animal->animal_name}}<br>
+                                  age        :{{$animal->animal_age}}<br>
+                                  Animal Type:{{$animal->animal_type}}<br>
+                                  Color :{{$animal->animal_color}}<br>
+                                  @if($animal->animal_gender == 1)
+                                      Gender :Male<br>
+                                  @else
+                                      Gender :Female<br>
+                                  @endif
+                                  SymptomCase :{{$animal->symptomCase}}<br>
+                                  StatusDonation:{{$animal->statusDonation}}<br>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary">บริจาค</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                            </div>
                        </div>
@@ -138,31 +246,7 @@
 
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Nong mao</h4>
-                      </div>
-                      <div class="modal-body">
-                        รุปใหย่ตัวนี้<br>
-                        ชื่อ<br>
-                        เพศ<br>
-                        อายุ<br>
-                        อาการ<br>
-                        ต้องใช้เงินเยอะมากๆ ขอความเห็นใจ<br>
-                        โปรดบริจาคให้<br>
-                        <br>
-                        แสดงช่องทางการบริจาค  ปุ่มบริจาคนี้เชื่อมกับOmise
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">บริจาค</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
 
 
 

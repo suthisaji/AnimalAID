@@ -42,6 +42,8 @@
                       @if($admin == true)
                       <a href="../add"> Add Donation  </a>
                       <a href="../animal"> :: List Add</a>
+                      <a href="../addNews"> ::  Add News </a>
+                      <a href="../n"> ::  All News </a>
 
 
 

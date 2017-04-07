@@ -17,7 +17,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+use App\Animal;
+Route::get('test99', function(){
+    $animals = Animal::all();
+    foreach($animals as $animal){
+      echo $animal->join_donationType->do_typeName;
+    }
+});
 Route::get('/home', 'HomeController@index');
 Route::get('/admin', 'AdminController@index');
 Route::get('/delete/{id}', 'AdminController@delete');
@@ -55,6 +61,28 @@ Route::get('/testmail','EmailController@sendEmail');
 
 
 
-Route::get('/news','AnimalController@addNews');
-Route::post('/news','AnimalController@addNews');
-Route::get('/new','AnimalController@NewsAniAll');
+Route::get('/addNews','AnimalController@addNews');
+Route::post('/addNews','AnimalController@addNews');
+//Route::get('/new','AnimalController@NewsAniAll');
+
+Route::get('/animalhasnews','AnimalController@animalhasnews');
+Route::post('/animalhasnews','AnimalController@animalhasnews');
+
+
+Route::get('/n','AnimalController@newsPage');
+Route::post('/n','AnimalController@newsPage');
+
+
+
+
+Route::get('/deleteNews/{news_id}', 'AnimalController@deleteNews');
+Route::post('/deleteNews/{news_id}', 'AnimalController@deleteNews');
+
+
+
+Route::get('/userProfile', 'HomeController@userDetail');
+Route::post('/userProfile', 'HomeController@userDetail');
+
+
+Route::get('/addAdoption', 'AnimalController@addAdoption');
+Route::post('/addAdoption', 'AnimalController@addAdoption');
