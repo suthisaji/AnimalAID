@@ -19,6 +19,9 @@
                 <th>TYPE</th>
                 <th>PIC</th>
                 <th>AGE</th>
+
+                  <th>status</th>
+                    <th>action</th>
               </tr>
           </thead>
           <tbody>
@@ -27,11 +30,13 @@
               <td>{{$animal->animal_id}}</td>
               <td>{{$animal->animal_name}}</td>
               <td>{{$animal->join_donationType->do_typeName}}</td>
-              <td>{{$animal->animal_picture}}</td>
+              <td><small>{{$animal->animal_picture}}</small></td>
               <td>{{$animal->animal_age}}</td>
+              <td>{{$animal->statusDonation}}</td>
               <td>
                 <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Edit</a>
                 <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                  <a href="/change/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Change status</a>
               </td>
             </tr>
             @endforeach

@@ -1,7 +1,7 @@
 
 
 
-<a href="admin">back</a>
+<a href="all">back</a>
 <div class="row">
     <div class="col-md-12 offset-0">
       <table class="table">

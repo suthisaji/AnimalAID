@@ -2,11 +2,12 @@
 namespace App\Repositories;
 use App\Animal;
 use App\Adoption;
+use App\User;
   class AnimalRepository implements AnimalRepositoryInterface{
 
-    function addAnimal($animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){ // รับเป็น array
+    function addAnimal($admin_id,$animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){ // รับเป็น array
         $data = array(
-
+            'admin_id'=>$admin_id,
             'animal_name'=>$animal_name,
             'animal_picture'=>$animal_picture,
             'animal_color'=>$animal_color,
@@ -28,6 +29,8 @@ use App\Adoption;
     function getAllAnimal(){
       return Animal::orderBy('created_at')->get();
   }
+
+
 
     function animal(){
        $animals = $this->AnimalRepository->getAllAnimal();
@@ -59,6 +62,22 @@ use App\Adoption;
            return false;
        }
    }
+   function updateAdoption($adoption_id,$user_id,$address,$status,$date_time,$animal_id){
+      $data = array(
+                'adoption_id'=>$adoption_id  ,
+                  'address'=>$address,
+                  'status'=>$status,
+                  'date_time'=>$date_time,
+                  'user_id'=>$user_id,
+                  'animal_id'  =>  $animal_id
+      );
+      $result = Adoption::where('adoption_id',$adoption_id)->update($data);
+      if($result > 0){
+          return true;
+      }else{
+          return false;
+      }
+   }
 
    function deleteAnimal($id){
      $result = Animal::where('animal_id',$id)->delete();
@@ -86,7 +105,9 @@ use App\Adoption;
 
       return Adoption::orderBy('created_at')->get();
   }
-
+ function getAllRecipient(){
+   return Adoption::where('status','Recipient')->get();
+ }
 
 
 function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_id
@@ -109,4 +130,19 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
 
       }
 
+      function count(){
+        return Animal::where('doType_id','3')->count();
+      }
+      function countRecipient(){
+       return Adoption::where('status','Recipient')->count();
+      }
+
+
+//function showAdoptionNoRecip(){
+//  return $adopNoRecip = $this->AnimalRepository->getAllAdoption()->join_Adoption()::where('status','')
+//}
+  function getAnimalNotInAdoption(){
+    return Adoption::all();
+
+  }
   }

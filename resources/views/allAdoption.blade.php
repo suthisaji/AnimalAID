@@ -23,7 +23,7 @@
 .thumbnail img {
     width:100% !important;
     height: 200px !important;
-
+}
     .caption{
       height: 150px;
 
@@ -31,6 +31,7 @@
     .thumbnailjam img {
         width:100% !important;
         height: 300px !important;
+            text-align: left;
     }
     .modal-title {
 
@@ -40,7 +41,7 @@
 
         text-align: left;
     }
-}
+
 .popover{
   max-width: none;
   width: 300px;
@@ -80,7 +81,44 @@
                    <li>
                        <a href="n">News</a>
                    </li>
+
                </ul>
+               <!--check login-->
+               <ul class="nav navbar-nav navbar-right">
+                 @if(!empty($position))
+                   @if( $position== 'admin')
+                     <li>
+                  <a href="admin">manage</a>
+                </li>
+              @endif
+            @endif
+                   <!-- Authentication Links -->
+                   @if (Auth::guest())
+                       <li><a href="{{ route('login') }}">Login</a></li>
+                       <li><a href="{{ route('register') }}">Register</a></li>
+                   @else
+                       <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                               {{ Auth::user()->name }} <span class="caret"></span>
+                           </a>
+
+                           <ul class="dropdown-menu" role="menu">
+                               <li>
+                                   <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                       Logout
+                                   </a>
+
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                       {{ csrf_field() }}
+                                   </form>
+                               </li>
+                           </ul>
+                       </li>
+                   @endif
+               </ul>
+               <!--end-->
            </div>
            <!-- /.navbar-collapse -->
        </div>
@@ -104,18 +142,21 @@
                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                             @foreach($animalsAdoptions as $pic)
-
-                                    @if($loop->first)
-                                      <div class="item active">
-                                          <img class="slide-image" src="{{url('/images/'.$pic->animal_picture)}}" alt="" a href="_blank">
+                             @php($i=0)
+                              @foreach($animals as $animal)
+                               @if(empty($animal->join_Adoption->animal_id) && $animal->doType_id == 3)
+                                 @php($i=$i+1)
+                                    @if($i==1)
+                                      <div class="item active"  data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                                          <img class="slide-image" src="{{url('/images/'.$animal->animal_picture)}}" alt="" a href="_blank">
                                       </div>
                                     @else
-                                      <div class="item">
-                                          <img class="slide-image" src="{{url('/images/'.$pic->animal_picture)}}" alt="">
+                                      <div class="item" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                                          <img class="slide-image" src="{{url('/images/'.$animal->animal_picture)}}" alt="">
 
                                       </div>
-                             @endif
+                                    @endif
+                              @endif
                            @endforeach
 
 
@@ -147,7 +188,8 @@
 
                <div class="row">
 
-                  @foreach($animalsAdoptions as $animal)
+                  @foreach($animals as $animal)
+                  @if(empty($animal->join_Adoption->animal_id) && $animal->doType_id == 3)
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">
@@ -157,7 +199,7 @@
                                <h4><a href="#">{{$animal->animal_name}}</a>
                                </h4>
 
-                               {{$animal->animal_type}}<br>
+                               {{$animal->animal_type}}<br>อะไรมั่ง
                                {{$animal->symptomCase}}
 
 
@@ -239,9 +281,9 @@
                                              Please waiting for contact back by email or phonenumber
 
                                          </div>
-
+                                        <input type='hidden' name='status' value='Recipient' />
                                          <div class="text-center">
-                                             <button class="btn btn-success">Add Address</button>
+                                             <button class="btn btn-success" >Add Address</button>
                                          </div>
                                      </form>
                                    @endif
@@ -257,8 +299,8 @@
                            </div>
                        </div>
                      </div>
+                   @endif
                 @endforeach
-
   <!-- Modal -->
 
 

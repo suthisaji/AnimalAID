@@ -32,6 +32,6 @@ class AdminController extends Controller
     		echo "Can not Delete this user";
     	}
     }
-  
+
 
   }

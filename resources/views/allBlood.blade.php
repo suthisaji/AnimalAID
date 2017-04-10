@@ -70,6 +70,49 @@
                        <a href="n">News</a>
                    </li>
                </ul>
+
+<!--check login yet-->
+<ul class="nav navbar-nav navbar-right">
+  @if(!empty($position))
+    @if( $position== 'admin')
+      <li>
+   <a href="admin">manage</a>
+ </li>
+@endif
+@endif
+    <!-- Authentication Links -->
+    @if (Auth::guest())
+        <li><a href="{{ route('login') }}">Login</a></li>
+        <li><a href="{{ route('register') }}">Register</a></li>
+    @else
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+            </ul>
+        </li>
+    @endif
+</ul>
+<!--end check-->
+
+
+
+
+
+
            </div>
            <!-- /.navbar-collapse -->
        </div>
@@ -96,11 +139,11 @@
                              @foreach($animalsBloods as $pic)
 
                                     @if($loop->first)
-                                      <div class="item active">
+                                      <div class="item active" data-toggle="modal" data-target="#myModal{{$pic->animal_id}}">
                                           <img class="slide-image" src="{{url('/images/'.$pic->animal_picture)}}" alt="">
                                       </div>
                                     @else
-                                      <div class="item">
+                                      <div class="item" data-toggle="modal" data-target="#myModal{{$pic->animal_id}}">
                                           <img class="slide-image" src="{{url('/images/'.$pic->animal_picture)}}" alt="">
 
                                       </div>

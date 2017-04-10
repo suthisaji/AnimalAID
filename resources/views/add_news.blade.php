@@ -19,21 +19,25 @@
                     {{ Form::token() }}
 
                     <div class="form-group">
-                        <label for="head_News" class="form-label">head_News</label>
+                        <label for="head_News" class="form-label">head News</label>
                         <input type="text" class="form-control" name="head_News"/>
                     </div>
 
-                    <div class="form-group">
-                        <label for="news_type" class="form-label">news_type</label>
-                        <input type="text" class="form-control" name="news_type"/>
+
+
+                    <div class="radio form-group" id="news_type">
+                      <label for="news_type" class="form-label">news type</label><br>
+
+                        <label><input type="radio" value="1" name="news_type">Express</label>
+                        <label><input type="radio" value="2" name="news_type">normal</label>
                     </div>
 
 
 
                     <div class="form-group">
-                        <label for="content" class="form-label">content</label>
-                        <input type="text" class="form-control" name="content"/>
-                    </div>
+                         <label for="content">content</label>
+                         <textarea class="form-control" name="content" id="content" rows="2"></textarea>
+                   </div>
 
 
 

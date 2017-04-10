@@ -7,9 +7,15 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style media="screen">
+    input[type=file]{
+  width:90px;
+  color:transparent;
+}
+    </style>
   </head>
   <body>
-<a href="admin">back</a>
+<a href="/admin">back</a>
 
     <div class="container">
         <div class="row">
@@ -36,10 +42,22 @@
                           @endforeach
                         </select>
                     </div>
+
+
+
+                    <!-- ต้องแก้ รุป ตอน up อ่ะ -->
                     <div class="form-group">
-                        <label for="ani_picture" class="form-label">Animal Picture</label>
-                        <input type="file" class="form-control" name="ani_picture" value="{{ $animal->animal_picture }}"/>
+                        <label for="ani_picture" class="form-label">Animal Picture</label><br>
+                        <img id="pre_img" src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="130" height="130">
+                      <?php echo "$animal->animal_picture)"; ?>
+                        <div class="form-control">
+                          <input type="file" name="ani_picture" id="file_up_img"/><label for="file_up_img">{{$animal->animal_picture}}</label>
+                        </div>
                     </div>
+
+
+
+
                     <div class="form-group">
                         <label for="ani_color" class="form-label">Animal Color</label>
                         <input type="text" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
@@ -78,5 +96,22 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        function changeImg(input){
+            if(input.files && input.files[0]){
+              var reader = new FileReader();
+              reader.onload = function(evt){
+                $('#pre_img').attr('src', evt.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $(document).ready(function(){
+          $('#file_up_img').change(function(){
+              changeImg(this);
+          });
+        });
+    </script>
   </body>
 </html>

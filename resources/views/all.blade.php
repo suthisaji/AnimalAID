@@ -55,6 +55,7 @@
            <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
+
                    <li>
                        <a href="dm">Funding donation</a>
                    </li>
@@ -67,11 +68,23 @@
                    <li>
                        <a href="#">Follow</a>
                    </li>
+
                    <li>
                        <a href="n">News</a>
                    </li>
+
                </ul>
                <ul class="nav navbar-nav navbar-right">
+                 @if(!empty($position))
+                   @if( $position== 'admin')
+                     <li>
+                  <a href="admin">manage</a>
+                </li>
+
+
+
+                   @endif
+                 @endif
                    <!-- Authentication Links -->
                    @if (Auth::guest())
                        <li><a href="{{ route('login') }}">Login</a></li>

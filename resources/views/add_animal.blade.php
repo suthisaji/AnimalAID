@@ -75,10 +75,17 @@
                                               <input type="text" class="form-control" name="symptomCase"/>
                                           </div>
 
-                                          <div class="form-group">
+                                       <div class="form-group">
                                               <label for="statusDonation" class="form-label">Status Donation</label>
-                                              <input type="text" class="form-control" name="statusDonation"/>
+                                              <input type="hidden" class="form-control" name="statusDonation" value="open"/>
                                           </div>
+
+
+
+                                                 <input type="hidden" class="form-control" name="received" value="received"/>
+                                              
+
+
 
 
 
@@ -123,22 +130,7 @@
         });
     });
 </script>
-<script type="text/javascript">
-function validateForm() {
-    var x = document.forms["addAnimal"]["ani_name"].value;
-    if (x == "") {
-      echo "<div class="alert alert-warning" role="alert">Warning alert</div>"
-        return false;
-    }
-}
-</script>
-<script>
-function validation(){
-  if (document.addAnimal.ani_name.value == "") {
-     document.getElementById('errors').innerHTML="*Please enter a username*";
-     return false;
-}
-}
-</script>
+
+
   </body>
 </html>

@@ -18,14 +18,21 @@ Route::get('/', function () {
 
 Auth::routes();
 use App\Animal;
+use App\Adoption;
 Route::get('test99', function(){
     $animals = Animal::all();
     foreach($animals as $animal){
-      echo $animal->join_donationType->do_typeName;
+      if(empty($animal->join_Adoption->animal_id)){
+        echo $animal->animal_id.'<br>';
+      }
     }
 });
 Route::get('/home', 'HomeController@index');
 Route::get('/admin', 'AdminController@index');
+
+
+
+
 Route::get('/delete/{id}', 'AdminController@delete');
 Route::get('/add','AnimalController@addAnimal');
 Route::post('/add','AnimalController@addAnimal');
@@ -86,3 +93,6 @@ Route::post('/userProfile', 'HomeController@userDetail');
 
 Route::get('/addAdoption', 'AnimalController@addAdoption');
 Route::post('/addAdoption', 'AnimalController@addAdoption');
+
+Route::get('/checkAdoption', 'AnimalController@checkAdoption');
+Route::post('/checkAdoption', 'AnimalController@checkAdoption');
