@@ -57,8 +57,8 @@
                                           </div>-->
 
                                           <div class="radio form-group" id="animal_gender">
-                                            <label for="ani_gender" class="form-label">Animal Gender</label><br>
-                                              <label><input type="radio" value="1" name="ani_gender">male</label>
+                                            <label for="ani_gender" class="form-label" >Animal Gender</label><br>
+                                              <label><input type="radio" value="1" name="ani_gender" required >male</label>
                                               <label><input type="radio" value="2" name="ani_gender">female</label>
                                           </div>
 
@@ -66,24 +66,27 @@
 
 
 
-                                          <div class="form-group" id="animal_age">
-                                              <label for="ani_age" class="form-label">Animal Age</label>
-                                              <input type="number" class="form-control" name="ani_age"/  placeholder="1.2 etc."  >
-                                          </div>
-                                          <div class="form-group">
+                                        <div class="form-group" id="animal_age">
+                                              <label for="ani_age" class="form-label">Animal Age (Years)</label>
+                                              <input type="number" class="form-control" name="ani_age"  step="any" placeholder="1.2 etc."/>
+                                              </div>
+
+
+
+
+                                          <div class="form-group" >
                                               <label for="symptomCase" class="form-label">symptomCase</label>
-                                              <input type="text" class="form-control" name="symptomCase"/>
+                                              <textarea class="form-control" name="symptomCase" row="2"></textarea>
                                           </div>
 
-                                       <div class="form-group">
-                                              <label for="statusDonation" class="form-label">Status Donation</label>
+
                                               <input type="hidden" class="form-control" name="statusDonation" value="open"/>
-                                          </div>
+
 
 
 
                                                  <input type="hidden" class="form-control" name="received" value="received"/>
-                                              
+
 
 
 

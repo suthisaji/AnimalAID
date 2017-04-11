@@ -35,7 +35,7 @@
               <td>{{$animal->statusDonation}}</td>
               <td>
                 <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Edit</a>
-                <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Please confirm again !!!')">Delete</a>
                   <a href="/change/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Change status</a>
               </td>
             </tr>

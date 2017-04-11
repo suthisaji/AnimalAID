@@ -9,14 +9,15 @@ use App\User;
         $data = array(
             'admin_id'=>$admin_id,
             'animal_name'=>$animal_name,
+            'animal_type'=>$animal_type,
             'animal_picture'=>$animal_picture,
             'animal_color'=>$animal_color,
             'animal_gender'=>$animal_gender,
             'animal_age'=>$animal_age,
             'symptomCase'=>$symptomCase,
             'statusDonation'=>$statusDonation,
-            'doType_id'=>$doType_id,
-            'animal_type'=>$animal_type
+            'doType_id'=>$doType_id
+
             //'student_password'=>Hash::make(str_random(32))
         );
         try{

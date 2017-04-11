@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 style="text-align:center">Edit Animal</h1>
-                <form action="/edit" class="form" method="post">
+                <form action="/edit" class="form" method="post" enctype="multipart/form-data">
                     {{ Form::token() }}
                     <div class="form-group">
                         <label for="ani_id" class="form-label">Animal ID</label>
@@ -32,56 +32,86 @@
                         <input type="text" class="form-control" name="ani_name" value="{{ $animal->animal_name }}" />
                     </div>
 
-
                     <div class="form-group">
                         <label for="ani_type" class="form-label">Animal Type</label>
+                        <input type="text" class="form-control" name="ani_type"  value="{{ $animal->animal_type }}" />
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label for="doType_id" class="form-label">Donation Type</label>
                         <br>
-                        <select class="custom-select" name="ani_type">
+                        <select class="custom-select" name="doType_id" id="doType">
+                            <option value="{{$animal->join_donationType->do_typeId}}">{{$animal->join_donationType->do_typeName}} </option>
                           @foreach($donationType as $dt)
-                          <option value="{{$dt->do_typeId}}">{{$dt->do_typeName}}</option>
+                            @if($dt->do_typeId!=$animal->join_donationType->do_typeId)
+                              <option value="{{$dt->do_typeId}}">{{$dt->do_typeName}}</option>
+                            @endif
                           @endforeach
                         </select>
                     </div>
 
 
 
+
+
+
                     <!-- ต้องแก้ รุป ตอน up อ่ะ -->
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label for="ani_picture" class="form-label">Animal Picture</label><br>
-                        <img id="pre_img" src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="130" height="130">
-                      <?php echo "$animal->animal_picture)"; ?>
+                        <img id="pre_img" src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="130" height="130"><br>
+                      <?php echo "$animal->animal_picture"; ?>
                         <div class="form-control">
-                          <input type="file" name="ani_picture" id="file_up_img"/><label for="file_up_img">{{$animal->animal_picture}}</label>
+                          <input type="file" name="ani_picture" id="file_up_img"/><label for="file_up_img" value"{{$animal->animal_picture}}">{{$animal->animal_picture}}</label>
                         </div>
                     </div>
 
 
 
 
-                    <div class="form-group">
+                    <div class="form-group" id="animal_color">
                         <label for="ani_color" class="form-label">Animal Color</label>
                         <input type="text" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="animal_gender">
                         <label for="ani_gender" class="form-label">Animal Gender</label>
                         <input type="text" class="form-control" name="ani_gender" value="{{ $animal->animal_gender }}" />
                     </div>
-                    <div class="form-group">
-                        <label for="ani_age" class="form-label">Animal Age</label>
-                        <input type="text" class="form-control" name="ani_age" value="{{ $animal->animal_age }}"/>
+
+                    <div class="radio form-group" id="animal_gender">
+                      <label for="ani_gender" class="form-label" >Animal Gender</label><br>
+                      @if( $animal->animal_gender ==1)
+                        <label><input type="radio" value="1" name="ani_gender" checked>male</label>
+                        <label><input type="radio" value="2" name="ani_gender">female</label>
+                      @else
+                        <label><input type="radio" value="1" name="ani_gender" >male</label>
+                        <label><input type="radio" value="2" name="ani_gender" checked>female</label>
+                      @endif
                     </div>
+
+
+
+
+                    <div class="form-group" id="animal_age">
+                        <label for="ani_age" class="form-label">Animal Age</label>
+                        <input type="text" class="form-control" name="ani_age" step="any" value="{{ $animal->animal_age }}"/>
+                    </div>
+
+
                     <div class="form-group">
                         <label for="symptomCase" class="form-label">symptomCase</label>
-                        <input type="text" class="form-control" name="symptomCase" value="{{ $animal->symptomCase }}"/>
+                        <textarea class="form-control"  name="symptomCase" value="{{ $animal->symptomCase }}" row="3">{{ $animal->symptomCase }}</textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="statusDonation" class="form-label">Status Donation</label>
-                        <input type="text" class="form-control" name="statusDonation" value="{{ $animal->statusDonation }}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="doType_id" class="form-label">Donation Type</label>
-                        <input type="text" class="form-control" name="doType_id" value="{{ $animal->doType_id }}"/>
-                    </div>
+
+
+                        <input type="hidden" class="form-control" name="statusDonation" value="{{ $animal->statusDonation }}"/>
+
+
+
+
+
                     <div class="text-center">
                         <button class="btn btn-success">Edit Animal</button>
                     </div>
@@ -113,5 +143,24 @@
           });
         });
     </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#doType').on('change', function(event){
+                event.preventDefault();
+                if(this.value == 2){
+                    $('#animal_gender').hide()
+                    $('#animal_age').hide()
+                    $('#animal_color').hide()
+
+                }else{
+                  $('#animal_gender').show()
+                  $('#animal_age').show()
+                  $('#animal_color').show()
+                }
+            });
+        });
+    </script>
+
   </body>
 </html>

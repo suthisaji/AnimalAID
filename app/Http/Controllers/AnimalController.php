@@ -154,9 +154,11 @@ class AnimalController extends Controller
         if(Auth::guest()){
             $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+          $animals = $this->AnimalRepository->getAllAnimal();
           $data = array(
             'animalsAdoptions'=>$animalsAdoptions,
             'newsAnis'=>$newsAnis,
+              'animals'=>$animals
           );
         }
           else{
@@ -185,22 +187,24 @@ class AnimalController extends Controller
         );
         return view('add_animal',$data);
       }else if(Request::isMethod('post')){
-          //------upload image and store------
-          $temp = Request::file('ani_picture')->getPathName();
-          $imageName = Request::file('ani_picture')->getClientOriginalName();
-          $path = base_path().'/public/images/';
-          $newImageName = 'animal_'.str_random(10).$imageName;
-          Request::file('ani_picture')->move($path, $newImageName);
-          //----------------------------------
+
             $adminId = Auth::user()->id;
             $animalName = Input::get('ani_name');
+              $animalType= Input::get('ani_type');
             //$animalPicture = Input::get('ani_picture');
+            //------upload image and store------
+            $temp = Request::file('ani_picture')->getPathName();
+            $imageName = Request::file('ani_picture')->getClientOriginalName();
+            $path = base_path().'/public/images/';
+            $newImageName = 'animal_'.str_random(10).$imageName;
+            Request::file('ani_picture')->move($path, $newImageName);
+            //----------------------------------
             $animalColor= Input::get('ani_color');
             $animalGender= Input::get('ani_gender');
             $animalAge= Input::get('ani_age');
             $symptomCase= Input::get('symptomCase');
             $statusDonation= Input::get('statusDonation');
-            $animalType= Input::get('ani_type');
+
             $doTypeId= Input::get('doType_id');
             $result = $this->AnimalRepository->addAnimal($adminId,$animalName,$animalType,$newImageName,$animalColor,
             $animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
@@ -227,7 +231,7 @@ class AnimalController extends Controller
           $doTypeId= Input::get('doType_id');
             $result = $this->AnimalRepository->updateAnimal($animalId,$animalName,$animalType,$animalPicture,$animalColor,$animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
             if($result){
-                return redirect('/home');
+                return redirect('/animal');
             }else{
                 echo "Can not Update";
             }

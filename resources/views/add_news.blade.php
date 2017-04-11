@@ -29,7 +29,7 @@
                       <label for="news_type" class="form-label">news type</label><br>
 
                         <label><input type="radio" value="1" name="news_type">Express</label>
-                        <label><input type="radio" value="2" name="news_type">normal</label>
+                        <label><input type="radio" value="2" name="news_type" required >normal </label>
                     </div>
 
 
