@@ -72,7 +72,7 @@ use App\User;
 
            'admin_id'=>$admin_id,
            'animal_name'=>$animal_name,
-    
+
            'animal_color'=>$animal_color,
            'animal_gender'=>$animal_gender,
            'animal_age'=>$animal_age,
@@ -134,7 +134,12 @@ use App\User;
  function getAllRecipient(){
    return Adoption::where('status','Recipient')->get();
  }
-
+ function getAllAdminChecked(){
+      return Adoption::where('status','Wait')->get();
+ }
+function getAllAdoptionDone(){
+  return Adoption::where('status','Done')->get();
+}
 
 function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_id
       $data = array(
@@ -169,6 +174,15 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
 //}
   function getAnimalNotInAdoption(){
     return Adoption::all();
+
+  }
+  function deleteAdoptionTable($id){
+  $result = Adoption::where('animal_id',$id)->delete();
+        if($result>0){
+          return true;
+        }else{
+          return false;
+        }
 
   }
   }

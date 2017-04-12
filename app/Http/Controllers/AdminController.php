@@ -4,21 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\UserRepositoryInterface;
-
+use App\Repositories\AnimalRepositoryInterface;
+use App\Adoption;
 
 class AdminController extends Controller
 
 {
     protected $UserRepository;
-    public function __construct(UserRepositoryInterface $UserRepository)
+        protected $AnimalRepository;
+    public function __construct(UserRepositoryInterface $UserRepository,AnimalRepositoryInterface $AnimalRepository)
     {
     	$this->middleware('auth');
+        $this->AnimalRepository = $AnimalRepository;
         $this->UserRepository = $UserRepository;
     }
 
     function index(){
+        $countRecipient = $this->AnimalRepository->countRecipient();
     	$data = array(
     		'all_users'=>$this->UserRepository->getAllUser(),
+        'countRecipient'=>$countRecipient,
         'admin'=>true
     		);
 

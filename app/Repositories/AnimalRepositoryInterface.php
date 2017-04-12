@@ -13,6 +13,10 @@ function findById($id);
 function deleteAnimal($id);
 function addAdoption($animal_id,$user_id,$address,$status,$date_time);  //$animal_id,$adoption_id
 function getAllAdoptionTable();
+function getAllRecipient();
+function getAllAdminChecked();
+function deleteAdoptionTable($id);
+function getAllAdoptionDone();
 
 
 

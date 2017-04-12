@@ -44,7 +44,7 @@
                       <a href="../animal"> :: List Add ::</a>&nbsp;
                       <a href="../addNews"> ::  Add News:: </a>&nbsp;
                       <a href="../n"> ::  All News ::</a>&nbsp;
-                      <a href="../checkAdoption"> :: Check Adoption:: <a>&nbsp;
+                      <a href="../checkAdoption"> :: Check Adoption::<span style="color:red"> {{$countRecipient}}</span><a>&nbsp;
 
 
 

@@ -148,7 +148,7 @@
                            </ol>
                            <div class="carousel-inner">
                              @foreach($animals as $animal)
-
+                                  @if(empty($animal->join_Adoption->animal_id))
                                     @if($loop->first)
                                       <div class="item active"  data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                                           <img class="slide-image" src="{{url('/images/'.$animal->animal_picture)}}" alt="">
@@ -188,6 +188,7 @@
                                         </div>
                                       </div>
                                     </div>
+                                  @endif
                            @endforeach
 
 
@@ -215,6 +216,7 @@
                <div class="row">
 
                   @foreach($animals as $animal)
+                    @if(empty($animal->join_Adoption->animal_id))
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">
@@ -269,6 +271,7 @@
                            </div>
                        </div>
                      </div>
+                   @endif
                 @endforeach
 
 

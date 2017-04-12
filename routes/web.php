@@ -96,3 +96,6 @@ Route::post('/addAdoption', 'AnimalController@addAdoption');
 
 Route::get('/checkAdoption', 'AnimalController@checkAdoption');
 Route::post('/checkAdoption', 'AnimalController@checkAdoption');
+
+Route::get('/deleteAdoptionTable/{id}', 'AnimalController@deleteAdoptionTable');
+Route::post('/deleteAdoptionTable/{id}', 'AnimalController@deleteAdoptionTable');

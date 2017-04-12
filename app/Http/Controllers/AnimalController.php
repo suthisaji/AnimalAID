@@ -417,22 +417,43 @@ class AnimalController extends Controller
 
 
     }else{
+
       $adoptions = $this->AnimalRepository->getAllAdoptionTable();
         $users = $this->UserRepository->getAllUser();
         $countRecipient = $this->AnimalRepository->countRecipient();
         $recipient = $this->AnimalRepository->getAllRecipient();
           $animals = $this->AnimalRepository->getAllAnimal();
+            $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
+            $adminChecked = $this->AnimalRepository->getAllAdminChecked();
+          $adoptionDone = $this->AnimalRepository  ->getAllAdoptionDone();
           $data = array(
               'adoptions'=>$adoptions ,
                 'users'=>$users,
                 'countRecipient'=>$countRecipient,
                 'recipient'=>$recipient,
-                  'animals'=>$animals
+                  'animals'=>$animals,
+                  'animalsAdoptions'=>$animalsAdoptions,
+                  'adminChecked'=>$adminChecked,
+                  'adoptionDone'=>  $adoptionDone
           );
 
          return view('checkAdoption',$data);
       }
+}
 
+
+
+
+
+
+      function deleteAdoptionTable($animal_id){
+        $result = $this->AnimalRepository->deleteAdoptionTable($animal_id);
+        if($result){
+            return redirect('/checkAdoption');
+        }else{
+            echo "Can not delete animal";
+
+      }
 }
 
 

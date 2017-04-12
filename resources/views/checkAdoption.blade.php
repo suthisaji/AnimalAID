@@ -1,43 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
+    <style type="text/css">
+        .carousel-inner > .item > img {
+  width:700;
+  height:300px;
+}
+.thumbnail img {
+    width:100% !important;
+    height: 200px !important;
+}
+.caption{
+  height: 150px;
+
+}
+.thumbnailjam img {
+    width:100% !important;
+    height: 300px !important;
+}
+.modal-title {
+
+    text-align: left;
+}
+.modal-body {
+
+    text-align: left;
+}
+.box1{
+  position:absolute;
+  bottom: 33px;
+  right:82px;
+}
+.box2{
+  position:absolute;
+  bottom: 33px;
+  right:30px;
+}
+.ri{
+position:absolute;
+  top: 33px;
+    right:30px;
+}
+.po{
+  position:relative;
+
+  left:-620px;
+}
 
 
 
- @foreach($adoptions as $a)
-{{$a->animal_id}}
-@endforeach
 
-มีสัตว์ไร้บ้านทั้งหมด  {{$a->count()}} ตัว all adoption
+
+
+    </style>
+  </head>
+  <body>
+สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>
+
+มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
 มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
 มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน<br>
 
-    admin choose    ยืนยันแล้ว          คน ยังไม่ยืนยัน      คน-> เตือนแอดมิน
+ ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
 
-@foreach($recipient as $rec)
-  <div class="group">
-    <div class="panel-heading">ผู้รับขอรับเลี้ยง</div>
+            @foreach($recipient as $rec)
+              <div class="group">
+                <div class="panel-heading">ผู้รับขอรับเลี้ยง</div>
 
-    <div class="panel-body">
-คุณ  {{$rec->join_user->name}}<br>
-เลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัส {{$rec->join_Animal->animal_id}}
-รพ :<br>
-เบอร์<br>
-email<br>
-ที่อยู่<br>{{$rec->address}}
-มารับวันที่ {{$rec->date_time}}          เวลา<br>
-<form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
-    {{ Form::token() }}
 
-    <div class="text-center">
 
-      <input type='hidden' name='adoption_id' value='{{$rec->adoption_id}}' />
-      <input type='hidden' name='address' value='{{$rec->address}}' />
-      <input type='hidden' name='date_time' value='{{$rec->date_time}}' />
-      <input type='hidden' name='animal_id' value='{{$rec->join_Animal->animal_id}}' />
-      <input type='hidden' name='user_id' value=' {{$rec->join_user->id}}' />
-      <input type='hidden' name='status' value='wait' />
-        <button class="btn btn-success" >ยืนยันการขอรับเลี้ยง</button>
-    </div>
+                <div class="panel-body">
+            คุณ  {{$rec->join_user->name}}<br>
+            เลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัสสัตว์ : {{$rec->animal_id}}<br>
+            รพ :<br>
+            เบอร์<br>
+            email<br>
+            ที่อยู่<br>{{$rec->address}}
+            มารับวันที่ {{$rec->date_time}}          เวลา<br>
+            <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
+                {{ Form::token() }}
 
-</form>
+                <div class="text-center">
+
+                  <input type='hidden' name='adoption_id' value='{{$rec->adoption_id}}' />
+                  <input type='hidden' name='address' value='{{$rec->address}}' />
+                  <input type='hidden' name='date_time' value='{{$rec->date_time}}' />
+                  <input type='hidden' name='animal_id' value='{{$rec->join_Animal->animal_id}}' />
+                  <input type='hidden' name='user_id' value=' {{$rec->join_user->id}}' />
+                  <input type='hidden' name='status' value='Wait' />
+                    <button class="btn btn-success po" >ยืนยันการขอรับเลี้ยง</button>
+                </div>
+
+            </form>
 
 ตรวจสอบแล้ว  ยัง<br>
 กดยืนยัน    จะกดได้ก็ต่อเมื่อติ๊กตรวจสอบแล้ว<br>
@@ -45,20 +108,54 @@ email<br>
 </div>
 </div>
 
+
 @endforeach
 
-มารับเรียบร้อยแล้ว    ตัว
-รอมารับ            ตัว(ยืนยันแล้วแต่ยังไม่มารับ)
+<div  class="col-md-3 ri">
+    <p class="lead">List of Donors</p>
+    มารับเรียบร้อยแล้ว  {{$adoptionDone->count()}}  ตัว<br>
+    รอมารับ    {{$adminChecked->count()}}           ตัว(ยืนยันแล้วแต่ยังไม่มารับ)
+        <div class="list-group">
+          @foreach($adminChecked as $wait)
+            <p class="list-group-item">
+
+                <i class="fa fa-comment fa-fw">{{$wait->join_Animal->animal_name}} รหัส:{{$wait->animal_id}} </i>
+
+                  มารับวันที่ {{$wait->date_time}}
+                  <div style=" background-color: #F1F1F1">
+                  <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
+                      {{ Form::token() }}
+
+                      <div class="text-center">
+
+                        <input type='hidden' name='adoption_id' value='{{$wait->adoption_id}}' />
+                        <input type='hidden' name='address' value='{{$wait->address}}' />
+                        <input type='hidden' name='date_time' value='{{$wait->date_time}}' />
+                        <input type='hidden' name='animal_id' value='{{$wait->join_Animal->animal_id}}' />
+                        <input type='hidden' name='user_id' value=' {{$wait->join_user->id}}' />
+                        <input type='hidden' name='status' value='Done' />
 
 
-<div class="row align-items-start">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-  </div>
+                          <button class="btn btn-success" >มารับแล้ว</button>
+
+                            <a href="/deleteAdoptionTable/{{ $wait->animal_id }}" class="btn btn-warning " onclick="return confirm('Please confirm again !!!')">ยกเลิก</a>
+
+                      </div>
+
+                  </form>
+                </div>
+    </p>
+@endforeach
+
+
+
+
+
+
+ <!-- jQuery first, then Tether, then Bootstrap JS. -->
+ <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+ <!-- Bootstrap Core JavaScript -->
+ <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
+ </body>
+</html>

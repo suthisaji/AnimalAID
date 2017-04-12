@@ -314,7 +314,6 @@
   <!-- Modal -->
 
 
-//{{$animal->animal_id}}
 
 
 
