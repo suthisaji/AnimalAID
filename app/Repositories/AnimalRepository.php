@@ -44,10 +44,35 @@ use App\User;
    function findById($id){
       return Animal::where('animal_id',$id)->first();
   }
-   function updateAnimal($animal_id,$animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){
+   function updateAnimal($animal_id,$admin_id,$animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){
+
        $data = array(//ช่องนี้ = ตัวแปรที่ใส่มาใน parameter
+
+           'admin_id'=>$admin_id,
            'animal_name'=>$animal_name,
            'animal_picture'=>$animal_picture,
+           'animal_color'=>$animal_color,
+           'animal_gender'=>$animal_gender,
+           'animal_age'=>$animal_age,
+           'symptomCase'=>$symptomCase,
+           'statusDonation'=>$statusDonation,
+           'doType_id'=>$doType_id,
+           'animal_type'=>$animal_type
+       );
+       $result = Animal::where('animal_id',$animal_id)->update($data);
+       if($result > 0){
+           return true;
+       }else{
+           return false;
+       }
+   }
+   function updateAnimal1($animal_id,$admin_id,$animal_name,$animal_type,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){
+
+       $data = array(//ช่องนี้ = ตัวแปรที่ใส่มาใน parameter
+
+           'admin_id'=>$admin_id,
+           'animal_name'=>$animal_name,
+    
            'animal_color'=>$animal_color,
            'animal_gender'=>$animal_gender,
            'animal_age'=>$animal_age,

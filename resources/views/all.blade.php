@@ -35,6 +35,19 @@
 
     text-align: left;
 }
+.box1{
+  position:absolute;
+  bottom: 33px;
+  right:82px;
+}
+.box2{
+  position:absolute;
+  bottom: 33px;
+  right:30px;
+}
+
+
+
 
     </style>
   </head>
@@ -206,20 +219,22 @@
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">
                            <img src="{{url('/images/'.$animal->animal_picture)}}" alt="">
-                           <div class="caption">
-                              {{$animal->join_donationType->do_typeName}}
-                               <h4><a href="#">{{$animal->animal_name}}</a>
-                               </h4>
-                               {{$animal->animal_type}}<br>
+                           <div   class="caption  ">
+                              {{$animal->join_donationType->do_typeName}}<br>
+                              <span style="color:blue">{{$animal->animal_name}}</span>
+
+                              {{$animal->animal_type}} <br>
                               {{$animal->symptomCase}}
+
+
 
 
                               <!-- Button trigger modal -->
                             <div class="row text-right">
-                          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                          <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                             view detail</a>
                           </button>
-                          <button type="button" class="btn btn-primary btn-sm">Help</button>
+                          <button type="button" class="btn btn-primary btn-sm box2">Help</button>
                           <!--Modal-->
                           <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">

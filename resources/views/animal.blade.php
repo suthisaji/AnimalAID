@@ -30,7 +30,7 @@
               <td>{{$animal->animal_id}}</td>
               <td>{{$animal->animal_name}}</td>
               <td>{{$animal->join_donationType->do_typeName}}</td>
-              <td><small>{{$animal->animal_picture}}</small></td>
+              <td><img  src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="50" height="50"> &nbsp;<small>{{$animal->animal_picture}}</small>   <br></td>
               <td>{{$animal->animal_age}}</td>
               <td>{{$animal->statusDonation}}</td>
               <td>

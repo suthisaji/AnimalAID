@@ -196,7 +196,7 @@ class AnimalController extends Controller
             $temp = Request::file('ani_picture')->getPathName();
             $imageName = Request::file('ani_picture')->getClientOriginalName();
             $path = base_path().'/public/images/';
-            $newImageName = 'animal_'.str_random(10).$imageName;
+            $newImageName = 'animal_'.str_random(5).$imageName;
             Request::file('ani_picture')->move($path, $newImageName);
             //----------------------------------
             $animalColor= Input::get('ani_color');
@@ -221,7 +221,10 @@ class AnimalController extends Controller
         if(Request::isMethod('post')){
           $animalId = Input::get('ani_id');
           $animalName = Input::get('ani_name');//
-          $animalPicture = Input::get('ani_picture');
+            $adminId = Auth::user()->id;
+          //------upload image and store------
+
+        //  $animalPicture = Input::get('ani_picture');
           $animalColor= Input::get('ani_color');
           $animalGender= Input::get('ani_gender');
           $animalAge= Input::get('ani_age');
@@ -229,7 +232,18 @@ class AnimalController extends Controller
           $statusDonation= Input::get('statusDonation');
           $animalType= Input::get('ani_type');//
           $doTypeId= Input::get('doType_id');
-            $result = $this->AnimalRepository->updateAnimal($animalId,$animalName,$animalType,$animalPicture,$animalColor,$animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
+          if (Input::hasFile('ani_picture')) {
+          $temp = Request::file('ani_picture')->getPathName();
+          $imageName = Request::file('ani_picture')->getClientOriginalName();
+          $path = base_path().'/public/images/';
+          $newImageName = 'animal_'.str_random(5).$imageName;
+          Request::file('ani_picture')->move($path, $newImageName);
+          //----------------------------------
+            $result = $this->AnimalRepository->updateAnimal($animalId,$adminId,$animalName,$animalType,$newImageName,$animalColor,$animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
+          }else {
+            $result = $this->AnimalRepository->updateAnimal1($animalId,$adminId,$animalName,$animalType,$animalColor,$animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
+
+          }
             if($result){
                 return redirect('/animal');
             }else{

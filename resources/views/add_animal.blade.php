@@ -56,11 +56,13 @@
                                               <input type="text" class="form-control" name="ani_gender"/>
                                           </div>-->
 
-                                          <div class="radio form-group" id="animal_gender">
-                                            <label for="ani_gender" class="form-label" >Animal Gender</label><br>
-                                              <label><input type="radio" value="1" name="ani_gender" required >male</label>
-                                              <label><input type="radio" value="2" name="ani_gender">female</label>
-                                          </div>
+                                            <div class="radio form-group" id="animal_gender">
+                                              <label for="ani_gender" class="form-label" >Animal Gender</label><br>
+                                                <label><input type="radio" value="1" name="ani_gender"  >male</label>
+                                                <label><input type="radio" value="2" name="ani_gender">female</label>
+                                            </div>
+
+                                  
 
 
 
