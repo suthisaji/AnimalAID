@@ -17,6 +17,9 @@ class Animal extends Model
     public function join_Adoption(){
       return $this->belongsTo('App\Adoption','animal_id', 'animal_id');
     }
+    public function join_User(){
+        return $this->belongsTo('App\User','admin_id', 'id');
+    }
 
 }
 //animal เชื่อมกับ donationtype

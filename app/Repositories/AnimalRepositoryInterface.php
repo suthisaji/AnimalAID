@@ -17,6 +17,8 @@ function getAllRecipient();
 function getAllAdminChecked();
 function deleteAdoptionTable($id);
 function getAllAdoptionDone();
+function getAllHospital();
+
 
 
 

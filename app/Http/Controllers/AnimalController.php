@@ -31,12 +31,17 @@ class AnimalController extends Controller
         $animals = $this->AnimalRepository->getAllAnimal();
         $donationType = $this->DonationTypeRepository->getAllDonationType();
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+          $hospitals =$this->AnimalRepository->getAllHospital();
+          $adminId = Auth::user()->id;
+
 
         //$donationType_name = $this->DonationTypeRepository->findTypeById($type_id); //ไมไ่ด้ 55555 คิดแปป ****************************
         $data = array(
             'animals'=>$animals  , //'animalsคีย์ที่จะส่งไปให้ view ใ้ช้'=>$animals
             'donationType'=>$donationType,
               'newsAnis'=>$newsAnis,
+              'hospitals'=>$hospitals,
+              'adminId' =>$adminId
 
         );
         //return view('animal',$data); มึงจะให้มันไปหน้าไหน

@@ -3,6 +3,7 @@ namespace App\Repositories;
 use App\Animal;
 use App\Adoption;
 use App\User;
+use App\Hospital;
   class AnimalRepository implements AnimalRepositoryInterface{
 
     function addAnimal($admin_id,$animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){ // รับเป็น array
@@ -185,4 +186,17 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
         }
 
   }
+  function getAllHospital(){
+      return Hospital::orderBy('created_at')->get();
+  }
+
+
+
+
+
+
+
+
+
+
   }
