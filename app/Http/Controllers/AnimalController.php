@@ -456,6 +456,7 @@ class AnimalController extends Controller
             $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
             $adminChecked = $this->AnimalRepository->getAllAdminChecked();
           $adoptionDone = $this->AnimalRepository  ->getAllAdoptionDone();
+            $hospitals =$this->AnimalRepository->getAllHospital();
           $data = array(
               'adoptions'=>$adoptions ,
                 'users'=>$users,
@@ -464,7 +465,8 @@ class AnimalController extends Controller
                   'animals'=>$animals,
                   'animalsAdoptions'=>$animalsAdoptions,
                   'adminChecked'=>$adminChecked,
-                  'adoptionDone'=>  $adoptionDone
+                  'adoptionDone'=>  $adoptionDone,
+                          'hospitals'=>$hospitals
           );
 
          return view('checkAdoption',$data);

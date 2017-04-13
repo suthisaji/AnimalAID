@@ -80,12 +80,19 @@ position:absolute;
 
                     <div class="panel-body">
                 คุณ  {{$rec->join_User->name}}<br>
-                เลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัสสัตว์ : {{$rec->animal_id}}<br>
-                รพ :<br>
-                เบอร์<br>
-                email<br>
-                ที่อยู่<br>{{$rec->address}}
-                มารับวันที่ {{$rec->date_time}}          เวลา<br>
+                รับเลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัสสัตว์ : {{$rec->animal_id}}<br>
+                รพ :
+                @foreach($animals as $animal)
+                  @if($animal->animal_id==$rec->animal_id)
+
+                    {{$animal->join_Admin->join_Hospital->hospital_name}}<br>
+                  @endif
+                @endforeach
+
+                เบอร์:{{$rec->join_User->tel}}<br>
+                email:{{$rec->join_User->email}}<br>
+                ที่อยู่:{{$rec->address}}
+                มารับวันที่ {{$rec->date_time}}         
             <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
                 {{ Form::token() }}
 

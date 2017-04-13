@@ -38,7 +38,7 @@
                             @endforeach
                     </tbody>
                     </table>
-{{$countRecipient}}
+
 
                 </div>
             </div>

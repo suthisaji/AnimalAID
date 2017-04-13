@@ -221,7 +221,16 @@
                            <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                              view detail</a>
                            </button>
-                           <button type="button" class="btn btn-primary btn-sm box2">Help</button>
+                          <button id="take0{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
+                          <script>
+                                $('#take0{{$animal->animal_id}}').popover({
+                                  html: true,
+                                  title: 'Please add Your address ',
+                                  content: function(){
+                                      return $('#modal-content{{$animal->animal_id}}').html()
+                                  }
+                                })
+                          </script>
                            <!--Modal-->
                            <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                              <div class="modal-dialog" role="document">
