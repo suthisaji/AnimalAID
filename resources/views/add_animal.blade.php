@@ -62,7 +62,7 @@
                                                 <label><input type="radio" value="2" name="ani_gender">female</label>
                                             </div>
 
-                                  
+
 
 
 
@@ -89,18 +89,7 @@
 
                                                  <input type="hidden" class="form-control" name="received" value="received"/>
 
-
-
-
-
-
-
-
-
-
-
-
-                    <div class="text-center">
+                                                  <div class="text-center">
                         <button class="btn btn-success">Add Animal</button>
                     </div>
 

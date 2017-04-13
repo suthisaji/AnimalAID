@@ -493,6 +493,29 @@ class AnimalController extends Controller
 
 
 
+function closeAnimal($animal_id=0){
+
+      if(Request::isMethod('post')){
+        $animalId = Input::get('ani_id');
+        $statusDonation= Input::get('statusDonation');
+        $result = $this->AnimalRepository->updateAnimalClose($animalId,$statusDonation);
+
+          if($result){
+              return redirect('/animal');
+          }else{
+              echo "Can not Update";
+          }
+      }elseif(Request::isMethod('get')){
+        $animals = $this->AnimalRepository->getAllAnimal();
+          $data = array(
+              'animals'=>$animal,
+
+          );
+          return view('animal', $data);
+
+      }
+
+  }
 
 
 

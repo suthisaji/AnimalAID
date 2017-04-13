@@ -90,6 +90,19 @@ use App\Admin;
            return false;
        }
    }
+   function updateAnimalClose($animal_id,$statusDonation){
+
+       $data = array(//ช่องนี้ = ตัวแปรที่ใส่มาใน parameter
+   'statusDonation'=>$statusDonation
+        );
+       $result = Animal::where('animal_id',$animal_id)->update($data);
+       if($result > 0){
+           return true;
+       }else{
+           return false;
+       }
+   }
+   
    function updateAdoption($adoption_id,$user_id,$address,$status,$date_time,$animal_id){
       $data = array(
                 'adoption_id'=>$adoption_id  ,

@@ -50,7 +50,38 @@
               <td>
                 <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Edit</a>
                 <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Please confirm again !!!')">Delete</a>
-                  <a href="/change/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Change status</a>
+
+                  <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
+                      {{ Form::token() }}
+
+                          <input type="hidden" class="form-control" name="ani_id" value="{{ $animal->animal_id }}" readonly/>
+
+
+                          <input type="hidden"class="form-control" name="ani_name" value="{{ $animal->animal_name }}" />
+                          <input type="hidden"class="form-control" name="ani_type"  value="{{ $animal->animal_type }}" />
+
+                          <input type="hidden" name="doType_id" id="doType"/>
+                          <input type="hidden" name="ani_picture" id="file_up_img"/><label for="file_up_img" value"{{$animal->animal_picture}}">
+
+                          <input type="hidden" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
+
+                          <input type="hidden" class="form-control" name="ani_gender" value="{{ $animal->animal_gender }}" />
+
+                        @if( $animal->animal_gender ==1)
+                          <label><input type="hidden" value="1" name="ani_gender" checked>
+                          <label><input type="hidden" value="2" name="ani_gender">
+                        @else
+                          <label><input type="hidden" value="1" name="ani_gender" >
+                          <label><input type="hidden" value="2" name="ani_gender" checked>
+                        @endif
+
+
+                          <input type="hidden"class="form-control" name="ani_age" step="any" value="{{ $animal->animal_age }}"/>
+                          <input type="hidden" name="symptomCase" value="{{ $animal->symptomCase }}" row="3">
+
+                          <input type="hidden" class="form-control" name="statusDonation" value="Close"/>
+                          <button class="btn btn-info btn-sm">ปิดการขอรับ</button>
+                        </form>
               </td>
             </tr>
           @endif

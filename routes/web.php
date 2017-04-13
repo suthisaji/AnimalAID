@@ -99,3 +99,6 @@ Route::post('/checkAdoption', 'AnimalController@checkAdoption');
 
 Route::get('/deleteAdoptionTable/{id}', 'AnimalController@deleteAdoptionTable');
 Route::post('/deleteAdoptionTable/{id}', 'AnimalController@deleteAdoptionTable');
+
+Route::get('/closeAnimal/{animal_id}','AnimalController@closeAnimal');
+Route::post('/closeAnimal/{animal_id}','AnimalController@closeAnimal');
