@@ -92,7 +92,10 @@ position:absolute;
                 เบอร์:{{$rec->join_User->tel}}<br>
                 email:{{$rec->join_User->email}}<br>
                 ที่อยู่:{{$rec->address}}
-                มารับวันที่ {{$rec->date_time}}         
+
+                มารับวันที่ {!! str_replace('T', ' เวลา ',  $rec->date_time) !!}
+                 
+
             <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
                 {{ Form::token() }}
 
@@ -126,9 +129,9 @@ position:absolute;
           @foreach($adminChecked as $wait)
             <p class="list-group-item">
 
-                <i class="fa fa-comment fa-fw">{{$wait->join_Animal->animal_name}} รหัส:{{$wait->animal_id}} </i>
+                <i class="fa fa-comment fa-fw">{{$wait->join_Animal->animal_name}} &nbsp;รหัส:{{$wait->animal_id}} </i><br>
 
-                  มารับวันที่ {{$wait->date_time}}
+                  มารับวันที่{{str_replace('T', '  เวลา  ', $wait->date_time)}}
                   <div style=" background-color: #F1F1F1">
                   <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
                       {{ Form::token() }}

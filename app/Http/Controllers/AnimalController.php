@@ -340,6 +340,7 @@ class AnimalController extends Controller
               $adminId = Auth::user()->id;//จะได้ค่า id ของคนที่ login อยู่
               $result = $this->NewsAniRepository->addNewsAni($headNews,$adminId,$content,$newstype);
 
+
               if($result){
                   return redirect('/addNews');
               }else{
@@ -349,7 +350,8 @@ class AnimalController extends Controller
         }else{
           $news = $this->NewsAniRepository->getAllNewsAni();
           $data = array(
-            'news'=>$news
+            'news'=>$news,
+              'adminId' => Auth::user()->id
           );
           return view('add_news', $data);
         }

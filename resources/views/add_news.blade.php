@@ -67,6 +67,8 @@
                 </thead>
                 <tbody>
                   @foreach($news as $new)
+
+                      @if( $new->admin_id == $adminId)
                   <tr>
                     <td>{{$new->news_id}}</td>
                     <td>{{$new->admin_id}}</td>
@@ -78,7 +80,9 @@
                     <td> <a href="/deleteNews/{{$new->news_id}}" class="btn btn-danger btn-sm" onclick="return confirm('Please confirm again !!!') ">Delete </a></td>
 
                   </tr>
+                          @endif
                   @endforeach
+                    
                 </tbody>
               </table>
             </div>

@@ -10,6 +10,10 @@
 
     <!-- Custom CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
     <style type="text/css">
         .carousel-inner > .item > img {
   width:700;
@@ -45,7 +49,15 @@
   bottom: 33px;
   right:30px;
 }
-
+.popover{
+  max-width: none;
+  width: 300px;
+}
+.ro{
+  position:absolute;
+  top: 30px;
+  right:-340px;
+}
 
 
 
@@ -250,10 +262,66 @@
 
                               <!-- Button trigger modal -->
                             <div class="row text-right">
-                          <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
-                            view detail</a>
-                          </button>
-                          <button type="button" class="btn btn-primary btn-sm box2">Help</button>
+
+                          @if($animal->doType_id==3)
+                            <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                              view detail</a>
+                            </button>
+                            <button id="take{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
+                            <script>
+                                  $('#take{{$animal->animal_id}}').popover({
+                                    html: true,
+                                    title: 'Please add Your address ',
+                                    content: function(){
+                                        return $('#modal-content{{$animal->animal_id}}').html()
+                                    }
+                                  })
+                            </script>
+                            <div id="modal-content{{$animal->animal_id}}" style="display:none;">
+                              @if (Auth::guest())
+                                <a href="{{ route('login') }}" class="btn btn-sm btn-success">Login</a>
+                                <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register</a>
+                              @else
+                              <form class="form" action="/addAdoption" method="post">
+                                <input type="hidden" name="animal_id" value="{{$animal->animal_id}}">
+                                  {{ Form::token() }}
+                                  <div class="form-group">
+                                      <label for=""> <h4 style="color:blue;"> Thank you !&nbsp; {{Auth::user()->name}}</h4> </label>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">phone number can edit</label>
+                                      <input class="form-control" type="tel" name="tel" value="{{Auth::user()->tel}}"/>
+
+                                  </div>
+                                  <div class="form-group">
+                                       <label for="address">Address for pet</label>
+                                       <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                                 </div>
+
+                                  <div class="form-group">
+                                      <label for="date" class="form-label">Date & Time to receive</label>
+                                      <input type="datetime-local" class="form-control" name="date_time"  value="2011-08-19T13:45:00" />
+                                  </div>
+                                  <div class="form-group">
+                                      Please waiting for contact back by email or phonenumber
+
+                                  </div>
+                                 <input type='hidden' name='status' value='Recipient' />
+                                  <div class="text-center">
+                                      <button class="btn btn-success" >Add Address</button>
+                                  </div>
+                              </form>
+                            @endif
+                          @elseif($animal->doType_id==1)
+                            <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                              view detail</a>
+                            </button>
+                              <button type="button" class="btn btn-primary btn-sm box2">Help</button>
+                          @else
+                            <button type="button" class="btn btn-primary btn-sm box2" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                              view detail</a>
+                            </button>
+                          @endif
                           <!--Modal-->
                           <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
@@ -304,7 +372,7 @@
                </div>
 
            </div>
-               <div class="col-md-3">
+               <div class="col-md-3 ro">
                    <p class="lead">List of Donors</p>
                        <div class="list-group">
                            <p class="list-group-item">
@@ -341,7 +409,7 @@
 
        <!-- Footer -->
        <footer>
-           <div class="row">
+           <div class="row ">
                <div class="text-center col-lg-12">
                    <p>Copyright &copy; Your Website 2014</p>
                </div>
