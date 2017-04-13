@@ -180,6 +180,15 @@
                                             @endif
                                             SymptomCase :{{$animal->symptomCase}}<br>
                                             StatusDonation:{{$animal->statusDonation}}<br>
+                                            @foreach($admins as $admin)
+                                              @if($animal->admin_id==$admin->admin_id)
+                                                   @foreach($hospitals as $hos)
+                                                      @if($admin->hospital_id==$hos->hospital_id)
+                                                       <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
+                                                      @endif
+                                                   @endforeach
+                                              @endif
+                                            @endforeach
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -216,7 +225,7 @@
                <div class="row">
 
                   @foreach($animals as $animal)
-                      @foreach($hospitals as $hos)
+
                     @if(empty($animal->join_Adoption->animal_id))
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
@@ -228,11 +237,15 @@
 
                               {{$animal->animal_type}} <br>
                               {{$animal->symptomCase}}<br>
-                                @foreach($admins as $admin)
-                              @if($animal->admin_id==$admin->admin_id)
-                            <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
-                          @endif
-                                @endforeach
+                              @foreach($admins as $admin)
+                                @if($animal->admin_id==$admin->admin_id)
+                                     @foreach($hospitals as $hos)
+                                        @if($admin->hospital_id==$hos->hospital_id)
+                                         <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
+                                        @endif
+                                     @endforeach
+                                @endif
+                              @endforeach
 
 
                               <!-- Button trigger modal -->
@@ -276,8 +289,7 @@
                        </div>
                      </div>
                    @endif
-                @endforeach
-                  @endforeach
+              @endforeach
 
 
 

@@ -194,12 +194,21 @@
 
                                {{$animal->animal_type}}<br>
                                {{$animal->symptomCase}}
+                               @foreach($admins as $admin)
+                                 @if($animal->admin_id==$admin->admin_id)
+                                      @foreach($hospitals as $hos)
+                                         @if($admin->hospital_id==$hos->hospital_id)
+                                          <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
+                                         @endif
+                                      @endforeach
+                                 @endif
+                               @endforeach
                                <!-- Button trigger modal -->
                              <div class="row text-right">
-                           <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                           <button type="button" class="btn btn-primary btn-sm box2" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                              view detail</a>
                            </button>
-                           <button type="button" class="btn btn-primary btn-sm box2">Help</button>
+
                            <!--Modal-->
                            <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                              <div class="modal-dialog" role="document">
@@ -223,13 +232,22 @@
 
                                    SymptomCase :{{$animal->symptomCase}}<br>
                                    StatusDonation:{{$animal->statusDonation}}<br>
+                                   @foreach($admins as $admin)
+                                     @if($animal->admin_id==$admin->admin_id)
+                                          @foreach($hospitals as $hos)
+                                             @if($admin->hospital_id==$hos->hospital_id)
+                                              <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
+                                             @endif
+                                          @endforeach
+                                     @endif
+                                   @endforeach
 
 
 
                                  </div>
                                  <div class="modal-footer">
                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                   <button type="button" class="btn btn-primary">บริจาค</button>
+
                                  </div>
                                </div>
                              </div>

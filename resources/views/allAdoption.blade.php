@@ -210,7 +210,17 @@
 
 
                                {{$animal->animal_type}}<br>
-                               {{$animal->symptomCase}}
+                               {{$animal->symptomCase}}<br>
+
+                               @foreach($admins as $admin)
+                                 @if($animal->admin_id==$admin->admin_id)
+                                      @foreach($hospitals as $hos)
+                                         @if($admin->hospital_id==$hos->hospital_id)
+                                          <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
+                                         @endif
+                                      @endforeach
+                                 @endif
+                               @endforeach
 
 
 
@@ -254,7 +264,15 @@
 
                                    SymptomCase :{{$animal->symptomCase}}<br>
                                    StatusDonation:{{$animal->statusDonation}}<br>
-
+                                   @foreach($admins as $admin)
+                                     @if($animal->admin_id==$admin->admin_id)
+                                          @foreach($hospitals as $hos)
+                                             @if($admin->hospital_id==$hos->hospital_id)
+                                              <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
+                                             @endif
+                                          @endforeach
+                                     @endif
+                                   @endforeach
 
 
                                  </div>
