@@ -9,12 +9,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   </head>
   <body>
-    @foreach($hospitals as $h)
-{{$h->hospital_name}}
-@endforeach
-  @foreach($animals as $animal)
- {{$animal->join_User->animal_id}}
-@endforeach
+
+
+
+
+        @foreach($admins as $ad)
+            @if( $ad->admin_id == $adminId)
+              {{$ad->join_Hospital->hospital_name}}
+            @endif
+        @endforeach
+
+
+
+
+
     <div class="container">
         <table class="table table-hover">
           <thead class="table-inverse">
@@ -24,12 +32,14 @@
                 <th>TYPE</th>
                 <th>PIC</th>
                 <th>AGE</th>
-                <th>status</th>
+
+                  <th>status</th>
                     <th>action</th>
               </tr>
           </thead>
           <tbody>
             @foreach($animals as $animal)
+              @if( $animal->admin_id == $adminId)
             <tr>
               <td>{{$animal->animal_id}}</td>
               <td>{{$animal->animal_name}}</td>
@@ -43,6 +53,7 @@
                   <a href="/change/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Change status</a>
               </td>
             </tr>
+          @endif
             @endforeach
           </tbody>
         </table>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use App\Animal;
 use App\Adoption;
 use App\User;
+use App\Admin;
 use Auth;
 use App\Repositories\AnimalRepositoryInterface;
 use App\Repositories\DonationTypeRepositoryInterface;
@@ -32,7 +33,9 @@ class AnimalController extends Controller
         $donationType = $this->DonationTypeRepository->getAllDonationType();
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
           $hospitals =$this->AnimalRepository->getAllHospital();
-          $adminId = Auth::user()->id;
+          $admins = $this->AnimalRepository ->getAllAdmin();
+
+
 
 
         //$donationType_name = $this->DonationTypeRepository->findTypeById($type_id); //ไมไ่ด้ 55555 คิดแปป ****************************
@@ -41,7 +44,8 @@ class AnimalController extends Controller
             'donationType'=>$donationType,
               'newsAnis'=>$newsAnis,
               'hospitals'=>$hospitals,
-              'adminId' =>$adminId
+              'adminId' =>Auth::user()->id,
+              'admins' =>$admins
 
         );
         //return view('animal',$data); มึงจะให้มันไปหน้าไหน
@@ -70,11 +74,16 @@ class AnimalController extends Controller
           $donationType = $this->DonationTypeRepository->getAllDonationType();
             $newsAnis = $this->NewsAniRepository->getAllNewsAni();
             $users = $this->UserRepository->getAllUser();
+              $hospitals =$this->AnimalRepository->getAllHospital();
+                $admins = $this->AnimalRepository ->getAllAdmin();
             $data = array(
                 'animals'=>$animals,   //'animalsคีย์ที่จะส่งไปให้ view ใ้ช้'=>$animals
                 'donationType'=>$donationType,
                   'newsAnis'=>$newsAnis,
-                  'users'=>$users
+                  'users'=>$users,
+                    'hospitals'=>$hospitals,
+                    'admins' =>$admins
+
 
             );
       }else{
@@ -83,12 +92,16 @@ class AnimalController extends Controller
             $newsAnis = $this->NewsAniRepository->getAllNewsAni();
             $users = $this->UserRepository->getAllUser();
             $position =  Auth::user()->position;
+              $hospitals =$this->AnimalRepository->getAllHospital();
+              $admins = $this->AnimalRepository ->getAllAdmin();
         $data = array(
             'animals'=>$animals,   //'animalsคีย์ที่จะส่งไปให้ view ใ้ช้'=>$animals
             'donationType'=>$donationType,
               'newsAnis'=>$newsAnis,
               'users'=>$users,
-              'position'=>$position
+              'position'=>$position,
+                'hospitals'=>$hospitals,
+                'admins' =>$admins
 
         );
 
@@ -102,21 +115,25 @@ class AnimalController extends Controller
         $animals = $this->AnimalRepository->getAllAnimal();
         $animalsMoneys = $this->AnimalRepository->getAllMoney();
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+            $hospitals =$this->AnimalRepository->getAllHospital();
           $data = array(
               'animals'=>$animals ,
               'animalsMoneys'=>$animalsMoneys,
             'newsAnis'=>$newsAnis,
+            'hospitals'=>$hospitals
     );
       }else {
         $animals = $this->AnimalRepository->getAllAnimal();
         $animalsMoneys = $this->AnimalRepository->getAllMoney();
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+            $hospitals =$this->AnimalRepository->getAllHospital();
           $position =  Auth::user()->position;
         $data = array(
             'animals'=>$animals ,
             'animalsMoneys'=>$animalsMoneys,
           'newsAnis'=>$newsAnis,
-          'position'=>$position
+          'position'=>$position,
+          'hospitals'=>$hospitals
   );
 
       }
@@ -130,11 +147,13 @@ class AnimalController extends Controller
           $animalsMoneys = $this->AnimalRepository->getAllMoney();
           $animalsBloods= $this->AnimalRepository->getAllBlood();
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+            $hospitals =$this->AnimalRepository->getAllHospital();
            $data = array(
                 'animals'=>$animals ,
                 'animalsMoneys'=>$animalsMoneys,
                 'animalsBloods'=>$animalsBloods,
                   'newsAnis'=>$newsAnis,
+                  'hospitals'=>$hospitals
 
             );
         }else{
@@ -143,12 +162,14 @@ class AnimalController extends Controller
         $animalsBloods= $this->AnimalRepository->getAllBlood();
         $newsAnis = $this->NewsAniRepository->getAllNewsAni();
         $position =  Auth::user()->position;
+          $hospitals =$this->AnimalRepository->getAllHospital();
         $data = array(
             'animals'=>$animals ,
             'animalsMoneys'=>$animalsMoneys,
             'animalsBloods'=>$animalsBloods,
               'newsAnis'=>$newsAnis,
-              'position'=>$position
+              'position'=>$position,
+              'hospitals'=>$hospitals
         );
 }
        return view('allBlood',$data);
@@ -160,10 +181,12 @@ class AnimalController extends Controller
             $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
           $animals = $this->AnimalRepository->getAllAnimal();
+            $hospitals =$this->AnimalRepository->getAllHospital();
           $data = array(
             'animalsAdoptions'=>$animalsAdoptions,
             'newsAnis'=>$newsAnis,
-              'animals'=>$animals
+              'animals'=>$animals,
+              'hospitals'=>$hospitals
           );
         }
           else{
@@ -171,13 +194,15 @@ class AnimalController extends Controller
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
           $position =  Auth::user()->position;
           $animals = $this->AnimalRepository->getAllAnimal();
+            $hospitals =$this->AnimalRepository->getAllHospital();
 
 
               $data = array(
                 'animalsAdoptions'=>$animalsAdoptions,
                   'newsAnis'=>$newsAnis,
                   'position'=>$position,
-                  'animals'=>$animals
+                  'animals'=>$animals,
+                  'hospitals'=>$hospitals
     );
       }
    return view('allAdoption',$data);

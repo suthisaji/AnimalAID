@@ -20,6 +20,9 @@ class Animal extends Model
     public function join_User(){
         return $this->belongsTo('App\User','admin_id', 'id');
     }
+    public function join_Admin(){
+        return $this->belongsTo('App\Admin','admin_id', 'admin_id');
+    }
 
 }
 //animal เชื่อมกับ donationtype

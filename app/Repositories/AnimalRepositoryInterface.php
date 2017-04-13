@@ -18,6 +18,10 @@ function getAllAdminChecked();
 function deleteAdoptionTable($id);
 function getAllAdoptionDone();
 function getAllHospital();
+function getAllAdmin();
+function getAnimalNotInAdoption();
+function countRecipient();
+//  function count();
 
 
 

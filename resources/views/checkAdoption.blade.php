@@ -64,28 +64,28 @@ position:absolute;
     </style>
   </head>
   <body>
-สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>
+    สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>
 
-มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
-มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
-มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน<br>
+    มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
+    มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
+    มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน<br>
 
- ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
+     ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
 
-            @foreach($recipient as $rec)
-              <div class="group">
-                <div class="panel-heading">ผู้รับขอรับเลี้ยง</div>
+                @foreach($recipient as $rec)
+                  <div class="group">
+                    <div class="panel-heading">ผู้รับขอรับเลี้ยง</div>
 
 
 
-                <div class="panel-body">
-            คุณ  {{$rec->join_user->name}}<br>
-            เลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัสสัตว์ : {{$rec->animal_id}}<br>
-            รพ :<br>
-            เบอร์<br>
-            email<br>
-            ที่อยู่<br>{{$rec->address}}
-            มารับวันที่ {{$rec->date_time}}          เวลา<br>
+                    <div class="panel-body">
+                คุณ  {{$rec->join_User->name}}<br>
+                เลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัสสัตว์ : {{$rec->animal_id}}<br>
+                รพ :<br>
+                เบอร์<br>
+                email<br>
+                ที่อยู่<br>{{$rec->address}}
+                มารับวันที่ {{$rec->date_time}}          เวลา<br>
             <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
                 {{ Form::token() }}
 
@@ -95,7 +95,7 @@ position:absolute;
                   <input type='hidden' name='address' value='{{$rec->address}}' />
                   <input type='hidden' name='date_time' value='{{$rec->date_time}}' />
                   <input type='hidden' name='animal_id' value='{{$rec->join_Animal->animal_id}}' />
-                  <input type='hidden' name='user_id' value=' {{$rec->join_user->id}}' />
+                  <input type='hidden' name='user_id' value=' {{$rec->join_User->id}}' />
                   <input type='hidden' name='status' value='Wait' />
                     <button class="btn btn-success po" >ยืนยันการขอรับเลี้ยง</button>
                 </div>
@@ -132,7 +132,7 @@ position:absolute;
                         <input type='hidden' name='address' value='{{$wait->address}}' />
                         <input type='hidden' name='date_time' value='{{$wait->date_time}}' />
                         <input type='hidden' name='animal_id' value='{{$wait->join_Animal->animal_id}}' />
-                        <input type='hidden' name='user_id' value=' {{$wait->join_user->id}}' />
+                        <input type='hidden' name='user_id' value=' {{$wait->join_User->id}}' />
                         <input type='hidden' name='status' value='Done' />
 
 

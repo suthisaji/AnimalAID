@@ -4,6 +4,7 @@ use App\Animal;
 use App\Adoption;
 use App\User;
 use App\Hospital;
+use App\Admin;
   class AnimalRepository implements AnimalRepositoryInterface{
 
     function addAnimal($admin_id,$animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){ // รับเป็น array
@@ -108,6 +109,7 @@ use App\Hospital;
 
    function deleteAnimal($id){
      $result = Animal::where('animal_id',$id)->delete();
+      $result = Adoption::where('animal_id',$id)->delete();
        if($result>0){
          return true;
        }else{
@@ -142,6 +144,10 @@ function getAllAdoptionDone(){
   return Adoption::where('status','Done')->get();
 }
 
+function getAllAdmin(){
+   return Admin::orderBy('created_at')->get();
+}
+
 function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_id
       $data = array(
 
@@ -162,9 +168,9 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
 
       }
 
-      function count(){
+      /*function count(){
         return Animal::where('doType_id','3')->count();
-      }
+      }*/
       function countRecipient(){
        return Adoption::where('status','Recipient')->count();
       }

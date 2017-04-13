@@ -216,6 +216,7 @@
                <div class="row">
 
                   @foreach($animals as $animal)
+                      @foreach($hospitals as $hos)
                     @if(empty($animal->join_Adoption->animal_id))
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
@@ -226,9 +227,12 @@
                               <span style="color:blue">{{$animal->animal_name}}</span>
 
                               {{$animal->animal_type}} <br>
-                              {{$animal->symptomCase}}
-
-
+                              {{$animal->symptomCase}}<br>
+                                @foreach($admins as $admin)
+                              @if($animal->admin_id==$admin->admin_id)
+                            <span style="color:#8000FF">    {{$admin->join_Hospital->hospital_name}}</span>
+                          @endif
+                                @endforeach
 
 
                               <!-- Button trigger modal -->
@@ -273,6 +277,7 @@
                      </div>
                    @endif
                 @endforeach
+                  @endforeach
 
 
 
