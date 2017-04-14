@@ -56,7 +56,23 @@
   bottom: 33px;
   right:30px;
 }
+.rub{
+       padding: 5px 6px;
+      font-size: 13px;
+      position:absolute;
+      bottom: 33px;
+      right:25px;
+      border-radius: 3px;
+}
 
+.rub1{
+       padding: 5px 6px;
+      font-size: 13px;
+      position:absolute;
+      bottom: 17px;
+      right:88px;
+      border-radius: 3px;
+}
     </style>
   </head>
   <body>
@@ -231,7 +247,7 @@
                            <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                              view detail</a>
                            </button>
-                          <button id="take0{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
+                          <button id="take0{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger rub " data-toggle="popover" data-placement="top">รับเลี้ยง</button>
                           <script>
                                 $('#take0{{$animal->animal_id}}').popover({
                                   html: true,
@@ -279,7 +295,7 @@
                                  <div class="modal-footer">
                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                                   <button id="take{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
+                                   <button id="take{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger rub1" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
                                    <script>
                                          $('#take{{$animal->animal_id}}').popover({
                                            html: true,

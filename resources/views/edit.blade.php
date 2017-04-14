@@ -75,10 +75,10 @@
                         <label for="ani_color" class="form-label">Animal Color</label>
                         <input type="text" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
                     </div>
-                    <div class="form-group" id="animal_gender">
+                 {{--<div class="form-group" id="animal_gender">
                         <label for="ani_gender" class="form-label">Animal Gender</label>
-                        <input type="text" class="form-control" name="ani_gender" value="{{ $animal->animal_gender }}" />
-                    </div>
+                        <input type="text" class="form-control" name="ani_gender" required value="{{ $animal->animal_gender }}" />
+                    </div>--}}
 
                     <div class="radio form-group" id="animal_gender">
                       <label for="ani_gender" class="form-label" >Animal Gender</label><br>
@@ -90,7 +90,6 @@
                         <label><input type="radio" value="2" name="ani_gender" checked>female</label>
                       @endif
                     </div>
-
 
 
 
@@ -152,13 +151,22 @@
                     $('#animal_gender').hide()
                     $('#animal_age').hide()
                     $('#animal_color').hide()
-
                 }else{
                   $('#animal_gender').show()
                   $('#animal_age').show()
                   $('#animal_color').show()
                 }
             });
+
+            if($('#doType').find(":selected").val() == 2){
+              $('#animal_gender').deleteเนี่ยลบทำควยไร() อยาก required ของtype1,3 ถ้ามีอันนี้ hide มันไม่ให้ submitง งะ กุงง อันนี้มันแค่ซ่อน แต่ถ้ากุ
+              $('#animal_age').hide()
+              $('#animal_color').hide()
+            }else{
+              $('#animal_gender').show()
+              $('#animal_age').show()
+              $('#animal_color').show()
+            }
         });
     </script>
 

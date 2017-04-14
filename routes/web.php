@@ -15,9 +15,13 @@ use App\Mail\KryptoniteFound;
 Route::get('/', function () {
     return view('welcome');
 });
+use App\Animal;;
+Route::get('/delete99', function(){
+    $result = Animal::where('animal_id',1)->first();
+    return $result->animal_picture;
+});
 
 Auth::routes();
-use App\Animal;
 use App\Adoption;
 Route::get('test99', function(){
     $animals = Animal::all();

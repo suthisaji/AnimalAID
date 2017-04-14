@@ -54,20 +54,25 @@ position:absolute;
     </style>
   </head>
   <body>
+    <h4>ทั้งโปรเจค</h4>
     สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>
-
     มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
     มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
     มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน<br>
-
-     ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
+    ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
+<hr>
+<h4>เฉพาะ รพ นี้</h4>
+              สัตว์ทั้งหมด {{ $countAnimalEachAdmin }} ตัว all animal<br>//อันนี้เสด
+              มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
+              มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
+            //  มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน<br>
+              ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
+              <hr>
 
                 @foreach($recipient as $rec)
+                  @if($adminId==$rec->join_Animal->admin_id)
                   <div class="group">
                     <div class="panel-heading">ผู้รับขอรับเลี้ยง</div>
-
-
-
                     <div class="panel-body">
                 คุณ  {{$rec->join_User->name}}<br>
                 รับเลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัสสัตว์ : {{$rec->animal_id}}<br>
@@ -97,6 +102,7 @@ position:absolute;
                   <input type='hidden' name='animal_id' value='{{$rec->join_Animal->animal_id}}' />
                   <input type='hidden' name='user_id' value=' {{$rec->join_User->id}}' />
                   <input type='hidden' name='status' value='Wait' />
+                  <input type='hidden' name='auth' value='{{$adminId}}'
                     <button class="btn btn-success po" >ยืนยันการขอรับเลี้ยง</button>
                 </div>
 
@@ -108,7 +114,7 @@ position:absolute;
 </div>
 </div>
 
-
+@endif
 @endforeach
 
 <div  class="col-md-3 ri">

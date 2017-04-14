@@ -461,8 +461,10 @@ class AnimalController extends Controller
             $animal_id = Input::get('animal_id');
             $date_time= Input::get('date_time');
           $user_id = Auth::user()->id;
+          $admin = Auth::user()->id;
             $animal_id = Input::get('animal_id');
             $address = Input::get('address');
+            $this->AnimalRepository->countAnimalEachAdmin($admin);
         $result = $this->AnimalRepository->updateAdoption($adoption_id,$user_id,$address,$status,$date_time,$animal_id);
         if($result){
             return redirect('/checkAdoption');
@@ -472,7 +474,8 @@ class AnimalController extends Controller
 
 
     }else{
-
+          $admin = Auth::user()->id;
+        $countAnimalEachAdmin=$this->AnimalRepository->countAnimalEachAdmin($admin);
       $adoptions = $this->AnimalRepository->getAllAdoptionTable();
         $users = $this->UserRepository->getAllUser();
         $countRecipient = $this->AnimalRepository->countRecipient();
@@ -492,7 +495,8 @@ class AnimalController extends Controller
                   'adminChecked'=>$adminChecked,
                   'adoptionDone'=>  $adoptionDone,
                           'hospitals'=>$hospitals,
-                          'adminId' => Auth::user()->id
+                          'adminId' => Auth::user()->id,
+                            'countAnimalEachAdmin'=>$countAnimalEachAdmin
           );
 
          return view('checkAdoption',$data);

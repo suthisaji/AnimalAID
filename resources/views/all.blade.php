@@ -25,18 +25,15 @@
 }
 .caption{
   height: 150px;
-
 }
 .thumbnailjam img {
     width:100% !important;
     height: 300px !important;
 }
 .modal-title {
-
     text-align: left;
 }
 .modal-body {
-
     text-align: left;
 }
 .box1{
@@ -58,9 +55,6 @@
   top: 30px;
   right:-340px;
 }
-
-
-
     </style>
   </head>
   <body>
@@ -115,25 +109,25 @@
                        <li><a href="{{ route('login') }}">Login</a></li>
                        <li><a href="{{ route('register') }}">Register</a></li>
                    @else
-                       <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                               {{ Auth::user()->name }} <span class="caret"></span>
-                           </a>
+                     <li class="dropdown">
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                             {{ Auth::user()->name }} <span class="caret"></span>
+                         </a>
 
-                           <ul class="dropdown-menu" role="menu">
-                               <li>
-                                   <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                       Logout
-                                   </a>
+                         <ul class="dropdown-menu" role="menu">
+                             <li>
+                                 <a href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">
+                                     Logout
+                                 </a>
 
-                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                       {{ csrf_field() }}
-                                   </form>
-                               </li>
-                           </ul>
-                       </li>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                     {{ csrf_field() }}
+                                 </form>
+                             </li>
+                         </ul>
+                     </li>
                    @endif
                </ul>
            </div>
@@ -159,9 +153,11 @@
                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                            </ol>
                            <div class="carousel-inner">
-                             @foreach($animals as $animal)
-                                  @if(empty($animal->join_Adoption->animal_id))
-                                    @if($loop->first)
+                             @php($x=0)
+                             @foreach($animals as $animal) 
+                                  @if($animal->statusDonation=='open' ||$animal->statusDonation=='-' && empty($animal->join_Adoption->animal_id))
+                                    @php($x++)
+                                    @if($x == 1)
                                       <div class="item active"  data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                                           <img class="slide-image" src="{{url('/images/'.$animal->animal_picture)}}" alt="">
                                       </div>
@@ -422,14 +418,5 @@
 
    </div>
    <!-- /.container -->
-
-
-
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
     </body>
 </html>
