@@ -249,9 +249,16 @@ class AnimalController extends Controller
             $animalGender= Input::get('ani_gender');
             $animalAge= Input::get('ani_age');
             $symptomCase= Input::get('symptomCase');
-            $statusDonation= Input::get('statusDonation');
+
+
 
             $doTypeId= Input::get('doType_id');
+            if($doTypeId==3){
+                $statusDonation= '-';
+            }else{
+              $statusDonation= Input::get('statusDonation');
+            }
+
             $result = $this->AnimalRepository->addAnimal($adminId,$animalName,$animalType,$newImageName,$animalColor,
             $animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
 
@@ -484,7 +491,8 @@ class AnimalController extends Controller
                   'animalsAdoptions'=>$animalsAdoptions,
                   'adminChecked'=>$adminChecked,
                   'adoptionDone'=>  $adoptionDone,
-                          'hospitals'=>$hospitals
+                          'hospitals'=>$hospitals,
+                          'adminId' => Auth::user()->id
           );
 
          return view('checkAdoption',$data);

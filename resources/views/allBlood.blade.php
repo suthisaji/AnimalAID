@@ -147,7 +147,6 @@
                            </ol>
                            <div class="carousel-inner">
                              @foreach($animalsBloods as $pic)
-
                                     @if($loop->first)
                                       <div class="item active" data-toggle="modal" data-target="#myModal{{$pic->animal_id}}">
                                           <img class="slide-image" src="{{url('/images/'.$pic->animal_picture)}}" alt="">
@@ -184,6 +183,7 @@
                <div class="row">
 
                   @foreach($animalsBloods as $animal)
+                    @if($animal->statusDonation=='open')
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">
@@ -257,6 +257,7 @@
                            </div>
                        </div>
                      </div>
+                   @endif
                 @endforeach
 
 

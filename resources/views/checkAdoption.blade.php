@@ -21,18 +21,15 @@
 }
 .caption{
   height: 150px;
-
 }
 .thumbnailjam img {
     width:100% !important;
     height: 300px !important;
 }
 .modal-title {
-
     text-align: left;
 }
 .modal-body {
-
     text-align: left;
 }
 .box1{
@@ -52,15 +49,8 @@ position:absolute;
 }
 .po{
   position:relative;
-
   left:-620px;
 }
-
-
-
-
-
-
     </style>
   </head>
   <body>
@@ -94,7 +84,7 @@ position:absolute;
                 ที่อยู่:{{$rec->address}}
 
                 มารับวันที่ {!! str_replace('T', ' เวลา ',  $rec->date_time) !!}
-                 
+
 
             <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
                 {{ Form::token() }}

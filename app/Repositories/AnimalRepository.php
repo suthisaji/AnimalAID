@@ -102,7 +102,6 @@ use App\Admin;
            return false;
        }
    }
-   
    function updateAdoption($adoption_id,$user_id,$address,$status,$date_time,$animal_id){
       $data = array(
                 'adoption_id'=>$adoption_id  ,

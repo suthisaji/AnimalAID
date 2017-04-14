@@ -238,7 +238,7 @@
 
                   @foreach($animals as $animal)
 
-                    @if(empty($animal->join_Adoption->animal_id))
+                    @if($animal->statusDonation=='open' ||$animal->statusDonation=='-' && empty($animal->join_Adoption->animal_id))
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">
@@ -311,6 +311,7 @@
                                       <button class="btn btn-success" >Add Address</button>
                                   </div>
                               </form>
+                            </div>
                             @endif
                           @elseif($animal->doType_id==1)
                             <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
@@ -322,6 +323,9 @@
                               view detail</a>
                             </button>
                           @endif
+
+
+
                           <!--Modal-->
                           <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
