@@ -6,6 +6,7 @@ use App\User;
 use App\Hospital;
 use App\Admin;
 use File;
+use DB;
   class AnimalRepository implements AnimalRepositoryInterface{
 
     function addAnimal($admin_id,$animal_name,$animal_type,$animal_picture,$animal_color,$animal_gender,$animal_age,$symptomCase,$statusDonation,$doType_id){ // รับเป็น array
@@ -192,6 +193,20 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
       function countAnimalEachAdmin($admin){
        return Animal::where('admin_id',$admin)->count();
       }
+
+
+    //  function countRecipientEachAdmin($admin){
+    //    return    DB::table('adoptions')
+    //    ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')->where('adoptions.status', '=','Recipient','AND','adoptions.user_id','=',10 )
+    //    ->count();
+    //  }
+
+     function countRecipientEachAdmin($admin){
+      return    DB::table('adoptions')
+        ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')->where('adoptions.user_id','=',$admin)
+        ->where('adoptions.status', '=','Recipient')
+      ->count();
+    }
 
 
 //function showAdoptionNoRecip(){

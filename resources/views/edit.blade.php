@@ -75,10 +75,9 @@
                         <label for="ani_color" class="form-label">Animal Color</label>
                         <input type="text" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
                     </div>
-                 {{--<div class="form-group" id="animal_gender">
-                        <label for="ani_gender" class="form-label">Animal Gender</label>
-                        <input type="text" class="form-control" name="ani_gender" required value="{{ $animal->animal_gender }}" />
-                    </div>--}}
+              
+                        <input type="้hidden" class="form-control" name="ani_gender"  value="{{ $animal->animal_gender }}" />
+
 
                     <div class="radio form-group" id="animal_gender">
                       <label for="ani_gender" class="form-label" >Animal Gender</label><br>

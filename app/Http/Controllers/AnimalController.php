@@ -13,6 +13,7 @@ use App\Repositories\AnimalRepositoryInterface;
 use App\Repositories\DonationTypeRepositoryInterface;
 use App\Repositories\NewsAniRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
+use DB;
 
 
 class AnimalController extends Controller
@@ -485,6 +486,7 @@ class AnimalController extends Controller
             $adminChecked = $this->AnimalRepository->getAllAdminChecked();
           $adoptionDone = $this->AnimalRepository  ->getAllAdoptionDone();
             $hospitals =$this->AnimalRepository->getAllHospital();
+             $countRecipientEachAdmin =$this->AnimalRepository->countRecipientEachAdmin($admin);
           $data = array(
               'adoptions'=>$adoptions ,
                 'users'=>$users,
@@ -496,7 +498,8 @@ class AnimalController extends Controller
                   'adoptionDone'=>  $adoptionDone,
                           'hospitals'=>$hospitals,
                           'adminId' => Auth::user()->id,
-                            'countAnimalEachAdmin'=>$countAnimalEachAdmin
+                            'countAnimalEachAdmin'=>$countAnimalEachAdmin,
+                            'countRecipientEachAdmin' =>$countRecipientEachAdmin
           );
 
          return view('checkAdoption',$data);

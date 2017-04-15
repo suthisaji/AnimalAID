@@ -62,10 +62,11 @@ position:absolute;
     ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
 <hr>
 <h4>เฉพาะ รพ นี้</h4>
+     admin ID : {{$adminId}}<br>
               สัตว์ทั้งหมด {{ $countAnimalEachAdmin }} ตัว all animal<br>//อันนี้เสด
               มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
               มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
-            //  มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน<br>
+            //  มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{$countRecipientEachAdmin}} คน<br>
               ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
               <hr>
 
