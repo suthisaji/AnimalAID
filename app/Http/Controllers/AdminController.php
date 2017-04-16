@@ -44,7 +44,7 @@ class AdminController extends Controller
 
 
 
-    function userProfile(){
+    function userProfile2(){
       $userId  =   Auth::user()->id;
       $name    =   Auth::user()->name;
       $username=   Auth::user()->username;
@@ -63,7 +63,7 @@ class AdminController extends Controller
 
           );
 
-        return view('userProfile',$data);
+        return view('userProfile2',$data);
     }
 
 

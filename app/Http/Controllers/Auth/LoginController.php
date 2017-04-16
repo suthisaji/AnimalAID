@@ -17,14 +17,14 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    use AuthenticatesUsers; 
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';//login แล้วไปไหน
+    protected $redirectTo = '/all';//login แล้วไปไหน
     /**
      * Create a new controller instance.
      *

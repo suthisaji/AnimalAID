@@ -91,9 +91,9 @@ Route::post('/deleteNews/{news_id}', 'AnimalController@deleteNews');
 
 
 
-Route::get('/userProfile', 'HomeController@userDetail');
+/*Route::get('/userProfile', 'HomeController@userDetail');
 Route::post('/userProfile', 'HomeController@userDetail');
-
+*/
 
 Route::get('/addAdoption', 'AnimalController@addAdoption');
 Route::post('/addAdoption', 'AnimalController@addAdoption');
@@ -107,8 +107,8 @@ Route::post('/deleteAdoptionTable/{id}', 'AnimalController@deleteAdoptionTable')
 Route::get('/closeAnimal/{animal_id}','AnimalController@closeAnimal');
 Route::post('/closeAnimal/{animal_id}','AnimalController@closeAnimal');
 
-Route::get('/userProfile','AdminController@userProfile');
-Route::post('/userProfile','AdminController@userProfile');
+Route::get('/userProfile','AdminController@userProfile2');
+Route::post('/userProfile','AdminController@userProfile2');
 
 Route::get('/adminProfile','AdminController@adminProfile');
 Route::post('/adminProfile','AdminController@adminProfile');

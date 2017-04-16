@@ -44,7 +44,7 @@ class HomeController extends Controller
 
 
 
-     function  userDetail()
+    /* function  userDetail()
     {
       $users = $this->UserRepository->getAllUser();
       $data = array(
@@ -56,7 +56,7 @@ class HomeController extends Controller
 
       return view('userProfile',$data);
 
-    }
+    }*/
 
 
 
