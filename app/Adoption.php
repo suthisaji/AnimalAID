@@ -15,4 +15,5 @@ class Adoption extends Model
   public function join_Animal(){
     return $this->belongsTo('App\Animal','animal_id', 'animal_id');
   }
+  
 }

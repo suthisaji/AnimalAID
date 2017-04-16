@@ -487,6 +487,13 @@ class AnimalController extends Controller
           $adoptionDone = $this->AnimalRepository  ->getAllAdoptionDone();
             $hospitals =$this->AnimalRepository->getAllHospital();
              $countRecipientEachAdmin =$this->AnimalRepository->countRecipientEachAdmin($admin);
+            $countDone=$this->AnimalRepository-> countDone();
+
+              $countWait =$this->AnimalRepository->countWait();
+            $countWaitEachAdmin =$this->AnimalRepository->countWaitEachAdmin($admin);
+            $countDoneEachAdmin =$this->AnimalRepository-> countDoneEachAdmin($admin);
+          $countAdoptionEachAdmin =$this->AnimalRepository->  countAdoptionEachAdmin($admin);
+
           $data = array(
               'adoptions'=>$adoptions ,
                 'users'=>$users,
@@ -499,7 +506,14 @@ class AnimalController extends Controller
                           'hospitals'=>$hospitals,
                           'adminId' => Auth::user()->id,
                             'countAnimalEachAdmin'=>$countAnimalEachAdmin,
-                            'countRecipientEachAdmin' =>$countRecipientEachAdmin
+                            'countRecipientEachAdmin' =>$countRecipientEachAdmin,
+                            'countDone'=>$countDone,
+
+                            'countWait'=> $countWait,
+                            'countWaitEachAdmin'=>  $countWaitEachAdmin,
+                            'countDoneEachAdmin'=>$countDoneEachAdmin,
+                          'countAdoptionEachAdmin'=>  $countAdoptionEachAdmin
+
           );
 
          return view('checkAdoption',$data);

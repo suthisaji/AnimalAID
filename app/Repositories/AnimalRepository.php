@@ -187,8 +187,14 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
       /*function count(){
         return Animal::where('doType_id','3')->count();
       }*/
-      function countRecipient(){
+      function countRecipient(){ //มีผู้ประสงทั้งหมด
        return Adoption::where('status','Recipient')->count();
+      }
+      function countDone(){ //มีรับแล้วทั้้งหมด
+       return Adoption::where('status','Done')->count();
+      }
+      function countWait(){ //มีรับแล้วทั้้งหมด
+       return Adoption::where('status','Wait')->count();
       }
       function countAnimalEachAdmin($admin){
        return Animal::where('admin_id',$admin)->count();
@@ -203,10 +209,42 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
 
      function countRecipientEachAdmin($admin){
       return    DB::table('adoptions')
-        ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')->where('adoptions.user_id','=',$admin)
-        ->where('adoptions.status', '=','Recipient')
-      ->count();
+      ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')
+      ->where('animals.admin_id','=',$admin)
+      ->where('adoptions.status', '=','Recipient')
+    ->count();
     }
+  /*  function countDoneEachAdmin($admin){
+      return    DB::table('adoptions')
+        ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')->where('adoptions.user_id','=',$admin)
+        ->where('adoptions.status', '=','Done')
+      ->count();
+    }*/
+    function countWaitEachAdmin($admin){
+      return    DB::table('adoptions')
+      ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')
+      ->where('animals.admin_id','=',$admin)
+      ->where('adoptions.status', '=','Wait')
+    ->count();
+    }
+
+ function countDoneEachAdmin($admin){
+   return    DB::table('adoptions')
+     ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')
+     ->where('animals.admin_id','=',$admin)
+     ->where('adoptions.status', '=','Done')
+   ->count();
+ }
+
+ function countAdoptionEachAdmin($admin){
+   return    DB::table('animals')
+     ->where('doType_id','=',3)
+     ->where('admin_id','=',$admin)
+   ->count();
+ }
+
+
+
 
 
 //function showAdoptionNoRecip(){

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\UserRepositoryInterface;
 use App\Repositories\AnimalRepositoryInterface;
 use App\Adoption;
-
+use Auth;
 class AdminController extends Controller
 
 {
@@ -20,10 +20,11 @@ class AdminController extends Controller
     }
 
     function index(){
-        $countRecipient = $this->AnimalRepository->countRecipient();
+      $admin = Auth::user()->id;
+    $countRecipientEachAdmin = $this->AnimalRepository->countRecipientEachAdmin($admin);
     	$data = array(
     		'all_users'=>$this->UserRepository->getAllUser(),
-        'countRecipient'=>$countRecipient,
+        'countRecipientEachAdmin'=>$countRecipientEachAdmin,
         'admin'=>true
     		);
 
@@ -37,6 +38,59 @@ class AdminController extends Controller
     		echo "Can not Delete this user";
     	}
     }
+
+
+
+
+
+
+    function userProfile(){
+      $userId  =   Auth::user()->id;
+      $name    =   Auth::user()->name;
+      $username=   Auth::user()->username;
+          $email   =   Auth::user()->email;
+      $tel     =   Auth::user()->tel;
+
+      $created =   Auth::user()->created_at;
+        $data = array(
+          'userId'=>$userId ,
+          'name' =>$name ,
+          'username' =>$username,
+          'email' =>$email,
+          'tel' =>$tel,
+          'created' =>$created
+
+
+          );
+
+        return view('userProfile',$data);
+    }
+
+
+
+
+        function AdminProfile(){
+          $userId  =   Auth::user()->id;
+          $name    =   Auth::user()->name;
+          $username=   Auth::user()->username;
+              $email   =   Auth::user()->email;
+          $tel     =   Auth::user()->tel;
+
+          $created =   Auth::user()->created_at;
+            $data = array(
+              'userId'=>$userId ,
+              'name' =>$name ,
+              'username' =>$username,
+              'email' =>$email,
+              'tel' =>$tel,
+              'created' =>$created
+
+
+              );
+
+            return view('adminProfile',$data);
+        }
+
 
 
   }

@@ -49,25 +49,28 @@ position:absolute;
 }
 .po{
   position:relative;
-  left:-620px;
+  right:700px;
 }
     </style>
   </head>
   <body>
     <h4>ทั้งโปรเจค</h4>
-    สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>
-    มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
-    มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
-    มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน<br>
-    ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
+    สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>อันนี้เสด
+    มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>อันนี้เสด
+    มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done: {{ $countDone}}คนอันนี้เสด<br>
+    มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน รอการตรวจสอบ อันนี้เสด<br>
+    ตรวจสอบแล้ว รอมารับ   {{ $countWait }}    คน-> เตือนแอดมิน อันนี้เสด
 <hr>
 <h4>เฉพาะ รพ นี้</h4>
      admin ID : {{$adminId}}<br>
-              สัตว์ทั้งหมด {{ $countAnimalEachAdmin }} ตัว all animal<br>//อันนี้เสด
-              มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>
-              มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done  {}คน<br>
-            //  มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{$countRecipientEachAdmin}} คน<br>
-              ยังไม่ยืนยัน    {{ $countRecipient }}    คน-> เตือนแอดมิน
+              สัตว์ทั้งหมด {{ $countAnimalEachAdmin }} ตัว all animal ///อันนี้เสด<br>
+              มีสัตว์ไร้บ้านของรพนี้ {{$countAdoptionEachAdmin}} ตัว all adoption ///อันนี้เสด<br>
+              มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด :  {{$countDoneEachAdmin}}คน ///อันนี้เสด<br>
+              มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน     {{$countRecipientEachAdmin}} คน รอการตรวจสอบ ///อันนี้เสดตรวจอีกครั้ง<br>เตือนแอดมินเสด
+              ตรวจสอบแล้ว  : รอมารับจำนวน   {{$countWaitEachAdmin}}  คน->///อันนี้เสด
+
+
+
               <hr>
 
                 @foreach($recipient as $rec)
@@ -103,15 +106,16 @@ position:absolute;
                   <input type='hidden' name='animal_id' value='{{$rec->join_Animal->animal_id}}' />
                   <input type='hidden' name='user_id' value=' {{$rec->join_User->id}}' />
                   <input type='hidden' name='status' value='Wait' />
-                  <input type='hidden' name='auth' value='{{$adminId}}'
+                  <input type='hidden' name='auth' value='{{$adminId}}'/>
                     <button class="btn btn-success po" >ยืนยันการขอรับเลี้ยง</button>
                 </div>
 
             </form>
 
-ตรวจสอบแล้ว  ยัง<br>
-กดยืนยัน    จะกดได้ก็ต่อเมื่อติ๊กตรวจสอบแล้ว<br>
+
 <br>
+<hr>
+
 </div>
 </div>
 

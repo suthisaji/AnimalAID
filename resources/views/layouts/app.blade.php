@@ -40,11 +40,12 @@
                     </a>
                     @if(!empty($admin))
                       @if($admin == true)
+                      <a href="../adminProfile"> ::Admin Profile :: </a> &nbsp;&nbsp;
                       <a href="../add"> ::Add Donation :: </a> &nbsp;
                       <a href="../animal"> :: List Add ::</a>&nbsp;
                       <a href="../addNews"> ::  Add News:: </a>&nbsp;
                       <a href="../n"> ::  All News ::</a>&nbsp;
-                      <a href="../checkAdoption"> :: Check Adoption::<span style="color:red"> {{$countRecipient}}</span><a>&nbsp;
+                      <a href="../checkAdoption"> :: Check Adoption::<span style="color:red"> {{$countRecipientEachAdmin}}</span><a>&nbsp;
 
 
 

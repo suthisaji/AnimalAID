@@ -97,13 +97,14 @@
                  @if(!empty($position))
                    @if( $position== 'admin')
                      <li>
-                  <a href="admin">manage</a>
-                </li>
+                       <a href="admin">manage</a>
+                    </li>
 
 
 
                    @endif
                  @endif
+
                    <!-- Authentication Links -->
                    @if (Auth::guest())
                        <li><a href="{{ route('login') }}">Login</a></li>
@@ -115,6 +116,22 @@
                          </a>
 
                          <ul class="dropdown-menu" role="menu">
+                           @if(Auth::user()->position=='user')
+                           <li>
+                             <a href="userProfile">User Profile</a>
+                           </li>
+                           <li>
+                               <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                   Logout
+                               </a>
+
+                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                   {{ csrf_field() }}
+                               </form>
+                           </li>
+                         @else
                              <li>
                                  <a href="{{ route('logout') }}"
                                      onclick="event.preventDefault();
@@ -126,6 +143,7 @@
                                      {{ csrf_field() }}
                                  </form>
                              </li>
+                           @endif
                          </ul>
                      </li>
                    @endif
@@ -154,7 +172,7 @@
                            </ol>
                            <div class="carousel-inner">
                              @php($x=0)
-                             @foreach($animals as $animal) 
+                             @foreach($animals as $animal)
                                   @if($animal->statusDonation=='open' ||$animal->statusDonation=='-' && empty($animal->join_Adoption->animal_id))
                                     @php($x++)
                                     @if($x == 1)
