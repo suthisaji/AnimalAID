@@ -216,10 +216,73 @@
                                               @endif
                                             @endforeach
                                           </div>
-                                          <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">บริจาค</button>
-                                          </div>
+                                          @if($animal->doType_id==3)
+                                            <div class="modal-footer">
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                   <button id="takemodal{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger rub1" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
+                                   <script>
+                                         $('#takemodal{{$animal->animal_id}}').popover({
+                                           html: true,
+                                           title: 'Please add Your address ',
+                                           content: function(){
+                                               return $('#modal-content{{$animal->animal_id}}').html()
+                                           }
+                                         })
+                                   </script>
+                                   <div id="modal-content{{$animal->animal_id}}" style="display:none;">
+                                     @if (Auth::guest())
+                                       <a href="{{ route('login') }}" class="btn btn-sm btn-success">Login</a>
+                                       <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register</a>
+                                     @else
+                                     <form class="form" action="/addAdoption" method="post">
+                                       <input type="hidden" name="animal_id" value="{{$animal->animal_id}}">
+                                         {{ Form::token() }}
+                                         <div class="form-group">
+                                             <label for=""> <h4 style="color:blue;"> Thank you !&nbsp; {{Auth::user()->name}}</h4> </label>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="">phone number can edit</label>
+                                             <input class="form-control" type="tel" name="tel" value="{{Auth::user()->tel}}"/>
+
+                                         </div>
+                                         <div class="form-group">
+                                              <label for="address">Address for pet</label>
+                                              <textarea class="form-control" name="address" id="address" rows="3"></textarea>
+                                        </div>
+
+                                         <div class="form-group">
+                                             <label for="date" class="form-label">Date & Time to receive</label>
+                                             <input type="datetime-local" class="form-control" name="date_time"  value="2011-08-19T13:45:00" />
+                                         </div>
+                                         <div class="form-group">
+                                             Please waiting for contact back by email or phonenumber
+
+                                         </div>
+                                        <input type='hidden' name='status' value='Recipient' />
+                                         <div class="text-center">
+                                             <button class="btn btn-success" >Add Address</button>
+                                         </div>
+                                     </form>
+                                   @endif
+                                 </div>
+
+
+
+                                 </div>
+                               @elseif($animal->doType_id==2)
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary"><a href='db' style='color:white;'>วิธีบริจาคป๊อบอัพแสดงข้อมูล</a></button>
+
+
+                                            </div>
+                                          @else
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary">บริจาค</button>
+                                            </div>
+                                          @endif
                                         </div>
                                       </div>
                                     </div>
@@ -279,7 +342,7 @@
 
                           @if($animal->doType_id==3)
                             <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
-                              view detail</a>
+                              view detail
                             </button>
                             <button id="take{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
                             <script>
@@ -325,16 +388,17 @@
                                       <button class="btn btn-success" >Add Address</button>
                                   </div>
                               </form>
-                            </div>
+
                             @endif
+                            </div>
                           @elseif($animal->doType_id==1)
                             <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
-                              view detail</a>
+                              view detail
                             </button>
                               <button type="button" class="btn btn-primary btn-sm box2">Help</button>
                           @else
                             <button type="button" class="btn btn-primary btn-sm box2" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
-                              view detail</a>
+                              view detail
                             </button>
                           @endif
 
@@ -363,10 +427,10 @@
                                   SymptomCase :{{$animal->symptomCase}}<br>
                                   StatusDonation:{{$animal->statusDonation}}<br>
                                 </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">บริจาค</button>
-                                </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">บริจาค</button>
+                                  </div>
                               </div>
                             </div>
                           </div>
