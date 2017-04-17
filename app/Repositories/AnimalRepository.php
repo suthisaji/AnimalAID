@@ -243,6 +243,12 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
    ->count();
  }
 
+function countEverAdoption($userId){
+  return DB::table('adoptions')
+  ->where('user_id','=',$userId)
+  ->where('status', '=','Done')
+  ->count();
+}
 
 
 

@@ -52,8 +52,8 @@
 }
 .ro{
   position:absolute;
-  top: 30px;
-  right:-340px;
+
+  right:40px;
 }
     </style>
   </head>

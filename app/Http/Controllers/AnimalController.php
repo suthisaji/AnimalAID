@@ -559,4 +559,18 @@ function closeAnimal($animal_id=0){
 }
 
 
+
+          function everAdoption(){
+             $userId = Auth::user()->id;
+              $everAdoption = $this->AnimalRepository->countEverAdoption($userId);
+              $data = array(
+                  'everAdoption'=>$everAdoption,
+
+              );
+              return view('userProfile2', $data);
+
+
+          }
+
+
 }

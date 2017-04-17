@@ -52,13 +52,15 @@ class AdminController extends Controller
       $tel     =   Auth::user()->tel;
 
       $created =   Auth::user()->created_at;
+        $everAdoption = $this->AnimalRepository->countEverAdoption($userId);
         $data = array(
           'userId'=>$userId ,
           'name' =>$name ,
           'username' =>$username,
           'email' =>$email,
           'tel' =>$tel,
-          'created' =>$created
+          'created' =>$created,
+                  'everAdoption'=>$everAdoption,
 
 
           );
@@ -77,14 +79,15 @@ class AdminController extends Controller
           $tel     =   Auth::user()->tel;
 
           $created =   Auth::user()->created_at;
+                $everAdoption = $this->AnimalRepository->countEverAdoption($userId);
             $data = array(
               'userId'=>$userId ,
               'name' =>$name ,
               'username' =>$username,
               'email' =>$email,
               'tel' =>$tel,
-              'created' =>$created
-
+              'created' =>$created,
+              'everAdoption'=>$everAdoption,
 
               );
 
