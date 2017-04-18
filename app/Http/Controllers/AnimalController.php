@@ -453,6 +453,35 @@ class AnimalController extends Controller
 
     }
 
+    function addAdoptionAllPage(){
+
+      if(Request::isMethod('post')){
+                  $address = Input::get('address');
+                  $status= Input::get('status');
+                  $date_time= Input::get('date_time');
+                  $user_id = Auth::user()->id;//จะได้ค่า id ของคนที่ login อยู่
+                  $animal_id = Input::get('animal_id');
+                  $result = $this->AnimalRepository->addAdoption($animal_id,$user_id,$address,$status,$date_time);//$animal_id
+
+                  if($result){
+                      return redirect('/addAdoptionAllPage');
+                  }else{
+                      echo "Failed to add adopt";
+                  }
+
+            }else{
+              /*$adoption = $this->AnimalRepository->getAllAdoptionTable();
+              $data = array(
+                'adoption'=>$adoption,
+
+              );
+              return view('allAdoption', $data);*/
+              return redirect('all');
+            }
+
+
+  }
+
 
 
     function checkAdoption(){

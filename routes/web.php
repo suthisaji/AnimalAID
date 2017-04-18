@@ -112,3 +112,6 @@ Route::post('/userProfile','AdminController@userProfile2');
 
 Route::get('/adminProfile','AdminController@adminProfile');
 Route::post('/adminProfile','AdminController@adminProfile');
+
+Route::get('/addAdoptionAllPage', 'AnimalController@addAdoptionAllPage');
+Route::post('/addAdoptionAllPage', 'AnimalController@addAdoptionAllPage');

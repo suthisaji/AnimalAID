@@ -55,6 +55,22 @@
 
   right:40px;
 }
+.rub1{
+       padding: 5px 6px;
+      font-size: 13px;
+      position:absolute;
+      bottom: 17px;
+      right:88px;
+      border-radius: 3px;
+}
+.rub2{
+       padding: 5px 6px;
+      font-size: 13px;
+      position:absolute;
+      bottom: 33px;
+      right:25px;
+      border-radius: 3px;
+}
     </style>
   </head>
   <body>
@@ -235,7 +251,7 @@
                                        <a href="{{ route('login') }}" class="btn btn-sm btn-success">Login</a>
                                        <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register</a>
                                      @else
-                                     <form class="form" action="/addAdoption" method="post">
+                                     <form class="form" action="/addAdoptionAllPage" method="post">
                                        <input type="hidden" name="animal_id" value="{{$animal->animal_id}}">
                                          {{ Form::token() }}
                                          <div class="form-group">
@@ -344,7 +360,7 @@
                             <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                               view detail
                             </button>
-                            <button id="take{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
+                            <button id="take{{$animal->animal_id}}" type="button" class="btn btn-lg btn-danger rub2" data-toggle="popover" data-placement="top">รับเลี้ยง</button>
                             <script>
                                   $('#take{{$animal->animal_id}}').popover({
                                     html: true,
@@ -359,7 +375,7 @@
                                 <a href="{{ route('login') }}" class="btn btn-sm btn-success">Login</a>
                                 <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register</a>
                               @else
-                              <form class="form" action="/addAdoption" method="post">
+                              <form class="form" action="/addAdoptionAllPage" method="post">
                                 <input type="hidden" name="animal_id" value="{{$animal->animal_id}}">
                                   {{ Form::token() }}
                                   <div class="form-group">
@@ -377,7 +393,7 @@
 
                                   <div class="form-group">
                                       <label for="date" class="form-label">Date & Time to receive</label>
-                                      <input type="datetime-local" class="form-control" name="date_time"  value="2011-08-19T13:45:00" />
+                                      <input type="datetime-local" class="form-control" name="date_time"  value="2011-08-19T13:45:00"  />
                                   </div>
                                   <div class="form-group">
                                       Please waiting for contact back by email or phonenumber
