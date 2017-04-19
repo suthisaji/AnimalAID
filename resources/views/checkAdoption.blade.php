@@ -54,6 +54,7 @@ position:absolute;
     </style>
   </head>
   <body>
+
     <h4>ทั้งโปรเจค</h4>
     สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>อันนี้เสด
     มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>อันนี้เสด
@@ -132,7 +133,29 @@ position:absolute;
 
                 <i class="fa fa-comment fa-fw">{{$wait->join_Animal->animal_name}} &nbsp;รหัส:{{$wait->animal_id}} </i><br>
 
-                  มารับวันที่{{str_replace('T', '  เวลา  ', $wait->date_time)}}
+                                  <?php      $now = new DateTime();
+                                        $now2= $now->format('Y-m-dTH:i:s');
+                                      ?>
+
+
+                                       @if($now2==$wait->date_time||$wait->date_time >$now2 )
+                                          มารับวันที่{{str_replace('T', '  เวลา  ', $wait->date_time)}}
+                                        @else
+                                          <span style="color:red">ไม่มารับภายใน{{str_replace('T', '  เวลา  ', $wait->date_time)}} </span>
+                                       @endif
+
+
+
+
+
+                {{--  มารับวันที่{{str_replace('T', '  เวลา  ', $wait->date_time)}}--}}
+
+
+
+
+
+
+
                   <div style=" background-color: #F1F1F1">
                   <form action="/checkAdoption" class="form" method="post" enctype="multipart/form-data">
                       {{ Form::token() }}
@@ -148,6 +171,7 @@ position:absolute;
 
 
                           <button class="btn btn-success" >มารับแล้ว</button>
+
 
                             <a href="/deleteAdoptionTable/{{ $wait->animal_id }}" class="btn btn-warning " onclick="return confirm('Please confirm again !!!')">ยกเลิก</a>
 

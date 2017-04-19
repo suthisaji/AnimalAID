@@ -14,6 +14,7 @@ use App\Repositories\DonationTypeRepositoryInterface;
 use App\Repositories\NewsAniRepositoryInterface;
 use App\Repositories\UserRepositoryInterface;
 use DB;
+use DateTime;
 
 
 class AnimalController extends Controller
@@ -522,6 +523,8 @@ class AnimalController extends Controller
             $countWaitEachAdmin =$this->AnimalRepository->countWaitEachAdmin($admin);
             $countDoneEachAdmin =$this->AnimalRepository-> countDoneEachAdmin($admin);
           $countAdoptionEachAdmin =$this->AnimalRepository->  countAdoptionEachAdmin($admin);
+        
+
 
           $data = array(
               'adoptions'=>$adoptions ,
@@ -541,7 +544,8 @@ class AnimalController extends Controller
                             'countWait'=> $countWait,
                             'countWaitEachAdmin'=>  $countWaitEachAdmin,
                             'countDoneEachAdmin'=>$countDoneEachAdmin,
-                          'countAdoptionEachAdmin'=>  $countAdoptionEachAdmin
+                          'countAdoptionEachAdmin'=>  $countAdoptionEachAdmin,
+
 
           );
 

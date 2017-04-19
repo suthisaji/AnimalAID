@@ -284,7 +284,6 @@
                                  </div>
 
 
-
                                  </div>
                                @elseif($animal->doType_id==2)
                                             <div class="modal-footer">
