@@ -523,7 +523,7 @@ class AnimalController extends Controller
             $countWaitEachAdmin =$this->AnimalRepository->countWaitEachAdmin($admin);
             $countDoneEachAdmin =$this->AnimalRepository-> countDoneEachAdmin($admin);
           $countAdoptionEachAdmin =$this->AnimalRepository->  countAdoptionEachAdmin($admin);
-        
+
 
 
           $data = array(

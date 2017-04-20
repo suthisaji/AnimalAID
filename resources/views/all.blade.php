@@ -410,7 +410,8 @@
                             <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                               view detail
                             </button>
-                              <button type="button" class="btn btn-primary btn-sm box2">Help</button>
+                              <button type="button" class="btn btn-primary btn-sm box2"><a href="index">Help</a></button>
+
                           @else
                             <button type="button" class="btn btn-primary btn-sm box2" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                               view detail

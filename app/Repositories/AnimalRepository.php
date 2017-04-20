@@ -207,6 +207,7 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
     //    ->count();
     //  }
 
+
      function countRecipientEachAdmin($admin){
       return    DB::table('adoptions')
       ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')
@@ -214,6 +215,7 @@ function addAdoption($animal_id,$user_id,$address,$status,$date_time){//$animal_
       ->where('adoptions.status', '=','Recipient')
     ->count();
     }
+
   /*  function countDoneEachAdmin($admin){
       return    DB::table('adoptions')
         ->join('animals', 'adoptions.animal_id', '=', 'animals.animal_id')->where('adoptions.user_id','=',$admin)

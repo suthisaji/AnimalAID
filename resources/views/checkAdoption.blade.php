@@ -56,19 +56,19 @@ position:absolute;
   <body>
 
     <h4>ทั้งโปรเจค</h4>
-    สัตว์ทั้งหมด {{$animals->count()}} ตัว all animal<br>อันนี้เสด
-    มีสัตว์ไร้บ้านทั้งหมด {{$animalsAdoptions->count()}} ตัว all adoption<br>อันนี้เสด
-    มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done: {{ $countDone}}คนอันนี้เสด<br>
-    มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน   {{ $countRecipient }} คน รอการตรวจสอบ อันนี้เสด<br>
-    ตรวจสอบแล้ว รอมารับ   {{ $countWait }}    คน-> เตือนแอดมิน อันนี้เสด
+    สัตว์ทั้งหมด   : {{$animals->count()}} ตัว all animal<br
+    มีสัตว์ไร้บ้านทั้งหมด  : {{$animalsAdoptions->count()}} ตัว all adoption<br>
+    มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done: {{ $countDone}} คน<br>
+    มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน :   {{ $countRecipient }} คน รอการตรวจสอบ <br>
+    ตรวจสอบแล้ว รอมารับ  :  {{ $countWait }}    คน-> เตือนแอดมิน
 <hr>
-<h4>เฉพาะ รพ นี้</h4>
+<h4>เฉพาะ รพ นี </h4>
      admin ID : {{$adminId}}<br>
-              สัตว์ทั้งหมด {{ $countAnimalEachAdmin }} ตัว all animal ///อันนี้เสด<br>
-              มีสัตว์ไร้บ้านของรพนี้ {{$countAdoptionEachAdmin}} ตัว all adoption ///อันนี้เสด<br>
+              สัตว์ทั้งหมด : {{ $countAnimalEachAdmin }} ตัว all animal <br>
+              มีสัตว์ไร้บ้านของรพนี้  : {{$countAdoptionEachAdmin}} ตัว all adoption <br>
               มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด :  {{$countDoneEachAdmin}}คน ///อันนี้เสด<br>
-              มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน     {{$countRecipientEachAdmin}} คน รอการตรวจสอบ ///อันนี้เสดตรวจอีกครั้ง<br>เตือนแอดมินเสด
-              ตรวจสอบแล้ว  : รอมารับจำนวน   {{$countWaitEachAdmin}}  คน->///อันนี้เสด
+              มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน  :   {{$countRecipientEachAdmin}} คน รอการตรวจสอบ <br>
+              ตรวจสอบแล้ว  : รอมารับจำนวน :  {{$countWaitEachAdmin}}  คน
 
 
 
@@ -133,15 +133,23 @@ position:absolute;
 
                 <i class="fa fa-comment fa-fw">{{$wait->join_Animal->animal_name}} &nbsp;รหัส:{{$wait->animal_id}} </i><br>
 
-                                  <?php      $now = new DateTime();
+                                  <?php
+                                    $now = new DateTime();
+                                  $now->add(new DateInterval('P1D'));
+                                      date_timezone_set($now, timezone_open('Asia/Bangkok'));
                                         $now2= $now->format('Y-m-dTH:i:s');
-                                      ?>
 
+                                        $now3 = str_replace('ICT', 'T', $now2)
+      ?>
 
-                                       @if($now2==$wait->date_time||$wait->date_time >$now2 )
-                                          มารับวันที่{{str_replace('T', '  เวลา  ', $wait->date_time)}}
-                                        @else
-                                          <span style="color:red">ไม่มารับภายใน{{str_replace('T', '  เวลา  ', $wait->date_time)}} </span>
+                                       @if($wait->date_time <$now3)
+                                         <span style="color:red">ไม่มารับภายใน{{str_replace('T', '  เวลา  ', $wait->date_time)}} </span><br>
+                                       พน---  {{$now3}}
+                                     @elseif($wait->date_time >$now3 ||$wait->date_time ==$now3)
+
+                                      มารับวันที่{{str_replace('T', '  เวลา  ', $wait->date_time)}}<br>
+                                      พนs---{{$now3}}
+
                                        @endif
 
 
@@ -181,6 +189,7 @@ position:absolute;
                 </div>
     </p>
 @endforeach
+
 
 
 

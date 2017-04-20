@@ -58,7 +58,7 @@ Route::get('/deleteAnimal/{id}', 'AnimalController@deleteAnimal');
 //มันจะไปทำ get method
 Route::get('/all', 'AnimalController@animalAll');
 
-Route::get('/', function () {
+Route::get('/ยัง', function () {
     // send an email to "batman@batcave.io"
     Mail::to('asihtus10@gmail.com')->send(new KryptoniteFound);
 
@@ -115,3 +115,13 @@ Route::post('/adminProfile','AdminController@adminProfile');
 
 Route::get('/addAdoptionAllPage', 'AnimalController@addAdoptionAllPage');
 Route::post('/addAdoptionAllPage', 'AnimalController@addAdoptionAllPage');
+
+Route::get('/index', function () {
+    return view('index');
+});
+
+
+
+Route::get('/checkout', function () {
+    return view('checkout');
+});

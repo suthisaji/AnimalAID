@@ -310,7 +310,7 @@
                                        <a href="{{ route('login') }}" class="btn btn-sm btn-success">Login</a>
                                        <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register</a>
                                      @else
-                                     <form class="form" action="/addAdoption" method="post">
+                                     <form class="form" action="/bookAnimal" method="post">
                                        <input type="hidden" name="animal_id" value="{{$animal->animal_id}}">
                                          {{ Form::token() }}
                                          <div class="form-group">
@@ -334,7 +334,7 @@
                                              Please waiting for contact back by email or phonenumber
 
                                          </div>
-                                        <input type='hidden' name='status' value='Recipient' />
+                                        <input type='hidden' name='status' value='Book' />
                                          <div class="text-center">
                                              <button class="btn btn-success" >Add Address</button>
                                          </div>
