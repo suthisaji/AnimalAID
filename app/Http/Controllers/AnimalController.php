@@ -523,7 +523,8 @@ class AnimalController extends Controller
             $countWaitEachAdmin =$this->AnimalRepository->countWaitEachAdmin($admin);
             $countDoneEachAdmin =$this->AnimalRepository-> countDoneEachAdmin($admin);
           $countAdoptionEachAdmin =$this->AnimalRepository->  countAdoptionEachAdmin($admin);
-
+          $hospitals =$this->AnimalRepository->getAllHospital();
+            $admins = $this->AnimalRepository ->getAllAdmin();
 
 
           $data = array(
@@ -545,6 +546,8 @@ class AnimalController extends Controller
                             'countWaitEachAdmin'=>  $countWaitEachAdmin,
                             'countDoneEachAdmin'=>$countDoneEachAdmin,
                           'countAdoptionEachAdmin'=>  $countAdoptionEachAdmin,
+                              'hospitals'=>$hospitals,
+                              'admins' =>$admins
 
 
           );
@@ -553,6 +556,77 @@ class AnimalController extends Controller
       }
 }
 
+
+    function checkAdoption2(){
+      if(Request::isMethod('post')){
+        $status = Input::get('status');
+        $adoption_id = Input::get('adoption_id');
+            $animal_id = Input::get('animal_id');
+            $date_time= Input::get('date_time');
+          $user_id = Auth::user()->id;
+          $admin = Auth::user()->id;
+            $animal_id = Input::get('animal_id');
+            $address = Input::get('address');
+            $this->AnimalRepository->countAnimalEachAdmin($admin);
+        $result = $this->AnimalRepository->updateAdoption($adoption_id,$user_id,$address,$status,$date_time,$animal_id);
+        if($result){
+            return redirect('/checkAdoption2');
+        }else{
+            echo "Can not Update";
+        }
+
+
+    }else{
+          $admin = Auth::user()->id;
+        $countAnimalEachAdmin=$this->AnimalRepository->countAnimalEachAdmin($admin);
+      $adoptions = $this->AnimalRepository->getAllAdoptionTable();
+        $users = $this->UserRepository->getAllUser();
+        $countRecipient = $this->AnimalRepository->countRecipient();
+        $recipient = $this->AnimalRepository->getAllRecipient();
+          $animals = $this->AnimalRepository->getAllAnimal();
+            $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
+            $adminChecked = $this->AnimalRepository->getAllAdminChecked();
+          $adoptionDone = $this->AnimalRepository  ->getAllAdoptionDone();
+            $hospitals =$this->AnimalRepository->getAllHospital();
+             $countRecipientEachAdmin =$this->AnimalRepository->countRecipientEachAdmin($admin);
+            $countDone=$this->AnimalRepository-> countDone();
+
+              $countWait =$this->AnimalRepository->countWait();
+            $countWaitEachAdmin =$this->AnimalRepository->countWaitEachAdmin($admin);
+            $countDoneEachAdmin =$this->AnimalRepository-> countDoneEachAdmin($admin);
+          $countAdoptionEachAdmin =$this->AnimalRepository->  countAdoptionEachAdmin($admin);
+          $hospitals =$this->AnimalRepository->getAllHospital();
+            $admins = $this->AnimalRepository ->getAllAdmin();
+
+
+          $data = array(
+              'adoptions'=>$adoptions ,
+                'users'=>$users,
+                'countRecipient'=>$countRecipient,
+                'recipient'=>$recipient,
+                  'animals'=>$animals,
+                  'animalsAdoptions'=>$animalsAdoptions,
+                  'adminChecked'=>$adminChecked,
+                  'adoptionDone'=>  $adoptionDone,
+                          'hospitals'=>$hospitals,
+                          'adminId' => Auth::user()->id,
+                            'countAnimalEachAdmin'=>$countAnimalEachAdmin,
+                            'countRecipientEachAdmin' =>$countRecipientEachAdmin,
+                            'countDone'=>$countDone,
+
+                            'countWait'=> $countWait,
+                            'countWaitEachAdmin'=>  $countWaitEachAdmin,
+                            'countDoneEachAdmin'=>$countDoneEachAdmin,
+                          'countAdoptionEachAdmin'=>  $countAdoptionEachAdmin,
+                              'hospitals'=>$hospitals,
+                              'admins' =>$admins
+
+
+          );
+
+         return view('checkAdoption2',$data);
+      }
+}
 
 
 function closeAnimal($animal_id=0){

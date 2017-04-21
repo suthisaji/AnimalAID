@@ -49,36 +49,180 @@ position:absolute;
 }
 .po{
   position:relative;
-  right:700px;
+  right:650px;
+}
+.col-lg-3 {
+      padding: 1.25rem;
+    width: 15%;
+}
+.container {
+    width: 1600px;
+}
+.col-xs-9 {
+    width: 100%;
+}
+.done{
+      background-color: #2E64FE;
+      color:#FFFFFF;
+}
+.t{
+      font-size: 16px;
+}
+.huge{
+    font-size: 18px;
+}
+.wait{
+  background-color: #FFBF00;
+  color:#FFFFFF;
+}
+.re{
+  background-color:#FE2E64;
+  color:#FFFFFF;
+}
+
+.re1{
+  background-color:#A4A4A4;
+  color:#FFFFFF;
+}
+.size18{
+  font-size: 18px;
+}
+.b{
+  background-color:aliceblue;
+  color:#424242;
+}
+.b1{
+  background-color:#F7F8E0;
+  color:#424242;
 }
     </style>
   </head>
   <body>
 
-    <h4>ทั้งโปรเจค</h4>
-    สัตว์ทั้งหมด   : {{$animals->count()}} ตัว all animal<br
-    มีสัตว์ไร้บ้านทั้งหมด  : {{$animalsAdoptions->count()}} ตัว all adoption<br>
-    มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด adoption where done: {{ $countDone}} คน<br>
-    มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน :   {{ $countRecipient }} คน รอการตรวจสอบ <br>
-    ตรวจสอบแล้ว รอมารับ  :  {{ $countWait }}    คน-> เตือนแอดมิน
-<hr>
-<h4>เฉพาะ รพ นี </h4>
+
+    <div class="container ">
+      @foreach($admins as $admin)
+        @if($admin->admin_id ==$adminId  )
+        <h2>  {{$admin->join_Hospital->hospital_name}} รหัส :  {{$adminId}} </h2>
+       @endif
+     @endforeach
+     <br>
+   </div>
+       <div class="container ">
+    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading done">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-support fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{$countDoneEachAdmin}}</div>
+                                        <div class="t">  มีผู้รับเลี้ยงสัตว์แล้วทั้งหมด </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <div class="panel-footer">
+                                    <span class="pull-left">ดูรายละเอียด</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                                    <div class="col-lg-3 col-md-6">
+                                                        <div class="panel panel-red">
+                                                            <div class="panel-heading wait">
+                                                                <div class="row">
+                                                                    <div class="col-xs-3">
+                                                                        <i class="fa fa-support fa-5x"></i>
+                                                                    </div>
+                                                                    <div class="col-xs-9 text-right">
+                                                                        <div class="huge"> ตรวจสอบแล้ว {{$countWaitEachAdmin}} </div>
+                                                                        <div>  จำนวนที่รอผู้รับเลี้ยง</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="#">
+                                                                <div class="panel-footer">
+                                                                    <span class="pull-left">ดูรายละเอียด</span>
+                                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6">
+                                                                        <div class="panel panel-red">
+                                                                          @if($countRecipientEachAdmin==0)
+                                                                            <div class="panel-heading re1 ">
+                                                                                <div class="row">
+                                                                                    <div class="col-xs-3">
+                                                                                        <i class="fa fa-support fa-5x"></i>
+                                                                                    </div>
+                                                                                    <div class="col-xs-9 text-right">
+                                                                                        <div class="huge"> รอการตรวจสอบ {{$countRecipientEachAdmin}}</div>
+                                                                                        <div>มีผู้ประสงค์จะขอรับเลี้ยงสัตว์</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                          @else
+                                                                            <div class="panel-heading re">
+                                                                                <div class="row">
+                                                                                    <div class="col-xs-3">
+                                                                                        <i class="fa fa-support fa-5x"></i>
+                                                                                    </div>
+                                                                                    <div class="col-xs-9 text-right">
+                                                                                        <div class="huge"> รอการตรวจสอบ {{$countRecipientEachAdmin}}</div>
+                                                                                        <div>มีผู้ประสงค์จะขอรับเลี้ยงสัตว์</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                          @endif
+                                                                            <a href="#">
+                                                                                <div class="panel-footer">
+                                                                                    <span class="pull-left">ดูรายละเอียด</span>
+                                                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                                                    <div class="clearfix"></div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+</div>
+
+
+{{--<h4>เฉพาะ รพ นี </h4>
+  @foreach($admins as $admin)
+    @if($admin->admin_id ==$adminId  )
+      {{$admin->join_Hospital->hospital_name}}
+   @endif
+ @endforeach
      admin ID : {{$adminId}}<br>
               สัตว์ทั้งหมด : {{ $countAnimalEachAdmin }} ตัว all animal <br>
               มีสัตว์ไร้บ้านของรพนี้  : {{$countAdoptionEachAdmin}} ตัว all adoption <br>
-              มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด :  {{$countDoneEachAdmin}}คน ///อันนี้เสด<br>
+              มีผูุ้รับเลี้ยงสัตว์แล้วทั้งหมด :  {{$countDoneEachAdmin}}คน <br>
               มีผู้ประสงค์จะขอรับเลี้ยงสัตว์ปัจจุบัน  :   {{$countRecipientEachAdmin}} คน รอการตรวจสอบ <br>
               ตรวจสอบแล้ว  : รอมารับจำนวน :  {{$countWaitEachAdmin}}  คน
-
-
-
-              <hr>
+--}}
+  @php($x=0)
+            <div class="container ">
 
                 @foreach($recipient as $rec)
                   @if($adminId==$rec->join_Animal->admin_id)
-                  <div class="group">
-                    <div class="panel-heading">ผู้รับขอรับเลี้ยง</div>
-                    <div class="panel-body">
+
+
+                    @if($x%2==0)
+                    <div class = "b">
+                        @php($x++)
+                    @else
+                      <div class = "b1">
+                          @php($x++)
+                    @endif
+                  <div class="group size18">
+                    <div class="panel-heading ">ผู้ขอรับเลี้ยง</div>
+                    <div class="panel-body  ">
                 คุณ  {{$rec->join_User->name}}<br>
                 รับเลี้ยงสตว์ชื่อ {{$rec->join_Animal->animal_name}} รหัสสัตว์ : {{$rec->animal_id}}<br>
                 รพ :
@@ -109,20 +253,29 @@ position:absolute;
                   <input type='hidden' name='status' value='Wait' />
                   <input type='hidden' name='auth' value='{{$adminId}}'/>
                     <button class="btn btn-success po" >ยืนยันการขอรับเลี้ยง</button>
+                        <a href="/deleteAdoptionTable/{{ $rec->animal_id }}" class="btn btn-warning po " onclick="return confirm('Please confirm again !!!')">ยกเลิก</a>
                 </div>
 
             </form>
 
 
 <br>
-<hr>
+
 
 </div>
 </div>
+
 
 @endif
 @endforeach
+</div>
+</div>
 
+
+
+
+
+<div class="row">
 <div  class="col-md-3 ri">
     <p class="lead">List of Donors</p>
     มารับเรียบร้อยแล้ว  {{$adoptionDone->count()}}  ตัว<br>
@@ -187,9 +340,14 @@ position:absolute;
 
                   </form>
                 </div>
-    </p>
-@endforeach
 
+    </p>
+
+    </div>
+    </div>
+
+@endforeach
+</div>
 
 
 

@@ -2,7 +2,7 @@
 
 @section('content')
   <h1>AdminProfile</h1>
-
+เพิ่มสัตว์ทั้งหมด
 รหัสผู้ใช้ :{{ $userId}} <br>
 ชื่อ   :{{$name}}<br>
 username :{{$username}}<br>

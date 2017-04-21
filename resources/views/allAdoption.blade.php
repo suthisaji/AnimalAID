@@ -340,7 +340,7 @@
                                              Please waiting for contact back by email or phonenumber
 
                                          </div>
-                                        <input type='hidden' name='status' value='Book' />
+                                        <input type='hidden' name='status' value='Recipient' />
                                          <div class="text-center">
                                              <button class="btn btn-success" >Add Address</button>
                                          </div>
