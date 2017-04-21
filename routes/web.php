@@ -17,8 +17,11 @@ Route::get('/', function () {
 });
 use App\Animal;;
 Route::get('/delete99', function(){
-    $result = Animal::where('animal_id',1)->first();
-    return $result->animal_picture;
+    $result = Animal::all();
+    foreach ($result as $val) {
+      if($val->doType_id==3 || (!empty($val->join_Adoption) && $animal->join_Adoption->status=="Recipient"))
+        echo $val->animal_id.'<br>';
+    }
 });
 
 Auth::routes();
@@ -123,5 +126,9 @@ Route::get('/index', function () {
 
 
 Route::get('/checkout', function () {
+    return view('checkout');
+});
+
+Route::post('/checkout', function () {
     return view('checkout');
 });

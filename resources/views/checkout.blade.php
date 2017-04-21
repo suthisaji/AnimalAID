@@ -1,6 +1,7 @@
+
 <?php
 
-  require_once dirname(__FILE__).'/omise-php/lib/Omise.php';
+  require_once 'C:\xampp\htdocs\AnimalAID\omise-php\lib\Omise.php';
 
   define('OMISE_PUBLIC_KEY', 'pkey_test_57gpwuk3sm7mirumtsx');
   define('OMISE_SECRET_KEY', 'skey_test_57gpwuk42fxek0ag94z');

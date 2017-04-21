@@ -45,7 +45,11 @@
   bottom: 33px;
   right:30px;
 }
+.ro{
+  position:absolute;
 
+  right:40px;
+}
     </style>
   </head>
   <body>
@@ -264,30 +268,31 @@
                </div>
 
            </div>
-               <div class="col-md-3">
-                   <p class="lead">List of Donors</p>
-                       <div class="list-group">
-                           <p class="list-group-item">
-                               <i class="fa fa-comment fa-fw">Jutatip</i>
-                               <span class="pull-right text-muted samll">
-                                   <em>$100</em>
-                               </spen>
-                   </p>
+           <div class="col-md-3 ro">
+               <p class="lead">List of Donors</p>
+                   <div class="list-group">
+                       <p class="list-group-item"><small>2017-04-12</small>
+                           <i class="fa fa-comment fa-fw">Jutatip</i>
+                           <span class="pull-right text-muted small">
+                               <em>$100  กองทุนรักษาพยาบาลสัตว์ป่วยอนาถา</em>
+                           </span>
+               </p>
 
-                   <p class="list-group-item">
-                       <i class="fa fa-comment fa-fw">Suthisa</i>
-                       <span class="pull-right text-muted samll">
-                           <em>$100</em>
-                       </spen>
-                   </p>
-                   <p class="list-group-item">
-                       <i class="fa fa-comment fa-fw">Chanon</i>
-                       <span class="pull-right text-muted samll">
-                           <em>$100</em>
-                       </spen>
-                   </p>
-               </div>
+               <p class="list-group-item"><small>2017-04-12</small>
+                   <i class="fa fa-comment fa-fw">Suthisa</i>
+                   <span class="pull-right text-muted small">
+                       <em>$100  กองทุนรักษาพยาบาลสัตว์ป่วยอนาถา</em>
+                   </span>
+               </p>
+               <p class="list-group-item"><small>2017-04-12</small>
+                   <i class="fa fa-comment fa-fw">Chanon</i>
+                   <span class="pull-right text-muted small">
+                       <em>$100  กองทุนรักษาพยาบาลสัตว์ป่วยอนาถา</em>
+                   </span>
+               </p>
            </div>
+       </div>
+
 
 
        </div>

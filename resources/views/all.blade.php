@@ -473,24 +473,24 @@
                <div class="col-md-3 ro">
                    <p class="lead">List of Donors</p>
                        <div class="list-group">
-                           <p class="list-group-item">
+                           <p class="list-group-item"><small>2017-04-12</small>
                                <i class="fa fa-comment fa-fw">Jutatip</i>
-                               <span class="pull-right text-muted samll">
-                                   <em>$100</em>
-                               </spen>
+                               <span class="pull-right text-muted small">
+                                   <em>$100  กองทุนรักษาพยาบาลสัตว์ป่วยอนาถา</em>
+                               </span>
                    </p>
 
-                   <p class="list-group-item">
+                   <p class="list-group-item"><small>2017-04-12</small>
                        <i class="fa fa-comment fa-fw">Suthisa</i>
-                       <span class="pull-right text-muted samll">
-                           <em>$100</em>
-                       </spen>
+                       <span class="pull-right text-muted small">
+                           <em>$100  กองทุนรักษาพยาบาลสัตว์ป่วยอนาถา</em>
+                       </span>
                    </p>
-                   <p class="list-group-item">
+                   <p class="list-group-item"><small>2017-04-12</small>
                        <i class="fa fa-comment fa-fw">Chanon</i>
-                       <span class="pull-right text-muted samll">
-                           <em>$100</em>
-                       </spen>
+                       <span class="pull-right text-muted small">
+                           <em>$100  กองทุนรักษาพยาบาลสัตว์ป่วยอนาถา</em>
+                       </span>
                    </p>
                </div>
            </div>
