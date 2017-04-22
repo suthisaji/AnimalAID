@@ -1,5 +1,31 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+ <style>
+     .k{
+       border-width: inherit;
+     }
+     .table-inverse{
+       background-color: #D8D8D8;
+       color: #424242;
+     }
+     .container {
+width: 1600px;
+}
+ </style>
+  </head>
+
+
+
+<body>
+  <div class="container ">
 
 <a href="all">back</a>
 <div class="row">
@@ -38,3 +64,7 @@
       </table>
     </div>
 </div>
+</div>
+</body>
+
+</html>
