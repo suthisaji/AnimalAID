@@ -7,34 +7,50 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+ <style>
+     .k{
+       border-width: inherit;
+     }
+     .table-inverse{
+       background-color: #D8D8D8;
+       color: #424242;
+     }
+ </style>
   </head>
-  <body>
 
 
 
 
-        @foreach($admins as $ad)
-            @if( $ad->admin_id == $adminId)
-              {{$ad->join_Hospital->hospital_name}}
-            @endif
-        @endforeach
 
 
+<br>
+<br>
+<br>
 
 
 
     <div class="container">
+      <div class="row text-center">
+          <div class="col-md-6 offset-md-3">
+            <a href="/add" class="btn btn-warning">เพิ่มสัตว์</a>
+          </div>
+      </div>
+      <div style="color:#566D7E;font-size:20px">
+      @foreach($admins as $ad)
+          @if( $ad->admin_id == $adminId)
+            {{$ad->join_Hospital->hospital_name}}
+          @endif
+      @endforeach
+    </div>
         <table class="table table-hover">
           <thead class="table-inverse">
               <tr>
-                <th>Id</th>
-                <th>NAME</th>
-                <th>TYPE</th>
-                <th>PIC</th>
-                <th>AGE</th>
-
-                  <th>status</th>
-                    <th>action</th>
+                <th>รหัส</th>
+                <th>ชื่อ</th>
+                <th>ประเภท</th>
+                <th>รูปภาพ</th>
+                <th>สถานะ</th>
+                    <th>การดำเนินการ</th>
               </tr>
           </thead>
           <tbody>
@@ -45,11 +61,13 @@
               <td>{{$animal->animal_name}}</td>
               <td>{{$animal->join_donationType->do_typeName}}</td>
               <td><img  src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="50" height="50"> &nbsp;<small>{{$animal->animal_picture}}</small>   <br></td>
-              <td>{{$animal->animal_age}}</td>
+
               <td>{{$animal->statusDonation}}</td>
               <td>
-                <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm">Edit</a>
-                <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Please confirm again !!!')">Delete</a>
+                <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm">แก้ไข</a>
+
+                <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Please confirm again !!!')">ลบ</a>
+                <br><br>
 
                   <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
                       {{ Form::token() }}
@@ -80,7 +98,8 @@
                           <input type="hidden" name="symptomCase" value="{{ $animal->symptomCase }}" row="3">
 
                           <input type="hidden" class="form-control" name="statusDonation" value="Close"/>
-                          <button class="btn btn-info btn-sm">ปิดการขอรับ</button>
+
+                          <button class=" btn-sm k btn-primary">ปิดการขอรับ</button>
                         </form>
               </td>
             </tr>
@@ -88,11 +107,7 @@
             @endforeach
           </tbody>
         </table>
-        <div class="row text-center">
-            <div class="col-md-6 offset-md-3">
-              <a href="/add" class="btn btn-warning">Add Animal</a>
-            </div>
-        </div>
+
     </div>
 
 

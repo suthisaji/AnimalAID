@@ -45,6 +45,7 @@
   position:absolute;
   bottom: 33px;
   right:30px;
+
 }
 .popover{
   max-width: none;
@@ -420,7 +421,7 @@
                             <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                               view detail
                             </button>
-                              <button type="button" class="btn btn-primary btn-sm box2"><a href="index">Help</a></button>
+                              <button type="button" class="btn btn-primary btn-sm box2" ><a style="color: white;" href="index">Help</a></button>
 
                           @else
                             <button type="button" class="btn btn-primary btn-sm box2" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
