@@ -25,8 +25,13 @@ width: 1600px;
 
 
 <body>
+  <br>
+  <br>
+  <br>
   <div class="container ">
 
+
+    <h1 class="display-5" style="text-align:center; color:#424242; ">ข่าวทั้งหมด</h1>
 <a href="all">back</a>
 <div class="row">
     <div class="col-md-12 offset-0">
