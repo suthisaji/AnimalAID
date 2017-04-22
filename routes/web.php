@@ -135,3 +135,8 @@ Route::get('/checkout', function () {
 Route::post('/checkout', function () {
     return view('checkout');
 });
+
+
+Route::get('/gridtest', function () {
+    return view('gridtest');
+});

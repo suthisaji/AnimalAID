@@ -171,11 +171,12 @@
    </nav>
 
    <!-- Page Content -->
+
    <div class="container">
 
        <div class="row">
 
-           <div class="col-md-9">
+           <div class="col-md-10">
 
                <div class="row carousel-holder">
 
@@ -323,6 +324,15 @@
                    </div>
 
                </div>
+
+
+
+
+
+
+
+
+
 
 
 

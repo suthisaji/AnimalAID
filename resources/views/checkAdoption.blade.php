@@ -44,7 +44,7 @@
 }
 .ri{
 position:absolute;
-  top: 33px;
+  top: 91px;
     right:30px;
 }
 .po{
@@ -92,7 +92,7 @@ position:absolute;
   color:#424242;
 }
 .b1{
-  background-color:#F7F8E0;
+  background-color:#FFFFEA   ;
   color:#424242;
 }
     </style>
@@ -100,7 +100,7 @@ position:absolute;
   <body>
 
 
-    <div class="container ">
+    <div class="container">
       @foreach($admins as $admin)
         @if($admin->admin_id ==$adminId  )
         <h2>  {{$admin->join_Hospital->hospital_name}} รหัส :  {{$adminId}} </h2>
@@ -109,7 +109,7 @@ position:absolute;
      <br>
    </div>
        <div class="container ">
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-3 col-md-6 ">
                         <div class="panel panel-red">
                             <div class="panel-heading done">
                                 <div class="row">
@@ -271,20 +271,15 @@ position:absolute;
 </div>
 </div>
 
-
-
-
-
-<div class="row">
+<div class ="container">
 <div  class="col-md-3 ri">
-    <p class="lead">List of Donors</p>
-    มารับเรียบร้อยแล้ว  {{$adoptionDone->count()}}  ตัว<br>
-    รอมารับ    {{$adminChecked->count()}}           ตัว(ยืนยันแล้วแต่ยังไม่มารับ)
+    <p class="lead">รอผู้รับเลี้ยง</p>
+
         <div class="list-group">
           @foreach($adminChecked as $wait)
             <p class="list-group-item">
 
-                <i class="fa fa-comment fa-fw">{{$wait->join_Animal->animal_name}} &nbsp;รหัส:{{$wait->animal_id}} </i><br>
+                <i class="fa fa-comment fa-fw">ชื่อสัตว์  : {{$wait->join_Animal->animal_name}} &nbsp;รหัส:{{$wait->animal_id}} </i><br>
 
                                   <?php
                                     $now = new DateTime();
@@ -297,11 +292,10 @@ position:absolute;
 
                                        @if($wait->date_time <$now3)
                                          <span style="color:red">ไม่มารับภายใน{{str_replace('T', '  เวลา  ', $wait->date_time)}} </span><br>
-                                       พน---  {{$now3}}
+                                  กรุณาตรวจสอบติดตาม
                                      @elseif($wait->date_time >$now3 ||$wait->date_time ==$now3)
 
                                       มารับวันที่{{str_replace('T', '  เวลา  ', $wait->date_time)}}<br>
-                                      พนs---{{$now3}}
 
                                        @endif
 
@@ -340,12 +334,7 @@ position:absolute;
 
                   </form>
                 </div>
-
     </p>
-
-    </div>
-    </div>
-
 @endforeach
 </div>
 
