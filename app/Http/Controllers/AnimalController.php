@@ -36,7 +36,8 @@ class AnimalController extends Controller
           $newsAnis = $this->NewsAniRepository->getAllNewsAni();
           $hospitals =$this->AnimalRepository->getAllHospital();
           $admins = $this->AnimalRepository ->getAllAdmin();
-
+          $admin = Auth::user()->id;
+        $countRecipientEachAdmin = $this->AnimalRepository->countRecipientEachAdmin($admin);
 
 
 
@@ -47,7 +48,10 @@ class AnimalController extends Controller
               'newsAnis'=>$newsAnis,
               'hospitals'=>$hospitals,
               'adminId' =>Auth::user()->id,
-              'admins' =>$admins
+              'admins' =>$admins,
+              'all_users'=>$this->UserRepository->getAllUser(),
+              'countRecipientEachAdmin'=>$countRecipientEachAdmin,
+              'admin'=>true
 
         );
         //return view('animal',$data); มึงจะให้มันไปหน้าไหน
@@ -358,9 +362,15 @@ class AnimalController extends Controller
 
         }else{
           $news = $this->NewsAniRepository->getAllNewsAni();
+          $admin = Auth::user()->id;
+        $countRecipientEachAdmin = $this->AnimalRepository->countRecipientEachAdmin($admin);
+
           $data = array(
             'news'=>$news,
-              'adminId' => Auth::user()->id
+              'adminId' => Auth::user()->id  ,
+              'all_users'=>$this->UserRepository->getAllUser(),
+              'countRecipientEachAdmin'=>$countRecipientEachAdmin,
+              'admin'=>true
           );
           return view('add_news', $data);
         }
@@ -404,12 +414,17 @@ class AnimalController extends Controller
               $animalsBloods= $this->AnimalRepository->getAllBlood();
               $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
               $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+              $admin = Auth::user()->id;
+            $countRecipientEachAdmin = $this->AnimalRepository->countRecipientEachAdmin($admin);
               $data = array(
                   'animals'=>$animals ,
                   'animalsMoneys'=>$animalsMoneys,
                   'animalsBloods'=>$animalsBloods,
                   'animalsAdoptions'=>$animalsAdoptions,
-                  'news'=>$newsAnis
+                  'news'=>$newsAnis,
+                  'all_users'=>$this->UserRepository->getAllUser(),
+                  'countRecipientEachAdmin'=>$countRecipientEachAdmin,
+                  'admin'=>true
               );
 
              return view('new',$data);

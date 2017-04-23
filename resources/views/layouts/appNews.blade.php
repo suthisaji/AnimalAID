@@ -19,6 +19,11 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <style>
+    .navbar-default .navbar-brand  {
+     font-size:18px;
+   }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -45,7 +50,7 @@
                       <a  class="navbar-brand" href="../add">&nbsp;&nbsp;&nbsp; เพิ่มการขอรับบริจาค &nbsp;&nbsp;</a> &nbsp;
                       <a class="navbar-brand" href="../animal">  รายชื่อสัตว์&nbsp;&nbsp; </a>&nbsp;
                       <a  class="navbar-brand" href="../addNews">   เพิ่มข่าว&nbsp;&nbsp;</a>&nbsp;
-                      <a class="navbar-brand"  href="../n">   ข่าวทั้งหมด &nbsp;&nbsp;</a>&nbsp;
+
                       <a class="navbar-brand" href="../checkAdoption"> ตรวจสอบการขอรับเลี้ยงสัตว์ :<span style="color:red"> {{$countRecipientEachAdmin}}</span><a>&nbsp;
 
 
@@ -56,12 +61,12 @@
                     <a href="#"></a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <div class="collapse navbar-collapse" style="font-size:19px;" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right ">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -69,7 +74,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }}
                                 </a>
 
                                         <ul class="dropdown-menu" role="menu">

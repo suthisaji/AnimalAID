@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.appNews')
+
+@section('content')
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,13 +9,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <style>
-.container {
-width: 1600px;
-}
+
 .table-inverse{
   background-color: #E6E6E6;
   color: #585858;
 }
+.con{
+width: 1600px;
+}
+
 </style>
 
 
@@ -25,9 +28,9 @@ width: 1600px;
   <body>
 <a href="admin">back</a>
 
-    <div class="container">
+    <div class="container ">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-6 offset-md-3 con">
                 <h1 class="display-4" style="text-align:center; color:#424242; ">เพิ่มข่าว</h1>
                 <form action="/addNews" class="form" method="post" enctype="multipart/form-data">
                     {{ Form::token() }}
@@ -64,17 +67,17 @@ width: 1600px;
             </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row ">
             <div class="col-md-12 offset-0">
               <table class="table">
                 <thead class="table-inverse">
                   <tr>
-                    <th>รหัส</th>
-                    <th>หัวข่าว</th>
-                    <th>เนื้อหาข่าว</th>
-                    <th>ประเภท</th>
-                    <th>สร้างเมื่อ</th>
-                    <th>ลบ</th>
+                    <th style="font-size:18px;background-color:#999999;">รหัส</th>
+                    <th style="font-size:18px;background-color: #8c8c8c;">หัวข่าว</th>
+                    <th style="font-size:18px;background-color:#808080">เนื้อหาข่าว</th>
+                    <th style="font-size:18px;background-color:#737373">ประเภท</th>
+                    <th style="font-size:17px;background-color:#666666">สร้างเมื่อ</th>
+                    <th style="font-size:18px;background-color:#595959">ลบ</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -82,19 +85,19 @@ width: 1600px;
 
                       @if( $new->admin_id == $adminId)
                   <tr>
-                    <td>{{$new->news_id}}</td>
+                    <td style="font-size:18px;">{{$new->news_id}}</td>
 
-                    <td>{{$new->head_News}}</td>
-                    <td>{{$new->content}}</td>
+                    <td style="font-size:18px;">{{$new->head_News}}</td>
+                    <td style="font-size:18px;">{{$new->content}}</td>
 
                  @if($new->news_type==1)
-                   <td>ข่าวด่วน</td>
+                   <td style="font-size:18px;">ข่าวด่วน</td>
                  @else
-                   <td>ข่าวปกติ</td>
+                   <td style="font-size:18px;">ข่าวปกติ</td>
                  @endif
-                    <td>{{$new->created_at}}</td>
+                    <td style="font-size:18px;">{{$new->created_at}}</td>
 
-                    <td> <a href="/deleteNews/{{$new->news_id}}" class="btn btn-danger btn-sm" onclick="return confirm('Please confirm again !!!') ">ลบ </a></td>
+                    <td > <a style="font-size:18px;" href="/deleteNews/{{$new->news_id}}" class="btn btn-danger btn-sm" onclick="return confirm('Please confirm again !!!') ">ลบ </a></td>
 
                   </tr>
                           @endif
@@ -113,3 +116,4 @@ width: 1600px;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   </body>
 </html>
+@endsection

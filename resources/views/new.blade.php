@@ -1,6 +1,8 @@
 
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.appNews')
+
+@section('content')
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -19,12 +21,14 @@
      .container {
 width: 1600px;
 }
+.f{
+  font-size: 16px;
+}
  </style>
   </head>
 
 
 
-<body>
   <br>
   <br>
   <br>
@@ -36,31 +40,31 @@ width: 1600px;
 <div class="row">
     <div class="col-md-12 offset-0">
       <table class="table">
-        <thead class="table-inverse">
+        <thead class="table-inverse"  style=" background-color: cadetblue;">
           <tr>
             <!--<th>new ID</th>
             <th>Admin ID</th>-->
-            <th>หัวข่าว</th>
-            <th>เนื้อหา</th>
-            <th>ประเภท</th>
-            <th>วันที่</th>
+            <th style="font-size:18px;">หัวข่าว</th>
+            <th style="font-size:18px;" >เนื้อหา</th>
+            <th style="font-size:18px;">ประเภท</th>
+            <th style="font-size:18px;">วันที่</th>
           <!--  <th>updated_at</th>-->
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           @foreach($news as $new)
           <tr>
         <!--    <td>{{--{{$new->news_id}}</td>
             <td>{{$new->admin_id}}--}}</td>-->
-            <td width='350px' style="padding-right:10px">{{$new->head_News}}</td>
-            <td width='700px' style="padding-right:10px">{{$new->content}}</td>
+            <td width='350px' style="padding-right:10px; font-size:18px;">{{$new->head_News}}</td>
+            <td width='480px' style="padding-right:10px; font-size:18px;">{{$new->content}}</td>
              @if($new->news_type==1)
-            <td width='100px' style="padding-right:10px">ข่าวด่วน</td>
+            <td width='100px' style="padding-right:10px; font-size:18px;">ข่าวด่วน</td>
             @else
-              <td>ข่าวทั่วไป</td>
+              <td  style="font-size:18px;">ข่าวทั่วไป</td>
             @endif
 
-            <td>{{$new->created_at}}</td>
+            <td style="font-size:18px;">{{$new->created_at}}</td>
           <!--  <td>{{--{{$new->updated_at}}--}}</td>-->
 
           </tr>
@@ -70,6 +74,5 @@ width: 1600px;
     </div>
 </div>
 </div>
-</body>
 
-</html>
+@endsection
