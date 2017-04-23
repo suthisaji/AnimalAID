@@ -1,6 +1,4 @@
-@extends('layouts.appNews')
 
-@section('content')
 
   <head>
     <!-- Required meta tags -->
@@ -17,6 +15,9 @@
        background-color: #D8D8D8;
        color: #424242;
      }
+     .t{
+       font-size: 20px;
+     }
  </style>
   </head>
 
@@ -32,9 +33,10 @@
 
 
     <div class="container">
+      <a href="/admin">กลับ</a>
       <div class="row text-center">
           <div class="col-md-6 offset-md-3">
-            <a href="/add" class="btn btn-warning">เพิ่มสัตว์</a>
+            <a href="/add" class="btn btn-warning t">เพิ่มสัตว์</a>
           </div>
       </div>
       <div style="color:#566D7E;font-size:20px">
@@ -45,14 +47,14 @@
       @endforeach
     </div>
         <table class="table table-hover">
-          <thead class="table-inverse">
+          <thead class="table-inverse t">
               <tr>
                 <th>รหัส</th>
                 <th>ชื่อ</th>
                 <th>ประเภท</th>
                 <th>รูปภาพ</th>
                 <th>สถานะ</th>
-                    <th>การดำเนินการ</th>
+                <th>การดำเนินการ</th>
               </tr>
           </thead>
           <tbody>
@@ -123,4 +125,3 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-@endsection
