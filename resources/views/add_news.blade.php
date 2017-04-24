@@ -1,11 +1,9 @@
-@extends('layouts.appNews')
 
-@section('content')
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <style>
@@ -17,6 +15,15 @@
 .con{
 width: 1600px;
 }
+.t{
+  font-size: 19px;
+}
+.t2{
+  font-size: 15px;
+}
+.a{
+  color:  #6E6E6E  ;
+}
 
 </style>
 
@@ -26,9 +33,41 @@ width: 1600px;
   </head>
 
   <body>
-<a href="admin">back</a>
+
 
     <div class="container ">
+
+
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <a class="navbar-brand t" href="/all">Animal-AID</a>
+      <a class="navbar-brand t " href="/admin"> :: Admin management :: </a>
+
+      <li class="dropdown navbar-brand  " style="alight=right " >
+          <a href="#"  class="dropdown-toggle a t " data-toggle="dropdown" role="button" aria-expanded="false">
+              {{ Auth::user()->name }}
+          </a>
+
+                  <ul class="dropdown-menu t" role="menu">
+                            <li>
+                              <a  class="t" href="../adminProfile"> โปรไฟล์ &nbsp;&nbsp; </a>
+                            </li>
+                                <li>
+                                    <a class = "t" href="{{ route('logout') }}"
+                                      onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                                        Logout
+                                      </a>
+
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                      </form>
+                                    </li>
+                  </ul>
+      </li>
+
+      </nav>
+
+
         <div class="row">
             <div class="col-md-6 offset-md-3 con">
                 <h1 class="display-4" style="text-align:center; color:#424242; ">เพิ่มข่าว</h1>
@@ -43,10 +82,10 @@ width: 1600px;
 
 
                     <div class="radio form-group" id="news_type">
-                      <label for="news_type" class="form-label h4">ประเภทข่าว</label><br>
+                      <label for="news_type" class="form-label h3">ประเภทข่าว</label><br>
 
-                        &nbsp;&nbsp;&nbsp;<label><input type="radio" value="1" name="news_type">ข่าวด่วน</label>  &nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;<label><input type="radio" value="2" name="news_type" required >ข่าวปกติ</label>
+                        &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;<label class="t2"><input  type="radio" value="1" name="news_type">ข่าวด่วน</label>  &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;<label class="t2"><input type="radio" value="2" name="news_type" required >ข่าวปกติ</label>
                     </div>
 
 
@@ -72,12 +111,12 @@ width: 1600px;
               <table class="table">
                 <thead class="table-inverse">
                   <tr>
-                    <th style="font-size:18px;background-color:#999999;">รหัส</th>
-                    <th style="font-size:18px;background-color: #8c8c8c;">หัวข่าว</th>
-                    <th style="font-size:18px;background-color:#808080">เนื้อหาข่าว</th>
-                    <th style="font-size:18px;background-color:#737373">ประเภท</th>
-                    <th style="font-size:17px;background-color:#666666">สร้างเมื่อ</th>
-                    <th style="font-size:18px;background-color:#595959">ลบ</th>
+                    <th style="font-size:18px;background-color:#999999; color:white;">รหัส</th>
+                    <th style="font-size:18px;background-color: #8c8c8c; color:white;">หัวข่าว</th>
+                    <th style="font-size:18px;background-color:#808080; color:white;">เนื้อหาข่าว</th>
+                    <th style="font-size:18px;background-color:#737373 ;color:white;">ประเภท</th>
+                    <th style="font-size:17px;background-color:#666666;color:white;">สร้างเมื่อ</th>
+                    <th style="font-size:18px;background-color:#595959;color:white;">ลบ</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -116,4 +155,3 @@ width: 1600px;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   </body>
 </html>
-@endsection

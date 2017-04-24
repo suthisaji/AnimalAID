@@ -221,7 +221,7 @@
 
                   @foreach($animals as $animal)
                   {{--  {{$animal->join_Adoption->animal_id}}--}}
-                  @if(empty($animal->join_Adoption->animal_id) && $animal->doType_id == 3)
+                  @if(empty($animal->join_Adoption->animal_id) && $animal->doType_id == 3 && $animal->statusDonation != 'Close')
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">

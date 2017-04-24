@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -16,7 +18,13 @@
        color: #424242;
      }
      .t{
-       font-size: 20px;
+       font-size: 19px;
+     }
+     .t2{
+       font-size: 15px;
+     }
+     .a{
+       color:  #6E6E6E  ;
      }
  </style>
   </head>
@@ -25,6 +33,36 @@
 
 <body>
 
+  <div class="container">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <a class="navbar-brand t" href="/all">Animal-AID</a>
+    <a class="navbar-brand t " href="/admin"> :: Admin management :: </a>
+
+    <li class="dropdown navbar-brand  " style="alight=right " >
+        <a href="#"  class="dropdown-toggle a t " data-toggle="dropdown" role="button" aria-expanded="false">
+            {{ Auth::user()->name }}
+        </a>
+
+                <ul class="dropdown-menu t" role="menu">
+                          <li>
+                            <a  class="t" href="../adminProfile"> โปรไฟล์ &nbsp;&nbsp; </a>
+                          </li>
+                              <li>
+                                  <a class = "t" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                      Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      {{ csrf_field() }}
+                                    </form>
+                                  </li>
+                </ul>
+    </li>
+
+    </nav>
+  </div>
 
 <br>
 <br>
@@ -33,7 +71,7 @@
 
 
     <div class="container">
-      <a href="/admin">กลับ</a>
+
       <div class="row text-center">
           <div class="col-md-6 offset-md-3">
             <a href="/add" class="btn btn-warning t">เพิ่มสัตว์</a>
@@ -68,9 +106,9 @@
 
               <td>{{$animal->statusDonation}}</td>
               <td>
-                <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm">แก้ไข</a>
+                <a href="/edit/{{ $animal->animal_id }}" class="btn btn-info btn-sm t2">แก้ไข</a>
 
-                <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete" onclick="return confirm('Please confirm again !!!')">ลบ</a>
+                <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete t2" onclick="return confirm('Please confirm again !!!')">ลบ</a>
                 <br><br>
 
                   <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
@@ -103,7 +141,7 @@
 
                           <input type="hidden" class="form-control" name="statusDonation" value="Close"/>
 
-                          <button class=" btn-sm k btn-primary">ปิดการขอรับ</button>
+                          <button class=" btn-sm k btn-primary t2">ปิดการขอรับ</button>
                         </form>
               </td>
             </tr>

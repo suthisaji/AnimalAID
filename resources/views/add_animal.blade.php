@@ -9,11 +9,57 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   </head>
+  <style>
+  .t{
+    font-size: 19px;
+  }
+  .t2{
+    font-size: 15px;
+  }
+  .a{
+    color:  #6E6E6E  ;
+  }
+  </style>
   <body>
-<a href="admin">back</a>
+
+
 
     <div class="container">
+
+          <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <a class="navbar-brand t" href="/all">Animal-AID</a>
+          <a class="navbar-brand t " href="/admin"> :: Admin management :: </a>
+
+          <li class="dropdown navbar-brand  " style="alight=right "  >
+              <a href="#"  class="dropdown-toggle a t " data-toggle="dropdown" role="button" aria-expanded="false" >
+                  {{ Auth::user()->name }}
+              </a>
+
+                      <ul class="dropdown-menu t " role="menu"  >
+                                <li style="background-color:#F2F2F2;">
+                                  <a  class="t" style="color:#A4A4A4;" href="../adminProfile"> โปรไฟล์ &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </a>
+                                </li>
+                                    <li style="background-color:#F2F2F2;">
+                                        <a style="color:#A4A4A4;" class = "t" href="{{ route('logout') }}"
+                                          onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                                            Logout&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                                          </a>
+
+                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                          </form>
+                                        </li>
+                      </ul>
+          </li>
+
+          </nav>
+
+          <br>
+          
+
         <div class="row">
+
             <div class="col-md-6 offset-md-3">
                 <h1 style="text-align:center">Add Animal</h1>
                 <form name="addAnimal" action="/add" class="form" method="post" enctype="multipart/form-data"  onsubmit="return validation()" >

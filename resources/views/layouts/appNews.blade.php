@@ -49,7 +49,7 @@
 
                       <a  class="navbar-brand" href="../add">&nbsp;&nbsp;&nbsp; เพิ่มการขอรับบริจาค &nbsp;&nbsp;</a> &nbsp;
                       <a class="navbar-brand" href="../animal">  รายชื่อสัตว์&nbsp;&nbsp; </a>&nbsp;
-                      <a  class="navbar-brand" href="../addNews">   เพิ่มข่าว&nbsp;&nbsp;</a>&nbsp;
+                
 
                       <a class="navbar-brand" href="../checkAdoption"> ตรวจสอบการขอรับเลี้ยงสัตว์ :<span style="color:red"> {{$countRecipientEachAdmin}}</span><a>&nbsp;
 
