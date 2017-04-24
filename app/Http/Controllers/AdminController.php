@@ -80,6 +80,10 @@ class AdminController extends Controller
 
           $created =   Auth::user()->created_at;
                 $everAdoption = $this->AnimalRepository->countEverAdoption($userId);
+
+                $admin = Auth::user()->id;
+              $countRecipientEachAdmin = $this->AnimalRepository->countRecipientEachAdmin($admin);
+                $admins = $this->AnimalRepository ->getAllAdmin();
             $data = array(
               'userId'=>$userId ,
               'name' =>$name ,
@@ -88,7 +92,10 @@ class AdminController extends Controller
               'tel' =>$tel,
               'created' =>$created,
               'everAdoption'=>$everAdoption,
-
+              'all_users'=>$this->UserRepository->getAllUser(),
+              'countRecipientEachAdmin'=>$countRecipientEachAdmin,
+              'admin'=>true,
+              'admins'=>$admins
               );
 
             return view('adminProfile',$data);

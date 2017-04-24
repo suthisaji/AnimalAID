@@ -117,7 +117,7 @@
                  @if(!empty($position))
                    @if( $position== 'admin')
                      <li>
-                       <a href="admin">manage</a>
+                       <a href="admin">การจัดการ</a>
                     </li>
 
 
@@ -127,8 +127,8 @@
 
                    <!-- Authentication Links -->
                    @if (Auth::guest())
-                       <li><a href="{{ route('login') }}">Login</a></li>
-                       <li><a href="{{ route('register') }}">Register</a></li>
+                       <li><a href="{{ route('login') }}">เข้าสู่ระบบ</a></li>
+                       <li><a href="{{ route('register') }}">สมัครสมาชิก</a></li>
                    @else
                      <li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -138,25 +138,27 @@
                          <ul class="dropdown-menu" role="menu">
                            @if(Auth::user()->position=='user')
                            <li>
-                             <a href="userProfile">User Profile</a>
+                             <a href="userProfile">ข้อมูลส่วนตัวผู้ใช้ </a>
                            </li>
                            <li>
                                <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                   Logout
+                                   ออกจากระบบ
                                </a>
 
                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                    {{ csrf_field() }}
                                </form>
                            </li>
-                         @else
+                         @else <li>
+                            <a href="adminProfile">ข้อมูลส่วนตัวแอดมิน</a>
+                          </li>
                              <li>
                                  <a href="{{ route('logout') }}"
                                      onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
-                                     Logout
+                                     ออกจากระบบ
                                  </a>
 
                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
