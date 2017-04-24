@@ -78,6 +78,9 @@
       right:88px;
       border-radius: 3px;
 }
+.container{
+  width:1300px;
+}
     </style>
   </head>
   <body>
@@ -98,19 +101,19 @@
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
                    <li>
-                       <a href="dm">Funding donation</a>
+                       <a href="dm">การบริจาคเงิน</a>
                    </li>
                    <li>
-                       <a href="db">Blood donation</a>
+                       <a href="db">การบริจาคเลือด</a>
+                   </li>
+                   <li  class="active">
+                       <a href="da">หาบ้านให้สัตว์</a>
                    </li>
                    <li>
-                       <a href="da">Home for animals</a>
+                       <a href="#">ติดตามสัตว์</a>
                    </li>
                    <li>
-                       <a href="#">Follow</a>
-                   </li>
-                   <li>
-                       <a href="n">News</a>
+                       <a href="newsUser">ข่าว</a>
                    </li>
 
                </ul>
@@ -119,14 +122,14 @@
                  @if(!empty($position))
                    @if( $position== 'admin')
                      <li>
-                  <a href="admin">manage</a>
+                  <a href="admin"> การจัดการ</a>
                 </li>
               @endif
             @endif
                    <!-- Authentication Links -->
                    @if (Auth::guest())
-                       <li><a href="{{ route('login') }}">Login</a></li>
-                       <li><a href="{{ route('register') }}">Register</a></li>
+                       <li><a href="{{ route('login') }}">เข้าสู่ระบบ</a></li>
+                       <li><a href="{{ route('register') }}">สมัครสมาชิก</a></li>
                    @else
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

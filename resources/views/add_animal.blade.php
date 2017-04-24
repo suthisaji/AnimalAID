@@ -28,7 +28,7 @@
 
           <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
             <a class="navbar-brand t" href="/all">Animal-AID</a>
-          <a class="navbar-brand t " href="/admin"> :: Admin management :: </a>
+          <a class="navbar-brand t " href="/admin">  &nbsp;:: การจัดการส่วนแอดมิน :: &nbsp;</a>
 
           <li class="dropdown navbar-brand  " style="alight=right "  >
               <a href="#"  class="dropdown-toggle a t " data-toggle="dropdown" role="button" aria-expanded="false" >
@@ -56,17 +56,17 @@
           </nav>
 
           <br>
-          
+
 
         <div class="row">
 
             <div class="col-md-6 offset-md-3">
-                <h1 style="text-align:center">Add Animal</h1>
+                <h1 style="text-align:center">เพิ่มสัตว์</h1>
                 <form name="addAnimal" action="/add" class="form" method="post" enctype="multipart/form-data"  onsubmit="return validation()" >
                     {{ Form::token() }}
 
                     <div class="form-group">
-                        <label for="ani_name" class="form-label">Animal Name</label>
+                        <label for="ani_name" class="form-label">ชื่อสัตว์</label>
                         <input type="text" class="form-control" name="ani_name"/ required>
                     </div>
 
@@ -76,13 +76,13 @@
 
 
                     <div class="form-group">
-                        <label for="ani_type" class="form-label">Animal Type</label>
+                        <label for="ani_type" class="form-label">ชนิดของสัตว์</label>
                         <input type="text" class="form-control" name="ani_type"  placeholder="dog cat etc." />
                     </div>
                     <div class="form-group">
-                        <label for="doType_id" class="form-label">Donation Type</label>
+                        <label for="doType_id" class="form-label">ประเภทของการขอรับบริจาค</label>
                         <br>
-                        <select class="custom-select" name="doType_id" id="doType">
+                        <select class="custom-select "  style="  border: 5px solid rgba(0, 255, 0,.15);" name="doType_id" id="doType">
                           @foreach($donationType as $dt)
                           <option value="{{$dt->do_typeId}}">{{$dt->do_typeName}}</option>
                           @endforeach
@@ -90,11 +90,11 @@
                     </div>
 
                                           <div class="form-group" id="animal_pic">
-                                              <label for="ani_picture" class="form-label">Animal Picture</label>
-                                              <input type="file" class="form-control" name="ani_picture" required / >
+                                              <label for="ani_picture" class="form-label">รูปภาพ</label><br>
+                                              <input type="file"  name="ani_picture" required / >
                                           </div>
                                           <div class="form-group" id="animal_color">
-                                              <label for="ani_color" class="form-label">Animal Color</label>
+                                              <label for="ani_color" class="form-label">สี</label>
                                               <input type="text" class="form-control" name="ani_color"/>
                                           </div>
                                       <!--    <div class="form-group">
@@ -103,9 +103,9 @@
                                           </div>-->
 
                                             <div class="radio form-group" id="animal_gender">
-                                              <label for="ani_gender" class="form-label" >Animal Gender</label><br>
-                                                <label><input type="radio" value="1" name="ani_gender" id="animal_gender_input" required="required">male</label>
-                                                <label><input type="radio" value="2" name="ani_gender">female</label>
+                                              <label for="ani_gender" class="form-label" >เพศ</label><br>
+                                                <label><input type="radio" value="1" name="ani_gender" id="animal_gender_input" required="required">เพศผู้</label>
+                                                <label><input type="radio" value="2" name="ani_gender">เพศเมีย</label>
                                             </div>
 
 
@@ -115,15 +115,15 @@
 
 
                                         <div class="form-group" id="animal_age">
-                                              <label for="ani_age" class="form-label">Animal Age (Years)</label>
-                                              <input type="number" class="form-control" name="ani_age"  step="any" placeholder="1.2 etc."/>
+                                              <label for="ani_age" class="form-label">อายุ (ปี)</label>
+                                              <input type="number" class="form-control" name="ani_age"  step="any" placeholder="1.2 เป็นต้น."/>
                                               </div>
 
 
 
 
                                           <div class="form-group" >
-                                              <label for="symptomCase" class="form-label">symptomCase</label>
+                                              <label for="symptomCase" class="form-label">ลักษณะอาการ</label>
                                               <textarea class="form-control" name="symptomCase" row="2"></textarea>
                                           </div>
 
@@ -136,7 +136,7 @@
                                                  <input type="hidden" class="form-control" name="received" value="received"/>
 
                                                   <div class="text-center">
-                        <button class="btn btn-success">Add Animal</button>
+                        <button class="btn btn-success">เพิ่มสัตว์</button>
                     </div>
 
                 </form>

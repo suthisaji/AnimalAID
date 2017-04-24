@@ -103,7 +103,7 @@ position:absolute;
     <div class=" header " style="background-color:#F2F2F2;">
       <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
         <a class="navbar-brand "style="color:#6E6E6E;" href="/all">Animal-AID</a>
-        <a class="navbar-brand"  style="color:#6E6E6E;" href="/admin">การจัดการ</a>
+        <a class="navbar-brand"  style="color:#6E6E6E;" href="/admin">&nbsp; ::การจัดการ::</a>
       </nav>
     </div>
 
@@ -280,7 +280,7 @@ position:absolute;
 
 <div class ="container">
 <div  class="col-md-3 ri">
-  
+
 
     <p class="lead">รอผู้รับเลี้ยง</p>
 

@@ -140,3 +140,6 @@ Route::post('/checkout', function () {
 Route::get('/gridtest', function () {
     return view('gridtest');
 });
+
+Route::get('/newsUser','AnimalController@newsUser');
+Route::post('/newsUser','AnimalController@newsUser');

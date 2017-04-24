@@ -72,6 +72,9 @@
       right:25px;
       border-radius: 3px;
 }
+.container{
+  width:1200px;
+}
     </style>
   </head>
   <body>
@@ -93,20 +96,20 @@
                <ul class="nav navbar-nav">
 
                    <li>
-                       <a href="dm">Funding donation</a>
+                       <a href="dm">การบริจาคเงิน</a>
                    </li>
                    <li>
-                       <a href="db">Blood donation</a>
+                       <a href="db">การบริจาคเลือด</a>
                    </li>
                    <li>
-                       <a href="da">Home for animals</a>
+                       <a href="da">หาบ้านให้สัตว์</a>
                    </li>
                    <li>
-                       <a href="#">Follow</a>
+                       <a href="#">ติดตามสัตว์</a>
                    </li>
 
                    <li>
-                       <a href="n">News</a>
+                       <a href="/newsUser">ข่าว</a>
                    </li>
 
                </ul>

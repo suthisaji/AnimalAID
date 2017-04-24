@@ -78,7 +78,7 @@ width: 1600px;
     <div class="col-md-12 offset-0">
       <table class="table">
         <thead class="table-inverse"  style=" background-color: cadetblue;">
-          <tr>
+          <tr style=" background-color: ghostwhite;">
             <!--<th>new ID</th>
             <th>Admin ID</th>-->
             <th style="font-size:18px;">หัวข่าว</th>
@@ -94,7 +94,7 @@ width: 1600px;
         <!--    <td>{{--{{$new->news_id}}</td>
             <td>{{$new->admin_id}}--}}</td>-->
             <td width='350px' style="padding-right:10px; font-size:18px;">{{$new->head_News}}</td>
-            <td width='480px' style="padding-right:10px; font-size:18px;">{{$new->content}}</td>
+            <td width='900px' style="padding-right:10px; font-size:18px;">{{$new->content}}</td>
              @if($new->news_type==1)
             <td width='100px' style="padding-right:10px; font-size:18px;">ข่าวด่วน</td>
             @else

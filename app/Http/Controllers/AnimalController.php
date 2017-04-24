@@ -695,4 +695,29 @@ function closeAnimal($animal_id=0){
           }
 
 
+
+
+                    function newsUser(){
+                        $animals = $this->AnimalRepository->getAllAnimal();
+                        $animalsMoneys = $this->AnimalRepository->getAllMoney();
+                        $animalsBloods= $this->AnimalRepository->getAllBlood();
+                        $animalsAdoptions= $this->AnimalRepository->getAllAdoption();
+                        $newsAnis = $this->NewsAniRepository->getAllNewsAni();
+                        $admin = Auth::user()->id;
+                      $countRecipientEachAdmin = $this->AnimalRepository->countRecipientEachAdmin($admin);
+                        $data = array(
+                            'animals'=>$animals ,
+                            'animalsMoneys'=>$animalsMoneys,
+                            'animalsBloods'=>$animalsBloods,
+                            'animalsAdoptions'=>$animalsAdoptions,
+                            'news'=>$newsAnis,
+                            'all_users'=>$this->UserRepository->getAllUser(),
+                            'countRecipientEachAdmin'=>$countRecipientEachAdmin,
+                            'admin'=>true
+                        );
+
+                       return view('newsUser',$data);
+                    }
+
+
 }
