@@ -10,12 +10,6 @@
 
   <div class="container">
 
-    @foreach($admins as $admin)
-      @if($admin->admin_id ==$userId  )
-      <h2>  {{$admin->join_Hospital->hospital_name}} </h2>
-     @endif
-   @endforeach
-
       <div class="col-md-9">
         <div class="box box-success">
           <div class="panel-body box-header">

@@ -8,75 +8,19 @@
     <!-- Bootstrap Core CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        .carousel-inner > .item > img {
-  width:700;
-  height:300px;
-}
-.thumbnail img {
-    width:100% !important;
-    height: 200px !important;
-}
-.caption{
-  height: 150px;
-}
-.thumbnailjam img {
-    width:100% !important;
-    height: 300px !important;
-}
-.modal-title {
-    text-align: left;
-}
-.modal-body {
-    text-align: left;
-}
-.box1{
-  position:absolute;
-  bottom: 33px;
-  right:82px;
-}
-.box2{
-  position:absolute;
-  bottom: 33px;
-  right:30px;
+  <style>
+  .si{
+    font-size:16px;
+  }
 
-}
-.popover{
-  max-width: none;
-  width: 300px;
-}
-.ro{
-  position:absolute;
 
-  right:40px;
-}
-.rub1{
-       padding: 5px 6px;
-      font-size: 13px;
-      position:absolute;
-      bottom: 17px;
-      right:88px;
-      border-radius: 3px;
-}
-.rub2{
-       padding: 5px 6px;
-      font-size: 13px;
-      position:absolute;
-      bottom: 33px;
-      right:25px;
-      border-radius: 3px;
-}
-.container{
-  width:1200px;
-}
-    </style>
-  </head>
+  </style>
+</head>
   <body>
     <!-- Navigation -->
    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -94,12 +38,11 @@
            <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <ul class="nav navbar-nav">
-
                    <li>
                        <a href="dm">การบริจาคเงิน</a>
                    </li>
-                   <li>
-                       <a href="db">การบริจาคเลือด</a>
+                   <li class="active">
+                       <a  href="db"> การบริจาคเลือด</a>
                    </li>
                    <li>
                        <a href="da">หาบ้านให้สัตว์</a>
@@ -107,73 +50,35 @@
                    <li>
                        <a href="#">ติดตามสัตว์</a>
                    </li>
-
                    <li>
-                       <a href="/newsUser">ข่าว</a>
+                       <a href="newsUser">ข่าว</a>
                    </li>
-
                </ul>
-               <ul class="nav navbar-nav navbar-right">
-                 @if(!empty($position))
-                   @if( $position== 'admin')
-                     <li>
-                       <a href="admin">manage</a>
-                    </li>
 
+<!--check login yet-->
+<ul class="nav navbar-nav navbar-right">
 
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
 
-                   @endif
-                 @endif
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        ออกจากระบบ
+                    </a>
 
-                   <!-- Authentication Links -->
-                   @if (Auth::guest())
-                       <li><a href="{{ route('login') }}">Login</a></li>
-                       <li><a href="{{ route('register') }}">Register</a></li>
-                   @else
-                     <li class="dropdown">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                             {{ Auth::user()->name }} <span class="caret"></span>
-                         </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+            </ul>
+        </li>
 
-                         <ul class="dropdown-menu" role="menu">
-                           @if(Auth::user()->position=='user')
-                           <li>
-                             <a href="userProfile">User Profile</a>
-                           </li>
-                           <li>
-                               <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                   Logout
-                               </a>
-
-                               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                   {{ csrf_field() }}
-                               </form>
-                           </li>
-                         @else
-                             <li>
-                                 <a href="{{ route('logout') }}"
-                                     onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();">
-                                     Logout
-                                 </a>
-
-                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                     {{ csrf_field() }}
-                                 </form>
-                             </li>
-                           @endif
-                         </ul>
-                     </li>
-                   @endif
-               </ul>
-           </div>
-           <!-- /.navbar-collapse -->
-       </div>
-       <!-- /.container -->
-   </nav>
-
+</ul>
 <!--end check-->
 
 

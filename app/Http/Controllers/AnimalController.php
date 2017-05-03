@@ -299,14 +299,14 @@ class AnimalController extends Controller
           Request::file('ani_picture')->move($path, $newImageName);
           //----------------------------------
             $result = $this->AnimalRepository->updateAnimal($animalId,$adminId,$animalName,$animalType,$newImageName,$animalColor,$animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
+
           }else {
             $result = $this->AnimalRepository->updateAnimal1($animalId,$adminId,$animalName,$animalType,$animalColor,$animalGender,$animalAge,$symptomCase,$statusDonation,$doTypeId);
-
           }
             if($result){
                 return redirect('/animal');
             }else{
-                echo "Can not Update";
+                echo "Can not Update"."". $result;
             }
         }elseif(Request::isMethod('get')){
             $animal = $this->AnimalRepository->findById($animal_id);

@@ -66,8 +66,8 @@
                 <form action="/edit" class="form" method="post" enctype="multipart/form-data">
                     {{ Form::token() }}
                     <div class="form-group">
-                        <label for="ani_id" class="form-label"></label>
-                        <input type="text" class="form-control" name="ani_id" value="รหัส : {{ $animal->animal_id }}" readonly/>
+                        <label for="ani_id" class="form-label">รหัส</label>
+                        <input type="text" class="form-control" name="ani_id" value="{{ $animal->animal_id }}" readonly/>
                     </div>
                     <div class="form-group">
                         <label for="ani_name" class="form-label">ชื่อสัตว์</label>
