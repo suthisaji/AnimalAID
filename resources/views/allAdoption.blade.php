@@ -224,7 +224,7 @@
 
                   @foreach($animals as $animal)
                   {{--  {{$animal->join_Adoption->animal_id}}--}}
-                  @if(empty($animal->join_Adoption->animal_id) && $animal->doType_id == 3 && $animal->statusDonation != 'Close')
+                  @if(empty($animal->join_Adoption->animal_id) && $animal->doType_id == 3 && $animal->statusDonation != 'CloseAdoption')
                    <div class="col-sm-4 col-lg-4 col-md-4">
                        <small>{{$animal->created_at}}</small>
                        <div class="thumbnail">
@@ -412,7 +412,7 @@
        <footer>
            <div class="row">
                <div class="text-center col-lg-12">
-                   <p>Copyright &copy; Your Website 2014</p>
+                   <p>Copyright &copy; Your Website 2017</p>
                </div>
            </div>
        </footer>

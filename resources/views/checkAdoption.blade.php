@@ -103,7 +103,7 @@ position:absolute;
     <div class=" header " style="background-color:#F2F2F2;">
       <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
         <a class="navbar-brand "style="color:#6E6E6E;" href="/all">Animal-AID</a>
-        <a class="navbar-brand"  style="color:#6E6E6E;" href="/admin">&nbsp; ::การจัดการ::</a>
+        <a class="navbar-brand"  style="color:#6E6E6E;" href="/admin">&nbsp;&nbsp;   การจัดการ &nbsp;&nbsp; </a>
       </nav>
     </div>
 

@@ -33,7 +33,7 @@
 
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
                   <a class="navbar-brand t" href="/all">Animal-AID</a>
-                <a class="navbar-brand t " href="/admin">  &nbsp;:: การจัดการส่วนแอดมิน :: &nbsp;</a>
+                <a class="navbar-brand t " href="/admin">  &nbsp;&nbsp;   การจัดการ &nbsp;&nbsp; </a>
 
                 <li class="dropdown navbar-brand  " style="alight=right "  >
                     <a href="#"  class="dropdown-toggle a t " data-toggle="dropdown" role="button" aria-expanded="false" >

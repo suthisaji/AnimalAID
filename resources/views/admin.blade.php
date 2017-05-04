@@ -10,7 +10,7 @@
                 <div class="panel-body">
 
                 <table class="table">
-                <thead>
+              {{--  <thead>
                     <tr>
                         <th>name</th>
                        <th>email</th>
@@ -36,7 +36,8 @@
                               <td><a href="/delete/{{$user->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Please confirm again !!!') ">Delete</a></td>
                             </tr>
                             @endforeach
-                    </tbody>
+                    </tbody>--}}
+              <img src="\images\Capture.PNG" alt="Mountain View" style="width:700px;height:308px;">
                     </table>
 
 

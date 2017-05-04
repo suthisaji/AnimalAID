@@ -22,9 +22,14 @@
      }
      .t2{
        font-size: 15px;
+       border-radius: 5px;
      }
      .a{
        color:  #6E6E6E  ;
+     }
+     .op{
+       background-color: darkseagreen;
+border-radius: 5px;
      }
  </style>
   </head>
@@ -36,7 +41,7 @@
   <div class="container">
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <a class="navbar-brand t" href="/all">Animal-AID</a>
-    <a class="navbar-brand t " href="/admin"> :: Admin management :: </a>
+    <a class="navbar-brand t " href="/admin"> &nbsp;&nbsp;   การจัดการ &nbsp;&nbsp; </a>
 
     <li class="dropdown navbar-brand  " style="alight=right " >
         <a href="#"  class="dropdown-toggle a t " data-toggle="dropdown" role="button" aria-expanded="false">
@@ -110,7 +115,7 @@
 
                 <a href="/deleteAnimal/{{ $animal->animal_id }}" class="btn btn-danger btn-sm btn-delete t2" onclick="return confirm('Please confirm again !!!')">ลบ</a>
                 <br><br>
-
+                @if($animal->statusDonation=='Open'||$animal->statusDonation=='open')
                   <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
                       {{ Form::token() }}
 
@@ -143,8 +148,108 @@
 
                           <button class=" btn-sm k btn-primary t2">ปิดการขอรับ</button>
                         </form>
+                      @elseif($animal->statusDonation=='-'||$animal->statusDonation=='OpenAdoption')
+                        <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
+                            {{ Form::token() }}
+
+                                <input type="hidden" class="form-control" name="ani_id" value="{{ $animal->animal_id }}" readonly/>
+
+
+                                <input type="hidden"class="form-control" name="ani_name" value="{{ $animal->animal_name }}" />
+                                <input type="hidden"class="form-control" name="ani_type"  value="{{ $animal->animal_type }}" />
+
+                                <input type="hidden" name="doType_id" id="doType"/>
+                                <input type="hidden" name="ani_picture" id="file_up_img"/><label for="file_up_img" value"{{$animal->animal_picture}}">
+
+                                <input type="hidden" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
+
+                                <input type="hidden" class="form-control" name="ani_gender" value="{{ $animal->animal_gender }}" />
+
+                              @if( $animal->animal_gender ==1)
+                                <label><input type="hidden" value="1" name="ani_gender" checked>
+                                <label><input type="hidden" value="2" name="ani_gender">
+                              @else
+                                <label><input type="hidden" value="1" name="ani_gender" >
+                                <label><input type="hidden" value="2" name="ani_gender" checked>
+                              @endif
+
+
+                                <input type="hidden"class="form-control" name="ani_age" step="any" value="{{ $animal->animal_age }}"/>
+                                <input type="hidden" name="symptomCase" value="{{ $animal->symptomCase }}" row="3">
+
+                                <input type="hidden" class="form-control" name="statusDonation" value="CloseAdoption"/>
+
+                                <button class=" btn-sm k btn-primary t2">ปิดการขอรับเลี้ยง</button>
+                              </form>
+                            @elseif($animal->statusDonation=='CloseAdoption')
+                              <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
+                                  {{ Form::token() }}
+
+                                      <input type="hidden" class="form-control" name="ani_id" value="{{ $animal->animal_id }}" readonly/>
+
+
+                                      <input type="hidden"class="form-control" name="ani_name" value="{{ $animal->animal_name }}" />
+                                      <input type="hidden"class="form-control" name="ani_type"  value="{{ $animal->animal_type }}" />
+
+                                      <input type="hidden" name="doType_id" id="doType"/>
+                                      <input type="hidden" name="ani_picture" id="file_up_img"/><label for="file_up_img" value"{{$animal->animal_picture}}">
+
+                                      <input type="hidden" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
+
+                                      <input type="hidden" class="form-control" name="ani_gender" value="{{ $animal->animal_gender }}" />
+
+                                    @if( $animal->animal_gender ==1)
+                                      <label><input type="hidden" value="1" name="ani_gender" checked>
+                                      <label><input type="hidden" value="2" name="ani_gender">
+                                    @else
+                                      <label><input type="hidden" value="1" name="ani_gender" >
+                                      <label><input type="hidden" value="2" name="ani_gender" checked>
+                                    @endif
+
+
+                                      <input type="hidden"class="form-control" name="ani_age" step="any" value="{{ $animal->animal_age }}"/>
+                                      <input type="hidden" name="symptomCase" value="{{ $animal->symptomCase }}" row="3">
+
+                                      <input type="hidden" class="form-control" name="statusDonation" value="OpenAdoption"/>
+
+                                      <button class=" btn-sm k btn-primary t2 op" >เปิดการขอรับ</button>
+                                    </form>
+                      @elseif($animal->statusDonation=='Close'||$animal->statusDonation=='close')
+                        <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
+                            {{ Form::token() }}
+
+                                <input type="hidden" class="form-control" name="ani_id" value="{{ $animal->animal_id }}" readonly/>
+
+
+                                <input type="hidden"class="form-control" name="ani_name" value="{{ $animal->animal_name }}" />
+                                <input type="hidden"class="form-control" name="ani_type"  value="{{ $animal->animal_type }}" />
+
+                                <input type="hidden" name="doType_id" id="doType"/>
+                                <input type="hidden" name="ani_picture" id="file_up_img"/><label for="file_up_img" value"{{$animal->animal_picture}}">
+
+                                <input type="hidden" class="form-control" name="ani_color" value="{{ $animal->animal_color }}"/>
+
+                                <input type="hidden" class="form-control" name="ani_gender" value="{{ $animal->animal_gender }}" />
+
+                              @if( $animal->animal_gender ==1)
+                                <label><input type="hidden" value="1" name="ani_gender" checked>
+                                <label><input type="hidden" value="2" name="ani_gender">
+                              @else
+                                <label><input type="hidden" value="1" name="ani_gender" >
+                                <label><input type="hidden" value="2" name="ani_gender" checked>
+                              @endif
+
+
+                                <input type="hidden"class="form-control" name="ani_age" step="any" value="{{ $animal->animal_age }}"/>
+                                <input type="hidden" name="symptomCase" value="{{ $animal->symptomCase }}" row="3">
+
+                                <input type="hidden" class="form-control" name="statusDonation" value="Open"/>
+
+                                <button class=" btn-sm k btn-primary t2 op">เปิดการขอรับ</button>
+                              </form>
               </td>
             </tr>
+              @endif
           @endif
             @endforeach
           </tbody>
