@@ -12,8 +12,12 @@
     <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <!-- Custom Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
+  {{Html::style('css/shop-homepage.css')}}
     <!-- Bootstrap Core JavaScript -->
     <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
+
     <style type="text/css">
         .carousel-inner > .item > img {
   width:700;
@@ -40,11 +44,13 @@
   position:absolute;
   bottom: 33px;
   right:82px;
+  font-size: 14px;
 }
 .box2{
   position:absolute;
   bottom: 33px;
   right:30px;
+  font-size: 14px;
 
 }
 .popover{
@@ -55,6 +61,12 @@
   position:absolute;
 
   right:40px;
+}
+li{
+  font-size: 22px;
+}
+.bori{
+  font-size: 17px;
 }
 .rub1{
        padding: 5px 6px;
@@ -75,6 +87,10 @@
 .container{
   width:1200px;
 }
+body{
+  font-size: 16px;
+}
+
     </style>
   </head>
   <body>
@@ -89,7 +105,7 @@
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="all">Animals A-I-D</a>
+               <a  style="font-size:20px;" class="navbar-brand" href="all">Animals A-I-D</a>
            </div>
            <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -294,15 +310,15 @@
                                  </div>
                                @elseif($animal->doType_id==2)
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                              <button type="button" class="btn btn-primary"><a href='db' style='color:white;'>วิธีบริจาคป๊อบอัพแสดงข้อมูล</a></button>
+                                              <button type="button" class="btn btn-default bori" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary "><a href='db' style='color:white;'>วิธีบริจาคแสดงข้อมูล</a></button>
 
 
                                             </div>
                                           @else
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                              <button type="button" class="btn btn-primary">บริจาค</button>
+                                              <button type="button" class="btn btn-default bori" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary bori">บริจาค</button>
                                             </div>
                                           @endif
                                         </div>
@@ -460,8 +476,8 @@
                                   StatusDonation:{{$animal->statusDonation}}<br>
                                 </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">บริจาค</button>
+                                    <button type="button" class="btn btn-default bori" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary bori">บริจาค</button>
                                   </div>
                               </div>
                             </div>

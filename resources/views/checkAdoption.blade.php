@@ -282,10 +282,12 @@ position:absolute;
 <div  class="col-md-3 ri">
 
 
-    <p class="lead">รอผู้รับเลี้ยง</p>
 
-        <div class="list-group">
+
+
           @foreach($adminChecked as $wait)
+              <p class="lead">รอผู้รับเลี้ยง</p>
+                  <div class="list-group">
             <p class="list-group-item">
 
                 <i class="fa fa-comment fa-fw">ชื่อสัตว์  : {{$wait->join_Animal->animal_name}} &nbsp;รหัส:{{$wait->animal_id}} </i><br>

@@ -19,6 +19,10 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <style>
+  
+    </style>
+
 </head>
 <body>
     <div id="app">

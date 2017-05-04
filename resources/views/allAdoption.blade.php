@@ -14,6 +14,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="https://blackrockdigital.github.io/startbootstrap-shop-homepage/js/bootstrap.min.js"></script>
+    <!-- Custom Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
+            {{Html::style('css/shop-homepage.css')}}
     <style type="text/css">
         .carousel-inner > .item > img {
   width:700;
@@ -49,7 +52,8 @@
 .box1{
   position:absolute;
   bottom: 33px;
-  right:82px;
+  right:88px;
+  font-size: 13px;
 }
 .box2{
   position:absolute;
@@ -63,7 +67,7 @@
 }
 .rub{
        padding: 5px 6px;
-      font-size: 13px;
+      font-size: 15px;
       position:absolute;
       bottom: 33px;
       right:25px;
@@ -72,7 +76,7 @@
 
 .rub1{
        padding: 5px 6px;
-      font-size: 13px;
+      font-size: 15px;
       position:absolute;
       bottom: 17px;
       right:88px;
@@ -80,6 +84,15 @@
 }
 .container{
   width:1300px;
+}
+li{
+  font-size: 22px;
+}
+body{
+  font-size: 16px;
+}
+.bori{
+  font-size: 17px;
 }
     </style>
   </head>
@@ -95,7 +108,7 @@
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="all">Animals A-I-D</a>
+               <a class="navbar-brand"  style="font-size:20px;" href="all">Animals A-I-D</a>
            </div>
            <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

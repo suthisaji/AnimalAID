@@ -52,10 +52,16 @@
 .container{
   width:1300px;
 }
+li{
+  font-size: 22px;
+}
+body{
+  font-size: 16px;
+}
 
     </style>
   </head>
-  <body>
+  <body >
     <!-- Navigation -->
    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
        <div class="container">
@@ -67,7 +73,7 @@
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="all">Animals A-I-D</a>
+               <a class="navbar-brand"  style="font-size:20px;" href="all">Animals A-I-D </a>
            </div>
            <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

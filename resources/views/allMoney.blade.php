@@ -10,6 +10,9 @@
 
     <!-- Custom CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-shop-homepage/css/shop-homepage.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
+            {{Html::style('css/shop-homepage.css')}}
     <style type="text/css">
         .carousel-inner > .item > img {
   width:700;
@@ -43,7 +46,7 @@
 .box2{
   position:absolute;
   bottom: 33px;
-  right:30px;
+  right:25px;
 }
 .ro{
   position:absolute;
@@ -52,6 +55,15 @@
 }
 .container{
   width:1300px;
+}
+li{
+  font-size: 22px;
+}
+body{
+  font-size: 16px;
+}
+.bori{
+  font-size: 15px;
 }
     </style>
   </head>
@@ -67,7 +79,7 @@
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="all">Animals A-I-D</a>
+               <a class="navbar-brand"  style="font-size:20px;"  href="all">Animals A-I-D</a>
            </div>
            <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -207,10 +219,10 @@
 
                                   <!-- Button trigger modal -->
                                 <div class="row text-right">
-                              <button type="button" class="btn btn-primary btn-sm box1" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
+                              <button type="button" class="btn btn-primary btn-sm box1 bori" data-toggle="modal" data-target="#myModal{{$animal->animal_id}}">
                                 view detail</a>
                               </button>
-                              <button type="button" class="btn btn-primary btn-sm box2">Help</button>
+                              <button type="button" class="btn btn-primary btn-sm box2 bori"><a style="color: white;" href="index">Help</a></button>
                               <!--Modal-->
                               <div class="modal fade" id="myModal{{$animal->animal_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
@@ -247,8 +259,9 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                      <button type="button" class="btn btn-primary">บริจาค</button>
+                                      <button type="button" class="btn btn-default bori" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary bori"><a style="color: white;" href="index">บริจาค</a></button>
+
                                     </div>
                                   </div>
                                 </div>
