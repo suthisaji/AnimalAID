@@ -28,6 +28,7 @@
        color:  #6E6E6E  ;
      }
      .op{
+        font-size: 15px;
        background-color: darkseagreen;
 border-radius: 5px;
      }
@@ -92,12 +93,12 @@ border-radius: 5px;
         <table class="table table-hover">
           <thead class="table-inverse t">
               <tr>
-                <th>รหัส</th>
-                <th>ชื่อ</th>
-                <th>ประเภท</th>
-                <th>รูปภาพ</th>
-                <th>สถานะ</th>
-                <th>การดำเนินการ</th>
+                <th width="30">รหัส</th>
+                <th  width="140">ชื่อ</th>
+                <th width="100" >ประเภท</th>
+                <th   >รูปภาพ</th>
+                <th >สถานะ</th>
+                <th width="150">ดำเนินการ</th>
               </tr>
           </thead>
           <tbody>
@@ -107,7 +108,7 @@ border-radius: 5px;
               <td>{{$animal->animal_id}}</td>
               <td>{{$animal->animal_name}}</td>
               <td>{{$animal->join_donationType->do_typeName}}</td>
-              <td><img  src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="50" height="50"> &nbsp;<small>{{$animal->animal_picture}}</small>   <br></td>
+              <td><img  src="{{url('/images/'.$animal->animal_picture)}}" alt="" width="85" height="85"> &nbsp;<small>{{$animal->animal_picture}}</small>   <br></td>
 
               <td>{{$animal->statusDonation}}</td>
               <td>
@@ -212,7 +213,7 @@ border-radius: 5px;
 
                                       <input type="hidden" class="form-control" name="statusDonation" value="OpenAdoption"/>
 
-                                      <button class=" btn-sm k btn-primary t2 op" >เปิดการขอรับ</button>
+                                      <button class=" btn-sm k btn-primary op" >เปิดการขอรับ</button>
                                     </form>
                       @elseif($animal->statusDonation=='Close'||$animal->statusDonation=='close')
                         <form action="/closeAnimal/{{$animal->animal_id}}" class="form" method="post" enctype="multipart/form-data">
@@ -245,7 +246,7 @@ border-radius: 5px;
 
                                 <input type="hidden" class="form-control" name="statusDonation" value="Open"/>
 
-                                <button class=" btn-sm k btn-primary t2 op">เปิดการขอรับ</button>
+                                <button class=" btn-sm k btn-primary  op">เปิดการขอรับ</button>
                               </form>
               </td>
             </tr>

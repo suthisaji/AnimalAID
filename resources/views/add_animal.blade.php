@@ -84,7 +84,15 @@
                         <br>
                         <select class="custom-select "  style="  border: 5px solid rgba(0, 255, 0,.15);" name="doType_id" id="doType">
                           @foreach($donationType as $dt)
-                          <option value="{{$dt->do_typeId}}">{{$dt->do_typeName}}</option>
+
+                          <option value="{{$dt->do_typeId}}">
+                             @if($dt->do_typeName=='Donation Money')
+                               ขอรับบริจาคเงิน
+                             @elseif($dt->do_typeName=='Blood Donation')
+                               ขอรับบริจาคเลือด
+                             @else
+                                หาบ้านให้สัตว์
+                              @endif</option>
                           @endforeach
                         </select>
                     </div>
